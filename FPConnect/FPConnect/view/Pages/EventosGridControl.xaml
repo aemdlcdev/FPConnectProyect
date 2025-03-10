@@ -52,9 +52,9 @@
 
 
                 <!--Seleccion para el mes -->
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="auto" Height="auto">
+                <StackPanel Name="mesesStackArriba" Orientation="Horizontal" HorizontalAlignment="Center" Width="auto" Height="auto">
                     <Button Content="1" Style="{StaticResource mesButton}" Click="MesButton_Click"/>
-                    <Button Content="2" Style="{StaticResource mesButton}" Click="MesButton_Click" Foreground="#c73f69" FontWeight="SemiBold" />
+                    <Button Content="2" Style="{StaticResource mesButton}" Click="MesButton_Click"/>
                     <Button Content="3" Style="{StaticResource mesButton}" Click="MesButton_Click"/>
                     <Button Content="4" Style="{StaticResource mesButton}" Click="MesButton_Click"/>
                     <Button Content="5" Style="{StaticResource mesButton}" Click="MesButton_Click"/>

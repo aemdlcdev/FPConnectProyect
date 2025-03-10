@@ -23,6 +23,7 @@ namespace FPConnect.view.UserControls
     public partial class EventosGridControl : Page
     {
         private int currentYear;
+
         public EventosGridControl()
         {
             InitializeComponent();
@@ -31,8 +32,18 @@ namespace FPConnect.view.UserControls
             tDay.Text = DateTime.Now.ToString("dddd", new System.Globalization.CultureInfo("es-ES"));
             tMonth.Text = DateTime.Now.ToString("MMMM", new System.Globalization.CultureInfo("es-ES"));
             GetMesActualConLetras();
-        }
 
+            // Aplicar estilo al botón del mes actual
+            int mesActual = DateTime.Now.Month;
+            foreach (var child in mesesStackArriba.Children)
+            {
+                if (child is Button mesButton && int.Parse(mesButton.Content.ToString()) == mesActual)
+                {
+                    mesButton.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#c73f69"));
+                    mesButton.FontWeight = FontWeights.SemiBold;
+                }
+            }
+        }
 
         private void MesButton_Click(object sender, RoutedEventArgs e)
         {
@@ -46,13 +57,10 @@ namespace FPConnect.view.UserControls
 
                 // Verificar si el mes seleccionado es el mes actual
                 DateTime nuevaFecha;
-
-                nuevaFecha = new DateTime(fechaActual.Year, mesSeleccionado, fechaActual.Day);
-
                 if (mesSeleccionado == fechaActual.Month)
                 {
                     // Si es el mes actual, establecer la fecha seleccionada en el día actual
-                    
+                    nuevaFecha = new DateTime(fechaActual.Year, mesSeleccionado, fechaActual.Day);
                 }
                 else
                 {
@@ -95,6 +103,13 @@ namespace FPConnect.view.UserControls
             }
         }
 
+        private void calendario_DisplayDateChanged(object sender, CalendarDateChangedEventArgs e)
+        {
+            DateTime displayDate = calendario.DisplayDate;
+            tDayNumber.Text = displayDate.Day.ToString();
+            tDay.Text = displayDate.ToString("dddd", new System.Globalization.CultureInfo("es-ES"));
+            tMonth.Text = displayDate.ToString("MMMM", new System.Globalization.CultureInfo("es-ES"));
+        }
 
         private void btnAnioAnterior_Click(object sender, RoutedEventArgs e)
         {
@@ -190,4 +205,6 @@ namespace FPConnect.view.UserControls
             derecha.Children.Add(newItem);
         }
     }
+
+
 }
