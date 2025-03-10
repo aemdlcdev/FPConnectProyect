@@ -88,7 +88,7 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button Style="{StaticResource menuButton}">
+                            <Button Name="btnGestionUsuarios" Style="{StaticResource menuButton}" Click="btnGestionUsuarios_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="AccountSettings" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Gestionar Usuarios"/>
@@ -127,6 +127,8 @@
 
                 <!--Frame eventos-->
                 <Frame Name="eventosFrame" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="/view/pages/EventosGridControl.xaml" NavigationUIVisibility="Hidden"/>
+                <!--Frame gestion usuarios-->
+                <Frame Name="gestionUsuariosFrame" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="/view/pages/GestionUsuarios.xaml" NavigationUIVisibility="Hidden"/>
             </Grid>
         </Grid>
     </Border>
