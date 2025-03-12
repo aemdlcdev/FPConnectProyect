@@ -560,3 +560,5 @@ C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Deb
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\FPConnect.pdb
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\Coordinacion.g.cs
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\Coordinacion.baml
+C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\Empresas.g.cs
+C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\Empresas.baml

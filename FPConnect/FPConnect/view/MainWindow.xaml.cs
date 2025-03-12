@@ -11,6 +11,7 @@ namespace FPConnect
         public bool IsInicioButtonPressed { get; set; }
         public bool IsAlumnosButtonPressed { get; set; }
         public bool IsEventosButtonPressed { get; set; }
+        public bool IsEmpresasButtonPressed { get; set; }
         public bool IsCoordinacionButtonPressed { get; set; }
         public bool IsGestionUsuariosButtonPressed { get; set; }
 
@@ -20,6 +21,7 @@ namespace FPConnect
             alumnosFrame.Visibility = Visibility.Collapsed;
             eventosFrame.Visibility = Visibility.Collapsed;
             coordinacionFrame.Visibility = Visibility.Collapsed;
+            empresasFrame.Visibility = Visibility.Collapsed;
             gestionUsuariosFrame.Visibility = Visibility.Collapsed;
 
             // Mostrar el Frame de Inicio
@@ -29,6 +31,7 @@ namespace FPConnect
             IsInicioButtonPressed = true;
             IsAlumnosButtonPressed = false;
             IsEventosButtonPressed = false;
+            IsEmpresasButtonPressed = false;
             IsCoordinacionButtonPressed = false;
             IsGestionUsuariosButtonPressed = false;
             UpdateButtonStyles();
@@ -74,29 +77,6 @@ namespace FPConnect
         }
 
         /// <summary>
-        /// Maneja el evento Click del botón btnAlumnos.
-        /// Oculta los otros frames y muestra el frame de Alumnos.
-        /// </summary>
-        private void btnAlumnos_Click(object sender, RoutedEventArgs e)
-        {
-            // Ocultar otros Frames
-            inicioFrame.Visibility = Visibility.Collapsed;
-            eventosFrame.Visibility = Visibility.Collapsed;
-            coordinacionFrame.Visibility = Visibility.Collapsed;
-            gestionUsuariosFrame.Visibility = Visibility.Collapsed;
-            // Mostrar el Frame de Alumnos
-            alumnosFrame.Visibility = Visibility.Visible;
-            alumnosFrame.Source = new Uri("pages/AlumnosGridControl.xaml", UriKind.Relative);
-
-            IsInicioButtonPressed = false;
-            IsAlumnosButtonPressed = true;
-            IsEventosButtonPressed = false;
-            IsCoordinacionButtonPressed = false;
-            IsGestionUsuariosButtonPressed = false;
-            UpdateButtonStyles();
-        }
-
-        /// <summary>
         /// Maneja el evento Click del botón btnInicio.
         /// Oculta los otros frames y muestra el frame de Inicio.
         /// </summary>
@@ -106,6 +86,7 @@ namespace FPConnect
             alumnosFrame.Visibility = Visibility.Collapsed;
             eventosFrame.Visibility = Visibility.Collapsed;
             coordinacionFrame.Visibility = Visibility.Collapsed;
+            empresasFrame.Visibility = Visibility.Collapsed;
             gestionUsuariosFrame.Visibility = Visibility.Collapsed;
             // Mostrar el Frame de Inicio
             inicioFrame.Visibility = Visibility.Visible;
@@ -114,6 +95,7 @@ namespace FPConnect
             IsInicioButtonPressed = true;
             IsAlumnosButtonPressed = false;
             IsEventosButtonPressed = false;
+            IsEmpresasButtonPressed = false;
             IsCoordinacionButtonPressed = false;
             IsGestionUsuariosButtonPressed = false;
             UpdateButtonStyles();
@@ -129,6 +111,7 @@ namespace FPConnect
             alumnosFrame.Visibility = Visibility.Collapsed;
             inicioFrame.Visibility = Visibility.Collapsed;
             coordinacionFrame.Visibility = Visibility.Collapsed;
+            empresasFrame.Visibility = Visibility.Collapsed;
             gestionUsuariosFrame.Visibility = Visibility.Collapsed;
             // Mostrar el Frame de Eventos
             eventosFrame.Visibility = Visibility.Visible;
@@ -138,21 +121,101 @@ namespace FPConnect
             IsAlumnosButtonPressed = false;
             IsGestionUsuariosButtonPressed = false;
             IsCoordinacionButtonPressed = false;
+            IsEmpresasButtonPressed = false;
             IsEventosButtonPressed = true;
             UpdateButtonStyles();
         }
 
         /// <summary>
-        /// Actualiza los estilos de los botones según el estado de los botones presionados.
+        /// Maneja el evento Click del botón btnAlumnos.
+        /// Oculta los otros frames y muestra el frame de Alumnos.
         /// </summary>
-        private void UpdateButtonStyles()
+        private void btnAlumnos_Click(object sender, RoutedEventArgs e)
         {
-            btnInicio.Style = (Style)FindResource(IsInicioButtonPressed ? "menuButtonPressed" : "menuButton");
-            btnAlumnos.Style = (Style)FindResource(IsAlumnosButtonPressed ? "menuButtonPressed" : "menuButton");
-            btnEventos.Style = (Style)FindResource(IsEventosButtonPressed ? "menuButtonPressed" : "menuButton");
-            btnCoordinacion.Style = (Style)FindResource(IsCoordinacionButtonPressed ? "menuButtonPressed" : "menuButton");
-            btnGestionUsuarios.Style = (Style)FindResource(IsGestionUsuariosButtonPressed ? "menuButtonPressed" : "menuButton");
+            // Ocultar otros Frames
+            inicioFrame.Visibility = Visibility.Collapsed;
+            eventosFrame.Visibility = Visibility.Collapsed;
+            coordinacionFrame.Visibility = Visibility.Collapsed;
+            empresasFrame.Visibility = Visibility.Collapsed;
+            gestionUsuariosFrame.Visibility = Visibility.Collapsed;
+            // Mostrar el Frame de Alumnos
+            alumnosFrame.Visibility = Visibility.Visible;
+            alumnosFrame.Source = new Uri("pages/AlumnosGridControl.xaml", UriKind.Relative);
+
+            IsInicioButtonPressed = false;
+            IsAlumnosButtonPressed = true;
+            IsEventosButtonPressed = false;
+            IsCoordinacionButtonPressed = false;
+            IsEmpresasButtonPressed = false;
+            IsGestionUsuariosButtonPressed = false;
+            UpdateButtonStyles();
         }
+
+        private void btnEmpresas_Click(object sender, RoutedEventArgs e)
+        {
+            // Ocultar otros frames
+            inicioFrame.Visibility = Visibility.Collapsed;
+            eventosFrame.Visibility = Visibility.Collapsed;
+            alumnosFrame.Visibility = Visibility.Collapsed;
+            coordinacionFrame.Visibility = Visibility.Collapsed;
+            gestionUsuariosFrame.Visibility = Visibility.Collapsed;
+            // Mostrar el Frame de Coordinacion
+            empresasFrame.Visibility = Visibility.Visible;
+            empresasFrame.Source = new Uri("pages/Empresas.xaml", UriKind.Relative);
+
+            IsInicioButtonPressed = false;
+            IsAlumnosButtonPressed = false;
+            IsEventosButtonPressed = false;
+            IsEmpresasButtonPressed = true;
+            IsCoordinacionButtonPressed = false;
+            IsGestionUsuariosButtonPressed = false;
+            UpdateButtonStyles();
+        }
+
+        private void btnCoordinacion_Click(object sender, RoutedEventArgs e)
+        {
+            // Ocultar otros frames
+
+            alumnosFrame.Visibility = Visibility.Collapsed;
+            inicioFrame.Visibility = Visibility.Collapsed;
+            empresasFrame.Visibility = Visibility.Collapsed;
+            gestionUsuariosFrame.Visibility = Visibility.Collapsed;
+            eventosFrame.Visibility = Visibility.Collapsed;
+            // Mostrar el Frame de Coordinacion
+            coordinacionFrame.Visibility = Visibility.Visible;
+            coordinacionFrame.Source = new Uri("pages/Coordinacion.xaml", UriKind.Relative);
+
+            IsInicioButtonPressed = false;
+            IsAlumnosButtonPressed = false;
+            IsEventosButtonPressed = false;
+            IsEmpresasButtonPressed = false;
+            IsCoordinacionButtonPressed = true;
+            IsGestionUsuariosButtonPressed = false;
+            UpdateButtonStyles();
+        }
+
+        private void btnGestionUsuarios_Click(object sender, RoutedEventArgs e)
+        {
+            // Ocultar otros Frames
+            alumnosFrame.Visibility = Visibility.Collapsed;
+            inicioFrame.Visibility = Visibility.Collapsed;
+            coordinacionFrame.Visibility = Visibility.Collapsed;
+            empresasFrame.Visibility = Visibility.Collapsed;
+            eventosFrame.Visibility = Visibility.Collapsed;
+            // Mostrar el Frame de Eventos
+            gestionUsuariosFrame.Visibility = Visibility.Visible;
+            eventosFrame.Source = new Uri("pages/GestionUsuarios.xaml", UriKind.Relative);
+
+            IsInicioButtonPressed = false;
+            IsEventosButtonPressed = false;
+            IsAlumnosButtonPressed = false;
+            IsEmpresasButtonPressed = false;
+            IsCoordinacionButtonPressed = false;
+            IsGestionUsuariosButtonPressed = true;
+            UpdateButtonStyles();
+        }
+
+
 
         /// <summary>
         /// Maneja el evento Click del botón btnLogout.
@@ -174,44 +237,18 @@ namespace FPConnect
             Application.Current.Shutdown();
         }
 
-        private void btnGestionUsuarios_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Actualiza los estilos de los botones según el estado de los botones presionados.
+        /// </summary>
+        private void UpdateButtonStyles()
         {
-            // Ocultar otros Frames
-            alumnosFrame.Visibility = Visibility.Collapsed;
-            inicioFrame.Visibility = Visibility.Collapsed;
-            coordinacionFrame.Visibility = Visibility.Collapsed;
-            eventosFrame.Visibility = Visibility.Collapsed;
-            // Mostrar el Frame de Eventos
-            gestionUsuariosFrame.Visibility = Visibility.Visible;
-            eventosFrame.Source = new Uri("pages/GestionUsuarios.xaml", UriKind.Relative);
-
-            IsInicioButtonPressed = false;
-            IsAlumnosButtonPressed = false;
-            IsEventosButtonPressed = false;
-            IsCoordinacionButtonPressed = false;
-            IsGestionUsuariosButtonPressed = true;
-            UpdateButtonStyles();
+            btnInicio.Style = (Style)FindResource(IsInicioButtonPressed ? "menuButtonPressed" : "menuButton");
+            btnEventos.Style = (Style)FindResource(IsEventosButtonPressed ? "menuButtonPressed" : "menuButton");
+            btnAlumnos.Style = (Style)FindResource(IsAlumnosButtonPressed ? "menuButtonPressed" : "menuButton");
+            btnEmpresas.Style = (Style)FindResource(IsEmpresasButtonPressed ? "menuButtonPressed" : "menuButton");
+            btnCoordinacion.Style = (Style)FindResource(IsCoordinacionButtonPressed ? "menuButtonPressed" : "menuButton");
+            btnGestionUsuarios.Style = (Style)FindResource(IsGestionUsuariosButtonPressed ? "menuButtonPressed" : "menuButton");
         }
 
-        private void btnCoordinacion_Click(object sender, RoutedEventArgs e)
-        {
-            // Ocultar otros frames
-
-            alumnosFrame.Visibility = Visibility.Collapsed;
-            inicioFrame.Visibility = Visibility.Collapsed;
-            coordinacionFrame.Visibility = Visibility.Collapsed;
-            gestionUsuariosFrame.Visibility = Visibility.Collapsed;
-            eventosFrame.Visibility = Visibility.Collapsed;
-            // Mostrar el Frame de Coordinacion
-            coordinacionFrame.Visibility = Visibility.Visible;
-            coordinacionFrame.Source = new Uri("pages/Coordinacion.xaml", UriKind.Relative);
-
-            IsInicioButtonPressed = false;
-            IsAlumnosButtonPressed = false;
-            IsEventosButtonPressed = false;
-            IsCoordinacionButtonPressed = true;
-            IsGestionUsuariosButtonPressed = false;
-            UpdateButtonStyles();
-        }
     }
 }

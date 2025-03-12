@@ -267,6 +267,9 @@
     <Compile Include="view\Pages\Coordinacion.xaml.cs">
       <DependentUpon>Coordinacion.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\Pages\Empresas.xaml.cs">
+      <DependentUpon>Empresas.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\Pages\EventosGridControl.xaml.cs">
       <DependentUpon>EventosGridControl.xaml</DependentUpon>
     </Compile>
@@ -306,6 +309,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="view\Pages\Coordinacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Pages\Empresas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
