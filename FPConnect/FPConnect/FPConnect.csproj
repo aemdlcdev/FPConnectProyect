@@ -279,12 +279,6 @@
     <Compile Include="view\UserControls\MenuButton.xaml.cs">
       <DependentUpon>MenuButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\UserControls\MyOption.xaml.cs">
-      <DependentUpon>MyOption.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="view\UserControls\MyTextBox.xaml.cs">
-      <DependentUpon>MyTextBox.xaml</DependentUpon>
-    </Compile>
     <Page Include="view\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -327,14 +321,6 @@
     <Page Include="view\UserControls\MenuButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="view\UserControls\MyOption.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="view\UserControls\MyTextBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
