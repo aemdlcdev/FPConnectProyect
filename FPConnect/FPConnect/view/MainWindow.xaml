@@ -81,7 +81,7 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button Style="{StaticResource menuButton}">
+                            <Button x:Name="btnCoordinacion" Style="{StaticResource menuButton}" Click="btnCoordinacion_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="CompareHorizontal" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Coordinación"/>
@@ -129,6 +129,8 @@
                 <Frame Name="eventosFrame" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="/view/pages/EventosGridControl.xaml" NavigationUIVisibility="Hidden"/>
                 <!--Frame gestion usuarios-->
                 <Frame Name="gestionUsuariosFrame" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="/view/pages/GestionUsuarios.xaml" NavigationUIVisibility="Hidden"/>
+                <!--Frame Coordinacion-->
+                <Frame Name="coordinacionFrame" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="/view/Pages/Coordinacion.xaml" NavigationUIVisibility="Hidden"/>
             </Grid>
         </Grid>
     </Border>
