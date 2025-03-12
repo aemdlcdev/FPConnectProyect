@@ -18,11 +18,12 @@ namespace DataGrid
     /// </summary>
     public partial class AlumnosGridControl : Page
     {
+        private ObservableCollection<Member> members { get; set; }
         public AlumnosGridControl()
         {
             InitializeComponent();
             var converter = new BrushConverter();
-            ObservableCollection<Member> members = new ObservableCollection<Member>();
+            members = new ObservableCollection<Member>();
 
             members.Add(new Member { Number = "1", Character = "J", BgColor = (Brush)converter.ConvertFromString("#1098AD"), Name = "John Doe", Position = "Murillo", Email = "john.doe@gmail.com", Phone = "415-954-1475" });
             members.Add(new Member { Number = "2", Character = "R", BgColor = (Brush)converter.ConvertFromString("#1E88E5"), Name = "Reza Alavi", Position = "Administrator", Email = "reza110@hotmail.com", Phone = "254-451-7893" });
@@ -70,6 +71,11 @@ namespace DataGrid
             public string Position { get; set; }
             public string Email { get; set; }
             public string Phone { get; set; }
+        }
+
+        private void membersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

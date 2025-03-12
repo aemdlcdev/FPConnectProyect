@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:FPConnect.view.Pages"
       xmlns:fa="http://schemas.fontawesome.io/icons/"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
       mc:Ignorable="d" 
       d:DesignHeight="620" d:DesignWidth="800"
       Title="GestionUsuarios">
@@ -71,28 +72,41 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <DataGrid x:Name="dataGridEmpleados" Margin="10" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid x:Name="usuariosDataGrid" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  Style="{DynamicResource DataGridStyle1}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Id" Binding="{Binding idEmpleado}" Visibility="Hidden" Width="2"/>
-                    <DataGridTextColumn Header="Nombre Empleado" Binding="{Binding nombre}" Width="150"/>
-                    <DataGridTextColumn Header="Apellidos Empleado" Binding="{Binding apellidos}" Width="150"/>
-                    <DataGridTextColumn Header="CSR Usuario" Binding="{Binding csr}"/>
-                    <DataGridTextColumn Header="CSR Usuario" Binding="{Binding idUsuario}" Visibility="Hidden"/>
-                    <DataGridTextColumn Header="ID Rol" Binding="{Binding idRol}"/>
+                    <DataGridTemplateColumn Header="Nombre de usuario" IsReadOnly="True" Width="142">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}">
+                                        <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
+                                    </Border>
+                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Teléfono" Binding="{Binding Position}" IsReadOnly="True" Width="90"/>
+                    <DataGridTextColumn Header="Email" Binding="{Binding Phone}" IsReadOnly="True" Width="100"/>
+                    <DataGridTemplateColumn Header="Acciones" IsReadOnly="True" Width="auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Style="{StaticResource gridEditButton}">
+                                        <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
+                                    </Button>
+                                    <Button Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}">
+                                        <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
 
-            <Grid Grid.Row="1" Margin="10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
-                <Button Content="Modificar" Height="40" Style="{StaticResource buttonMainGreenGestionUsuarios}"/>
-                <Button Content="Eliminar" Grid.Column="2" Height="40" Style="{StaticResource buttonMainGreenGestionUsuarios}"/>
-            </Grid>
+
 
         </Grid>
 
