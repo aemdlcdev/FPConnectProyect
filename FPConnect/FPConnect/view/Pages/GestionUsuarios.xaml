@@ -94,7 +94,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button x:Name="btnModificarUsuario" Style="{StaticResource gridEditButton}">
+                                    <Button x:Name="btnModificarUsuario" Background="#3090ff" BorderBrush="AliceBlue" Style="{StaticResource gridEditButton}">
                                         <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/> <!-- Modificar usuario -->
                                     </Button>
                                     <Button x:Name="btnEliminarUsuario" Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}"> <!-- Borrar usuario -->

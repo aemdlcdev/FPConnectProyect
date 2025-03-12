@@ -104,8 +104,8 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Style="{StaticResource gridEditButton}">
-                                    <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
+                                <Button x:Name="btnEditarAlumno" Background="#3090ff" BorderBrush="AliceBlue" Style="{StaticResource gridEditButton}"> <!--Boton editar alumno-->
+                                    <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/> <!--Boton borrar alumno-->
                                 </Button>
                                 <Button Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}">
                                     <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
