@@ -51,7 +51,7 @@ namespace FPConnect
                 {
                     this.WindowState = WindowState.Normal;
                     this.Width = 1080;
-                    this.Height = 720;
+                    this.Height = 750;
 
                     IsMaximize = false;
                 }

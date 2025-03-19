@@ -27,8 +27,8 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <!--Menu Icon-->
-                <Button Style="{StaticResource topButton}" HorizontalAlignment="Left" Margin="20 28 0 35">
+                <!--Menu Icon (de momento no lo voy a usar)-->
+                <Button Style="{StaticResource topButton}" HorizontalAlignment="Left" Margin="20 28 0 35" Visibility="Hidden">
                     <Icon:PackIconMaterial Kind="Menu" Width="15" Height="15" />
                 </Button>
 
