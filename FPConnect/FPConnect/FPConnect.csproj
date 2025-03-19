@@ -76,6 +76,12 @@
     <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
     </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="MahApps.Metro, Version=2.0.0.0, Culture=neutral, PublicKeyToken=51482d6f650b2b3f, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.2.0.0\lib\net47\MahApps.Metro.dll</HintPath>
     </Reference>
@@ -279,10 +285,19 @@
     <Compile Include="view\Pages\InicioGridControl.xaml.cs">
       <DependentUpon>InicioGridControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\UserControls\Item.xaml.cs">
+    <Compile Include="view\UserControls\Inicio\InfoCard.xaml.cs">
+      <DependentUpon>InfoCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\UserControls\Inicio\Legends.xaml.cs">
+      <DependentUpon>Legends.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\UserControls\Inicio\UserCard.xaml.cs">
+      <DependentUpon>UserCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\UserControls\Eventos\Item.xaml.cs">
       <DependentUpon>Item.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\UserControls\MenuButton.xaml.cs">
+    <Compile Include="view\UserControls\Eventos\MenuButton.xaml.cs">
       <DependentUpon>MenuButton.xaml</DependentUpon>
     </Compile>
     <Page Include="view\Login.xaml">
@@ -328,11 +343,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="view\UserControls\Item.xaml">
+    <Page Include="view\UserControls\Inicio\InfoCard.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="view\UserControls\MenuButton.xaml">
+    <Page Include="view\UserControls\Inicio\Legends.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="view\UserControls\Inicio\UserCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="view\UserControls\Eventos\Item.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="view\UserControls\Eventos\MenuButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -391,6 +418,28 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="logoFPConnect.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\purchase.png" />
+    <Resource Include="Images\return.png" />
+    <Resource Include="Images\sale.png" />
+    <Resource Include="Images\u1.png" />
+    <Resource Include="Images\u2.png" />
+    <Resource Include="Images\u3.png" />
+    <Resource Include="Images\u4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\maestre.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\team.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\education.png" />
+    <Resource Include="Images\enterprise.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\saludo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.5.1.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.5.1.0\build\MaterialDesignThemes.targets')" />

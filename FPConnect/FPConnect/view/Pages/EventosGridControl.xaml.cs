@@ -13,9 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Calender.UserControls;
+using FPConnect.view.UserControls.Eventos;
 
-namespace FPConnect.view.UserControls
+namespace FPConnect.view.UserControls.Eventos
 {
     /// <summary>
     /// Lógica de interacción para EventosGridControl.xaml

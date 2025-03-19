@@ -67,14 +67,38 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FPConnect.exe" size="411576">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FPConnect.exe" size="572344">
       <assemblyIdentity name="FPConnect" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>n6eR1/YABYYc9G6x3dIopq/i05JFI4gkrboQ7ignVS0=</dsig:DigestValue>
+        <dsig:DigestValue>kiujHMS3XUcS3tb501e+xAWCRnrPcu1ayIN50t2wMxk=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LiveCharts.dll" size="152064">
+      <assemblyIdentity name="LiveCharts" version="0.9.7.0" publicKeyToken="0BC1F845D1EBB8DF" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>n8+Jg3tg9pwcUB5M+k0oYIh6/QuPMlgDNn55Wk47yco=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LiveCharts.Wpf.dll" size="217600">
+      <assemblyIdentity name="LiveCharts.Wpf" version="0.9.7.0" publicKeyToken="0BC1F845D1EBB8DF" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>G9uxtcGlBlPlwmFh6bfAPtxRhyGm4Q6hgKhASdlnEGs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

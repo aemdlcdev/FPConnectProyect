@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\App.xaml
-10-2125681821
+13-967683875
 
-15-952522335
-741385651716
-view\Login.xaml;view\MainWindow.xaml;view\Pages\AlumnosGridControl.xaml;view\Pages\Coordinacion.xaml;view\Pages\Empresas.xaml;view\Pages\EventosGridControl.xaml;view\Pages\GestionUsuarios.xaml;view\Pages\InicioGridControl.xaml;view\UserControls\Item.xaml;view\UserControls\MenuButton.xaml;
+18101845443
+761800879774
+view\Login.xaml;view\MainWindow.xaml;view\Pages\AlumnosGridControl.xaml;view\Pages\Coordinacion.xaml;view\Pages\Empresas.xaml;view\Pages\EventosGridControl.xaml;view\Pages\GestionUsuarios.xaml;view\Pages\InicioGridControl.xaml;view\UserControls\Inicio\InfoCard.xaml;view\UserControls\Inicio\Legends.xaml;view\UserControls\Inicio\UserCard.xaml;view\UserControls\Eventos\Item.xaml;view\UserControls\Eventos\MenuButton.xaml;
 
-False
+True
 

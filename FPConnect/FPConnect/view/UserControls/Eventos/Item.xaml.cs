@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using FontAwesome.WPF;
 
-namespace Calender.UserControls
+namespace FPConnect.view.UserControls.Eventos
 {
     public partial class Item : UserControl
     {

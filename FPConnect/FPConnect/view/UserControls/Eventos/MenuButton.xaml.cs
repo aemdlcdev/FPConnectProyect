@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace Calender.UserControls
+namespace FPConnect.view.UserControls.Eventos
 {
     public partial class MenuButton : UserControl
     {

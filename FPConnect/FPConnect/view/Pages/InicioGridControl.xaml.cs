@@ -31,12 +31,6 @@ namespace DataGrid.view
         {
             InitializeComponent();
         }
-
-        public void LlamarApi() 
-        {
-            // IMplementar
-        }
-
         
     }
 }

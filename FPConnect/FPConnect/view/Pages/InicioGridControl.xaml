@@ -5,15 +5,183 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DataGrid.view"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:uc="clr-namespace:FPConnect.view.UserControls"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
-             Height="720" Width="860">
+             Height="auto" Width="auto">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        
-    </Grid>
-    
+    <Border CornerRadius="25" Padding="20" Background="#F7F6F4">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="260"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="130"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            
+
+            <!--Cabecera-->
+            <Border Grid.Column="0" Style="{StaticResource whiteBorder}" Margin="20 0 20 20">
+                <Grid>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Border Width="50" Height="50" CornerRadius="10" Margin="5 0 20 0">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                    <GradientStop Color="#56CFFB" Offset="0"/>
+                                    <GradientStop Color="#54A8FA" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+
+                            <Image Source="/Images/saludo.png" Width="40" Height="40" />
+                        </Border>
+
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="Hola, Alejandro" Style="{StaticResource titleText}" FontSize="26" FontWeight="Bold"/>
+                            <TextBlock Text="Esperamos que estés teniendo un buen día" Foreground="#6C879A" Margin="0 3 0 0"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                </Grid>
+            </Border>
+
+            <!--Info Cards-->
+            <Grid Grid.Column="0" Grid.Row="1" Margin="10 0 10 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <uc:InfoCard Grid.Column="0" Title="Alumnos" SubTitle="Alumnos registrados del centro" Amount="150" Image="/Images/team.png"/>
+                <uc:InfoCard Grid.Column="1" Title="Empresas" SubTitle="Empresas registradas" Amount="8" Image="/Images/enterprise.png"/>
+                <uc:InfoCard Grid.Column="2" Title="Centros" SubTitle="Total de centros educativos registrados" Amount="3" Image="/Images/education.png"/>
+            </Grid>
+
+            <!--Live chart-->
+            <Border Grid.Column="0" Grid.Row="2" Style="{StaticResource whiteBorder}" Margin="20 20 20 0">
+                <Grid Margin="10 5">
+                    <!--Title-->
+                    <TextBlock Text="Alumnos del centro" Style="{StaticResource titleText}"/>
+
+                    <!--Legends-->
+                    <uc:Legends HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 8 10 0" />
+
+                    <!--Chart-->
+                    <lvc:CartesianChart Grid.Row="1" Margin="5 40 0 60" LegendLocation="None">
+                        <lvc:CartesianChart.DataTooltip>
+                            <lvc:DefaultTooltip Background="Red" Foreground="#ffffff" Opacity="0.7" BulletSize="10">
+                            </lvc:DefaultTooltip>
+                        </lvc:CartesianChart.DataTooltip>
+
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Foreground="#90A3B2" ShowLabels="True">
+                                <lvc:Axis.Separator>
+                                    <lvc:Separator StrokeThickness="0" Step="2"/>
+                                </lvc:Axis.Separator>
+                            </lvc:Axis>
+                        </lvc:CartesianChart.AxisX>
+
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis MinValue="40" MaxValue="350" Foreground="#90A3B2" ShowLabels="True">
+                                <lvc:Axis.Separator>
+                                    <lvc:Separator StrokeThickness="0"/>
+                                </lvc:Axis.Separator>
+                            </lvc:Axis>
+                        </lvc:CartesianChart.AxisY>
+
+                        <lvc:CartesianChart.Series>
+                            <lvc:LineSeries Values="50,120,110,160,150,180,120,170,165,180" Fill="Transparent" StrokeThickness="3" PointGeometrySize="0">
+                                <lvc:LineSeries.Stroke>
+                                    <LinearGradientBrush>
+                                        <GradientStop Color="#ffffff" Offset="0.06"/>
+                                        <GradientStop Color="#2889FC" Offset="0.5"/>
+                                        <GradientStop Color="#ffffff" Offset="0.93"/>
+                                    </LinearGradientBrush>
+                                </lvc:LineSeries.Stroke>
+                            </lvc:LineSeries>
+                            <lvc:LineSeries Values="170,240,200,220,220,270,200,260,200,240" Fill="Transparent" StrokeThickness="3" PointGeometrySize="0">
+                                <lvc:LineSeries.Stroke>
+                                    <LinearGradientBrush>
+                                        <GradientStop Color="#ffffff" Offset="0.06"/>
+                                        <GradientStop Color="#FE6C47" Offset="0.5"/>
+                                        <GradientStop Color="#ffffff" Offset="0.9"/>
+                                    </LinearGradientBrush>
+                                </lvc:LineSeries.Stroke>
+                            </lvc:LineSeries>
+                            <lvc:LineSeries Values="70,210,180,120,225,210,265,160,230,250" Fill="Transparent" StrokeThickness="3" PointGeometrySize="0">
+                                <lvc:LineSeries.Stroke>
+                                    <LinearGradientBrush>
+                                        <GradientStop Color="#ffffff" Offset="0.06"/>
+                                        <GradientStop Color="LightGreen" Offset="0.5"/>
+                                        <GradientStop Color="#ffffff" Offset="0.9"/>
+                                    </LinearGradientBrush>
+                                </lvc:LineSeries.Stroke>
+                            </lvc:LineSeries>
+                        </lvc:CartesianChart.Series>
+                    </lvc:CartesianChart>
+
+                    <!--Note Text-->
+                    <Grid VerticalAlignment="Bottom" Margin="10 0">
+                        <Icon:PackIconMaterial Kind="Information" Foreground="#F96654"/>
+                        <TextBlock TextWrapping="Wrap" Margin="30 0 0 0" LineHeight="18" Foreground="{StaticResource GreyColor}"
+                               Text="Las estadísticas podrían no estar actualizadas en tiempo real"/>
+                    </Grid>
+
+                </Grid>
+            </Border>
+
+            <!--Parte derecha-->
+            <Grid Grid.Column="2" Grid.RowSpan="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--Sales List-->
+                <Border Style="{StaticResource whiteBorder}">
+                    <StackPanel>
+                        <TextBlock Text="Equipo directivo" Style="{StaticResource titleText}"/>
+                        <TextBlock Text="Equipo directivo del centro IES Maestre de Calatrava" TextWrapping="Wrap" Margin="0 10 0 10" Style="{StaticResource secondaryText}"/>
+
+                        <uc:UserCard Title="Director" IsActive="True" UpPrice="2024" DownPrice="2028" Image="/Images/u1.png"/>
+                        <uc:UserCard Title="Jefe de estudios" UpPrice="2024" DownPrice="2028" Image="/Images/u3.png"/>
+                        <uc:UserCard Title="Jefa de estudios" UpPrice="2024" DownPrice="2028" Image="/Images/u1.png"/>
+                    </StackPanel>
+                </Border>
+
+                <!--Datos del centro-->
+                <Border Grid.Row="1" Style="{StaticResource whiteBorder}" Margin="0 20 0 0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <!--Titulo e Informacion-->
+                        <TextBlock Grid.Row="0" Text="Datos del centro" Style="{StaticResource titleText}"/>
+                        <TextBlock Grid.Row="1"  Text="Dirección" Style="{StaticResource titleText}" FontSize="14"/>
+                        <TextBlock Grid.Row="2"  Text="Paseo Universidad, 1, 13005 Ciudad Real" Style="{StaticResource titleText}" FontSize="12" />
+                        <TextBlock Grid.Row="3"  Text="Teléfono" Style="{StaticResource titleText}" FontSize="14" Margin="0 5 0 0"/>
+                        <TextBlock Grid.Row="4"  Text="926 23 25 30" Style="{StaticResource titleText}" FontSize="12"/>
+                        <TextBlock Grid.Row="5"  Text="Horario" Style="{StaticResource titleText}" FontSize="14" Margin="0 5 0 0"/>
+                        <TextBlock Grid.Row="6"  Text="Lunes a Viernes de 08:00 a 22:00" Style="{StaticResource titleText}" FontSize="12"/>
+                        <Image Grid.Row="7" Margin="0 10 0 0" Source="/Images/maestre.png"/>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Grid>
+    </Border>
+
 </Page>
