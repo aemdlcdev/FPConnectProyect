@@ -11,7 +11,6 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using FPConnect.view.Pages.Alumnos_Sub_Pages;
 using FPConnect.view.Pages.Forms;
 using Microsoft.SqlServer.Server;
 
@@ -22,23 +21,21 @@ namespace FPConnect.view.Pages
     /// </summary>
     public partial class AlumnosGridControl : Page
     {
-
-        private AlumnosActuales alumnosActuales;
+       
         public bool IsAlumnosButtonPressed { get; set; }
         public bool IsArchivadosButtonPressed { get; set; }
         public bool IsInfoButtonPressed { get; set; }
         public AlumnosGridControl()
         {
             InitializeComponent();
-            alumnosActuales = new AlumnosActuales();
             
+            mainFrameA.Source = new Uri("AlumnosSubPages/AlumnosActuales.xaml", UriKind.Relative);
+
         }
 
         private void btnAlumnosActual_Click(object sender, RoutedEventArgs e)
         {
-            alumnosFrameC.Visibility = Visibility.Visible;
-            archivadosFrame.Visibility = Visibility.Collapsed;
-            informacionFrame.Visibility = Visibility.Collapsed;
+            mainFrameA.Source = new Uri("AlumnosSubPages/AlumnosActuales.xaml", UriKind.Relative);
 
             IsArchivadosButtonPressed = false;
             IsAlumnosButtonPressed = true;
@@ -49,9 +46,7 @@ namespace FPConnect.view.Pages
 
         private void btnArchivados_Click(object sender, RoutedEventArgs e)
         {
-            archivadosFrame.Visibility = Visibility.Visible;
-            alumnosFrameC.Visibility = Visibility.Collapsed;
-            informacionFrame.Visibility = Visibility.Collapsed;
+            mainFrameA.Source = new Uri("AlumnosSubPages/Archivados.xaml", UriKind.Relative);
 
 
             IsArchivadosButtonPressed = true;
@@ -63,9 +58,7 @@ namespace FPConnect.view.Pages
 
         private void btnInfo_Click(object sender, RoutedEventArgs e)
         {
-            informacionFrame.Visibility = Visibility.Visible;
-            archivadosFrame.Visibility = Visibility.Collapsed;
-            alumnosFrameC.Visibility = Visibility.Collapsed;
+            mainFrameA.Source = new Uri("AlumnosSubPages/Informacion.xaml", UriKind.Relative);
 
 
             IsInfoButtonPressed = true;
@@ -85,10 +78,9 @@ namespace FPConnect.view.Pages
         private void btnAddAlumno_Click(object sender, RoutedEventArgs e)
         {
             FormAddAlumno formAddAlumno = new FormAddAlumno();
-            if (formAddAlumno.ShowDialog() == true) // Muestra como modal
-            {
-                MessageBox.Show($"Alumno agregado:\nNombre: {formAddAlumno.Nombre}\nEdad: {formAddAlumno.Edad}\nCorreo: {formAddAlumno.Correo}");
-            }
+            
+            // Implementar logica
+
         }
     }
 }

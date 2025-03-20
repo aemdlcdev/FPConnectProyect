@@ -267,13 +267,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="view\Pages\Alumnos Sub Pages\AlumnosActuales.xaml.cs">
+    <Compile Include="view\Pages\AlumnosSubPages\AlumnosActuales.xaml.cs">
       <DependentUpon>AlumnosActuales.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\Pages\Alumnos Sub Pages\Archivados.xaml.cs">
+    <Compile Include="view\Pages\AlumnosSubPages\Archivados.xaml.cs">
       <DependentUpon>Archivados.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\Pages\Alumnos Sub Pages\Informacion.xaml.cs">
+    <Compile Include="view\Pages\AlumnosSubPages\Informacion.xaml.cs">
       <DependentUpon>Informacion.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\Pages\AlumnosGridControl.xaml.cs">
@@ -331,15 +331,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="view\Pages\Alumnos Sub Pages\AlumnosActuales.xaml">
+    <Page Include="view\Pages\AlumnosSubPages\AlumnosActuales.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="view\Pages\Alumnos Sub Pages\Archivados.xaml">
+    <Page Include="view\Pages\AlumnosSubPages\Archivados.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="view\Pages\Alumnos Sub Pages\Informacion.xaml">
+    <Page Include="view\Pages\AlumnosSubPages\Informacion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

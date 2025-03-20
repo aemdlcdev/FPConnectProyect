@@ -58,15 +58,8 @@
             <Button Name="btnArchivados" Style="{StaticResource tabButton}" Content="Archivados" Width="80" Click="btnArchivados_Click"/>
         </StackPanel>
         <!--Alumnos Frame-->
-        
-            <Frame x:Name="alumnosFrameC" Grid.Row="6" Margin="0 10 0 0" HorizontalAlignment="Stretch" 
-               VerticalAlignment="Stretch" NavigationUIVisibility="Hidden" Source="/view/Pages/Alumnos Sub Pages/AlumnosActuales.xaml"/>
-        
-        <!--Infromacion frame-->
-        <Frame x:Name="informacionFrame" Grid.Row="6" Margin="0 10 0 0" HorizontalAlignment="Stretch" 
-        VerticalAlignment="Stretch" NavigationUIVisibility="Hidden" Source="/view/Pages/Alumnos Sub Pages/Informacion.xaml"/>
-        <!--Archivados frame-->
-        <Frame x:Name="archivadosFrame" Grid.Row="6" Margin="0 10 0 0" HorizontalAlignment="Stretch" 
-        VerticalAlignment="Stretch" NavigationUIVisibility="Hidden" Source="/view/Pages/Alumnos Sub Pages/Archivados.xaml"/>
+
+        <Frame x:Name="mainFrameA" Grid.Row="6" Margin="0 10 0 0" HorizontalAlignment="Stretch" 
+               VerticalAlignment="Stretch" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Page>

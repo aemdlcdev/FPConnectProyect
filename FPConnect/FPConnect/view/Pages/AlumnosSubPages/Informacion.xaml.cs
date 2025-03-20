@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FPConnect.view.Pages.Alumnos_Sub_Pages
+namespace FPConnect.view.Pages.AlumnosSubPages
 {
     /// <summary>
     /// Lógica de interacción para Informacion.xaml

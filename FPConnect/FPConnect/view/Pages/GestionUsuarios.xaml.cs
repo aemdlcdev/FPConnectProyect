@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using static FPConnect.view.Pages.Alumnos_Sub_Pages.AlumnosActuales;
+using static FPConnect.view.Pages.AlumnosSubPages.AlumnosActuales;
 
 namespace FPConnect.view.Pages
 {
