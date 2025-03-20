@@ -580,3 +580,5 @@ C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Deb
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\Alumnos Sub Pages\Archivados.baml
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\Alumnos Sub Pages\Informacion.g.cs
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\Alumnos Sub Pages\Informacion.baml
+C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\Forms\Alumnos\FormAddAlumno.g.cs
+C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\Forms\Alumnos\FormAddAlumno.baml

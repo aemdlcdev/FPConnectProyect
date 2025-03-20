@@ -1,9 +1,9 @@
-﻿<Page x:Class="DataGrid.AlumnosGridControl"
+﻿<Page x:Class="FPConnect.view.Pages.AlumnosGridControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:local="clr-namespace:DataGrid"
+             xmlns:local="clr-namespace:FPConnect.view.Pages"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d"
              Height="auto" Width="auto">
@@ -41,7 +41,7 @@
    HorizontalAlignment="Left" Text="Información y gestión del alumnado"/>
 
         <!--Añadir alumno-->
-        <Button Style="{StaticResource addButton}" Cursor="Hand">
+        <Button x:Name="btnAddAlumno" Style="{StaticResource addButton}" Cursor="Hand" Click="btnAddAlumno_Click">
             <StackPanel Orientation="Horizontal">
                 <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
                 <TextBlock Text="Agregar nuevo alumno" FontSize="10"/>
