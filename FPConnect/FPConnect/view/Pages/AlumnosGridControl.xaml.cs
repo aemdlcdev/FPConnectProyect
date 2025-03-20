@@ -36,6 +36,7 @@ namespace FPConnect.view.Pages
         private void btnAlumnosActual_Click(object sender, RoutedEventArgs e)
         {
             mainFrameA.Source = new Uri("AlumnosSubPages/AlumnosActuales.xaml", UriKind.Relative);
+            btnAddAlumno.Visibility = Visibility.Visible;
 
             IsArchivadosButtonPressed = false;
             IsAlumnosButtonPressed = true;
@@ -47,7 +48,7 @@ namespace FPConnect.view.Pages
         private void btnArchivados_Click(object sender, RoutedEventArgs e)
         {
             mainFrameA.Source = new Uri("AlumnosSubPages/Archivados.xaml", UriKind.Relative);
-
+            btnAddAlumno.Visibility = Visibility.Collapsed;
 
             IsArchivadosButtonPressed = true;
             IsAlumnosButtonPressed = false;
@@ -59,7 +60,7 @@ namespace FPConnect.view.Pages
         private void btnInfo_Click(object sender, RoutedEventArgs e)
         {
             mainFrameA.Source = new Uri("AlumnosSubPages/Informacion.xaml", UriKind.Relative);
-
+            btnAddAlumno.Visibility = Visibility.Collapsed;
 
             IsInfoButtonPressed = true;
             IsArchivadosButtonPressed = false;
@@ -78,8 +79,12 @@ namespace FPConnect.view.Pages
         private void btnAddAlumno_Click(object sender, RoutedEventArgs e)
         {
             FormAddAlumno formAddAlumno = new FormAddAlumno();
+
             
-            // Implementar logica
+            if (formAddAlumno.ShowDialog() == true) // Muestra como modal
+            {
+                // Implementar logica
+            }
 
         }
     }

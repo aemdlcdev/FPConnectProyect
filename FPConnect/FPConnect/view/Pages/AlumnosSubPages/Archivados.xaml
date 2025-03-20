@@ -3,12 +3,90 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:FPConnect.view.Pages.AlumnosSubPages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Archivados">
 
     <Grid>
-        
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Selecciona el curso" Style="{StaticResource titleText}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <ComboBox x:Name="cbCurso" Grid.Column="1" Margin="10 0 0 0" materialDesign:HintAssist.Hint="Curso" FontSize="16" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <ComboBoxItem Content="2024-2025"/>
+                <ComboBoxItem Content="2025-2026"/>
+                <!--Implementar logica (backend)-->
+            </ComboBox>
+            <TextBlock Text="Selecciona el grado" Grid.Column="2" Margin="30 0 0 0" Style="{StaticResource titleText}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <ComboBox x:Name="cbGrado" Grid.Column="3" Margin="10 0 0 0" materialDesign:HintAssist.Hint="Grado" FontSize="16" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <ComboBoxItem Content="Superior"/>
+                <ComboBoxItem Content="Medio"/>
+                <ComboBoxItem Content="Básica"/>
+                <!--Implementar logica (backend)-->
+            </ComboBox>
+
+            <Button x:Name="btnCargar" Content="Cargar" Grid.Column="4"  Style="{StaticResource addButton}" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="77,0,0,0" Click="btnCargar_Click"/>
+                   
+        </Grid>
+
+        <DataGrid x:Name="archivadosDataGrid" Grid.Row="1" Margin="0 20 0 0" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  Style="{DynamicResource DataGridStyle1}" SelectionChanged="archivadosDataGrid_SelectionChanged" Visibility="Collapsed">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
+                    <DataGridCheckBoxColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
+                        </DataTemplate>
+                    </DataGridCheckBoxColumn.HeaderTemplate>
+                </DataGridCheckBoxColumn>
+                <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Number}"/>
+                <DataGridTemplateColumn Header="Alumno" IsReadOnly="True" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}">
+                                    <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
+                                </Border>
+
+                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Apellido" Binding="{Binding Position}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Dirección de email" Binding="{Binding Email}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Número de teléfono" Binding="{Binding Phone}" IsReadOnly="True" Width="*"/>
+                <DataGridTemplateColumn Header="Acciones" IsReadOnly="True" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="btnEditarAlumno" Background="#3090ff" BorderBrush="AliceBlue" Style="{StaticResource gridEditButton}">
+                                    <!--Boton editar alumno-->
+                                    <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
+                                    <!--Boton borrar alumno-->
+                                </Button>
+                                <Button Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}">
+                                    <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>
