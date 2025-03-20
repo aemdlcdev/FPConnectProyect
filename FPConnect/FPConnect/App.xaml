@@ -16,9 +16,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-        
-
-        <!--#region INICIO-->
+            <!--#region INICIO-->
             
         <SolidColorBrush x:Key="BlackColor" Color="#083353"/>
             <SolidColorBrush x:Key="GreyColor" Color="#B7B7B7"/>
@@ -808,8 +806,34 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="tabButtonPressed" TargetType="Button">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Foreground" Value="#121518" />
+                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                <Setter Property="Height" Value="45" />
+                <Setter Property="Width" Value="70" />
+                <Setter Property="BorderBrush" Value="#2090ff"/>
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+            
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" BorderThickness="0 0 0 1" BorderBrush="{TemplateBinding BorderBrush}">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
 
-        <Style x:Key="filterTextBox" TargetType="TextBox" BasedOn="{StaticResource searchTextbox}">
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="BorderBrush" Value="#2090ff" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="filterTextBox" TargetType="TextBox" BasedOn="{StaticResource searchTextbox}">
             <Setter Property="Padding" Value="10 7" />
             <Setter Property="Template">
                 <Setter.Value>

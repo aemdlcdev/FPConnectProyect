@@ -267,6 +267,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="view\Pages\Alumnos Sub Pages\AlumnosActuales.xaml.cs">
+      <DependentUpon>AlumnosActuales.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Pages\Alumnos Sub Pages\Archivados.xaml.cs">
+      <DependentUpon>Archivados.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Pages\Alumnos Sub Pages\Informacion.xaml.cs">
+      <DependentUpon>Informacion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\Pages\AlumnosGridControl.xaml.cs">
       <DependentUpon>AlumnosGridControl.xaml</DependentUpon>
     </Compile>
@@ -319,6 +328,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="view\Pages\Alumnos Sub Pages\AlumnosActuales.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Pages\Alumnos Sub Pages\Archivados.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Pages\Alumnos Sub Pages\Informacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="view\Pages\AlumnosGridControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

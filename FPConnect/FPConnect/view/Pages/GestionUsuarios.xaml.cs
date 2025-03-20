@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static DataGrid.AlumnosGridControl;
+using static FPConnect.view.Pages.Alumnos_Sub_Pages.AlumnosActuales;
 
 namespace FPConnect.view.Pages
 {

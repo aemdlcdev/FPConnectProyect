@@ -119,18 +119,8 @@
                     </Button>
                 </StackPanel>
 
-                <!--Frame alumnos-->
-                <Frame Name="alumnosFrame" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="/view/pages/AlumnosGridControl.xaml" NavigationUIVisibility="Hidden"/>
-                <!--Frame inicio-->
-                <Frame Name="inicioFrame" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="/view/pages/InicioGridControl.xaml" NavigationUIVisibility="Hidden"/>
-                <!--Frame eventos-->
-                <Frame Name="eventosFrame" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="/view/pages/EventosGridControl.xaml" NavigationUIVisibility="Hidden"/>
-                <!--Frame gestion usuarios-->
-                <Frame Name="gestionUsuariosFrame" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="/view/pages/GestionUsuarios.xaml" NavigationUIVisibility="Hidden"/>
-                <!--Frame Coordinacion-->
-                <Frame Name="coordinacionFrame" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="/view/Pages/Coordinacion.xaml" NavigationUIVisibility="Hidden"/>
-                <!-- Frame Empresas-->
-                <Frame Name="empresasFrame" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="/view/Pages/Empresas.xaml" NavigationUIVisibility="Hidden"/>
+                <!--Frame donde se van a cargar las Pages-->
+                <Frame Name="mainFrame" Grid.Column="1" Grid.Row="1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" NavigationUIVisibility="Hidden"/>
                 
             </Grid>
         </Grid>

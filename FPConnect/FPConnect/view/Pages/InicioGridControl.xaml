@@ -130,7 +130,7 @@
                     <Grid VerticalAlignment="Bottom" Margin="10 0">
                         <Icon:PackIconMaterial Kind="Information" Foreground="#F96654"/>
                         <TextBlock TextWrapping="Wrap" Margin="30 0 0 0" LineHeight="18" Foreground="{StaticResource GreyColor}"
-                               Text="Las estadísticas podrían no estar actualizadas en tiempo real"/>
+                               Text="Las estadísticas podrían no estar actualizadas en tiempo real."/>
                     </Grid>
 
                 </Grid>

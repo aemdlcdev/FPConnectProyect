@@ -18,7 +18,6 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <!--Search Textbox-->
@@ -37,11 +36,11 @@
             <Icon:PackIconMaterial Kind="Bell"/>
         </Button>
 
-        <!--Page Title-->
+        <!--Titulo-->
         <TextBlock Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" Foreground="#121518" 
    HorizontalAlignment="Left" Text="Información y gestión del alumnado"/>
 
-        <!--Add Button-->
+        <!--Añadir alumno-->
         <Button Style="{StaticResource addButton}" Cursor="Hand">
             <StackPanel Orientation="Horizontal">
                 <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
@@ -49,76 +48,25 @@
             </StackPanel>
         </Button>
 
-        <!--Seprator-->
+        <!--Separador-->
         <Separator Height="1" Grid.Row="3" Background="#DAE2EA" Margin="0 -1 0 10"/>
 
-        <!--Tab buttons-->
+        <!--Tab botones-->
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 10 0 0">
-            <Button Style="{StaticResource tabButton}" Content="Alumnos" BorderBrush="#2090ff"/>
-            <Button Style="{StaticResource tabButton}" Content="Ejemplo"/>
-            <Button Style="{StaticResource tabButton}" Content="Archivados" Margin="5,0,0,0"/>
+            <Button Name="btnAlumnosActual" Style="{StaticResource tabButtonPressed}" Content="Alumnos" Click="btnAlumnosActual_Click"/>
+            <Button Name="btnInfo" Style="{StaticResource tabButton}" Content="Información" Width="80" Click="btnInfo_Click"/>
+            <Button Name="btnArchivados" Style="{StaticResource tabButton}" Content="Archivados" Width="80" Click="btnArchivados_Click"/>
         </StackPanel>
-
-        <!--Counter Title-->
-        <TextBlock Text="Alumnos" Grid.Row="4" FontSize="18" FontWeight="SemiBold" Foreground="#121518" Margin=" 25 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <TextBlock Name="txtNumAlumnos" Grid.Row="4" FontSize="18" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
-        <TextBlock Text="Filtrar por" Grid.Row="4" FontSize="13" FontWeight="SemiBold" Margin="0 0 215 0" Foreground="#121518" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-
-        <!--Filter Textbox-->
-        <Grid Width="200" HorizontalAlignment="Right" Grid.Row="4">
-            <TextBlock Margin="15 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
-   Panel.ZIndex="1" Text="Buscar miembros ..."
-   Visibility="{Binding ElementName=textBoxFilter, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
-
-            <TextBox Name="textBoxFilter" Style="{StaticResource filterTextBox}"/>
-        </Grid>
-
-        <!--Members Data Grid-->
-        <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="membersDataGrid" Style="{DynamicResource DataGridStyle1}" SelectionChanged="membersDataGrid_SelectionChanged">
-            <DataGrid.Columns>
-                <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
-                    <DataGridCheckBoxColumn.HeaderTemplate>
-                        <DataTemplate>
-                            <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
-                        </DataTemplate>
-                    </DataGridCheckBoxColumn.HeaderTemplate>
-                </DataGridCheckBoxColumn>
-                <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Number}"/>
-                <DataGridTemplateColumn Header="Alumno" IsReadOnly="True" Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}">
-                                    <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
-                                </Border>
-
-                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Apellido" Binding="{Binding Position}" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Dirección de email" Binding="{Binding Email}" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Número de teléfono" Binding="{Binding Phone}" IsReadOnly="True" Width="*"/>
-                <DataGridTemplateColumn Header="Acciones" IsReadOnly="True" Width="auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Button x:Name="btnEditarAlumno" Background="#3090ff" BorderBrush="AliceBlue" Style="{StaticResource gridEditButton}"> <!--Boton editar alumno-->
-                                    <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/> <!--Boton borrar alumno-->
-                                </Button>
-                                <Button Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}">
-                                    <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
-                                </Button>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-
-        <!--Pagingation Section-->
+        <!--Alumnos Frame-->
         
-
+            <Frame x:Name="alumnosFrameC" Grid.Row="6" Margin="0 10 0 0" HorizontalAlignment="Stretch" 
+               VerticalAlignment="Stretch" NavigationUIVisibility="Hidden" Source="/view/Pages/Alumnos Sub Pages/AlumnosActuales.xaml"/>
+        
+        <!--Infromacion frame-->
+        <Frame x:Name="informacionFrame" Grid.Row="6" Margin="0 10 0 0" HorizontalAlignment="Stretch" 
+        VerticalAlignment="Stretch" NavigationUIVisibility="Hidden" Source="/view/Pages/Alumnos Sub Pages/Informacion.xaml"/>
+        <!--Archivados frame-->
+        <Frame x:Name="archivadosFrame" Grid.Row="6" Margin="0 10 0 0" HorizontalAlignment="Stretch" 
+        VerticalAlignment="Stretch" NavigationUIVisibility="Hidden" Source="/view/Pages/Alumnos Sub Pages/Archivados.xaml"/>
     </Grid>
 </Page>

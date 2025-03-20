@@ -18,15 +18,8 @@ namespace FPConnect
         public MainWindow()
         {
             InitializeComponent();
-            alumnosFrame.Visibility = Visibility.Collapsed;
-            eventosFrame.Visibility = Visibility.Collapsed;
-            coordinacionFrame.Visibility = Visibility.Collapsed;
-            empresasFrame.Visibility = Visibility.Collapsed;
-            gestionUsuariosFrame.Visibility = Visibility.Collapsed;
-
-            // Mostrar el Frame de Inicio
-            inicioFrame.Visibility = Visibility.Visible;
-            inicioFrame.Source = new Uri("pages/InicioGridControl.xaml", UriKind.Relative);
+            
+            mainFrame.Source = new Uri("pages/InicioGridControl.xaml", UriKind.Relative);
 
             IsInicioButtonPressed = true;
             IsAlumnosButtonPressed = false;
@@ -82,15 +75,8 @@ namespace FPConnect
         /// </summary>
         private void btnInicio_Click(object sender, RoutedEventArgs e)
         {
-            // Ocultar otros Frames
-            alumnosFrame.Visibility = Visibility.Collapsed;
-            eventosFrame.Visibility = Visibility.Collapsed;
-            coordinacionFrame.Visibility = Visibility.Collapsed;
-            empresasFrame.Visibility = Visibility.Collapsed;
-            gestionUsuariosFrame.Visibility = Visibility.Collapsed;
-            // Mostrar el Frame de Inicio
-            inicioFrame.Visibility = Visibility.Visible;
-            inicioFrame.Source = new Uri("pages/InicioGridControl.xaml", UriKind.Relative);
+            
+            mainFrame.Source = new Uri("pages/InicioGridControl.xaml", UriKind.Relative);
 
             IsInicioButtonPressed = true;
             IsAlumnosButtonPressed = false;
@@ -107,15 +93,8 @@ namespace FPConnect
         /// </summary>
         private void btnEventos_Click(object sender, RoutedEventArgs e)
         {
-            // Ocultar otros Frames
-            alumnosFrame.Visibility = Visibility.Collapsed;
-            inicioFrame.Visibility = Visibility.Collapsed;
-            coordinacionFrame.Visibility = Visibility.Collapsed;
-            empresasFrame.Visibility = Visibility.Collapsed;
-            gestionUsuariosFrame.Visibility = Visibility.Collapsed;
-            // Mostrar el Frame de Eventos
-            eventosFrame.Visibility = Visibility.Visible;
-            eventosFrame.Source = new Uri("pages/EventosGridControl.xaml", UriKind.Relative);
+            
+            mainFrame.Source = new Uri("pages/EventosGridControl.xaml", UriKind.Relative);
 
             IsInicioButtonPressed = false;
             IsAlumnosButtonPressed = false;
@@ -132,15 +111,8 @@ namespace FPConnect
         /// </summary>
         private void btnAlumnos_Click(object sender, RoutedEventArgs e)
         {
-            // Ocultar otros Frames
-            inicioFrame.Visibility = Visibility.Collapsed;
-            eventosFrame.Visibility = Visibility.Collapsed;
-            coordinacionFrame.Visibility = Visibility.Collapsed;
-            empresasFrame.Visibility = Visibility.Collapsed;
-            gestionUsuariosFrame.Visibility = Visibility.Collapsed;
-            // Mostrar el Frame de Alumnos
-            alumnosFrame.Visibility = Visibility.Visible;
-            alumnosFrame.Source = new Uri("pages/AlumnosGridControl.xaml", UriKind.Relative);
+           
+            mainFrame.Source = new Uri("pages/AlumnosGridControl.xaml", UriKind.Relative);
 
             IsInicioButtonPressed = false;
             IsAlumnosButtonPressed = true;
@@ -153,15 +125,8 @@ namespace FPConnect
 
         private void btnEmpresas_Click(object sender, RoutedEventArgs e)
         {
-            // Ocultar otros frames
-            inicioFrame.Visibility = Visibility.Collapsed;
-            eventosFrame.Visibility = Visibility.Collapsed;
-            alumnosFrame.Visibility = Visibility.Collapsed;
-            coordinacionFrame.Visibility = Visibility.Collapsed;
-            gestionUsuariosFrame.Visibility = Visibility.Collapsed;
-            // Mostrar el Frame de Coordinacion
-            empresasFrame.Visibility = Visibility.Visible;
-            empresasFrame.Source = new Uri("pages/Empresas.xaml", UriKind.Relative);
+            
+            mainFrame.Source = new Uri("pages/Empresas.xaml", UriKind.Relative);
 
             IsInicioButtonPressed = false;
             IsAlumnosButtonPressed = false;
@@ -174,16 +139,8 @@ namespace FPConnect
 
         private void btnCoordinacion_Click(object sender, RoutedEventArgs e)
         {
-            // Ocultar otros frames
-
-            alumnosFrame.Visibility = Visibility.Collapsed;
-            inicioFrame.Visibility = Visibility.Collapsed;
-            empresasFrame.Visibility = Visibility.Collapsed;
-            gestionUsuariosFrame.Visibility = Visibility.Collapsed;
-            eventosFrame.Visibility = Visibility.Collapsed;
-            // Mostrar el Frame de Coordinacion
-            coordinacionFrame.Visibility = Visibility.Visible;
-            coordinacionFrame.Source = new Uri("pages/Coordinacion.xaml", UriKind.Relative);
+            
+            mainFrame.Source = new Uri("pages/Coordinacion.xaml", UriKind.Relative);
 
             IsInicioButtonPressed = false;
             IsAlumnosButtonPressed = false;
@@ -196,15 +153,8 @@ namespace FPConnect
 
         private void btnGestionUsuarios_Click(object sender, RoutedEventArgs e)
         {
-            // Ocultar otros Frames
-            alumnosFrame.Visibility = Visibility.Collapsed;
-            inicioFrame.Visibility = Visibility.Collapsed;
-            coordinacionFrame.Visibility = Visibility.Collapsed;
-            empresasFrame.Visibility = Visibility.Collapsed;
-            eventosFrame.Visibility = Visibility.Collapsed;
-            // Mostrar el Frame de Eventos
-            gestionUsuariosFrame.Visibility = Visibility.Visible;
-            eventosFrame.Source = new Uri("pages/GestionUsuarios.xaml", UriKind.Relative);
+            
+            mainFrame.Source = new Uri("pages/GestionUsuarios.xaml", UriKind.Relative);
 
             IsInicioButtonPressed = false;
             IsEventosButtonPressed = false;
