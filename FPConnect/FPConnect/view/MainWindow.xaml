@@ -8,9 +8,22 @@
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <Storyboard x:Key="SlideInStoryboard">
+            <ThicknessAnimation Storyboard.TargetName="MainContent" 
+                   Storyboard.TargetProperty="Margin"
+                   From="0,-50,0,0" To="0,0,0,0" 
+                   Duration="0:0:0.7">
+                <ThicknessAnimation.EasingFunction>
+                    <QuadraticEase EasingMode="EaseOut"/>
+                </ThicknessAnimation.EasingFunction>
+            </ThicknessAnimation>
+            <DoubleAnimation Storyboard.TargetName="MainContent" 
+                 Storyboard.TargetProperty="Opacity"
+                 From="0" To="1" Duration="0:0:2"/>
+        </Storyboard>
     </Window.Resources>
 
-    <Border CornerRadius="30" Background="#EFF2F7" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+    <Border x:Name="MainContent" CornerRadius="30" Background="#EFF2F7" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
@@ -44,14 +57,14 @@
                             </Ellipse>
                         </Border>
 
-                        <!--Menu Titles-->
+                        <!--Menu Titulo-->
                         <TextBlock Text="FPConnect" Foreground="White" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="0 25 0 10" TextAlignment="Center"/>
                         <TextBlock Text="Alejandro, España" Foreground="White" FontSize="14" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="5,0,0,0" TextAlignment="Center"/>
 
-                        <!--Menu Seprator-->
+                        <!--Menu Separador-->
                         <Separator Margin="25" Background="#ffffff" DockPanel.Dock="Top" Height="0.8"/>
 
-                        <!--Menu Buttons-->
+                        <!--Menu Boton-->
                         <StackPanel DockPanel.Dock="Top" >
                             <Button Name="btnInicio" Style="{StaticResource menuButton}" Click="btnInicio_Click">
                                 <StackPanel Orientation="Horizontal">

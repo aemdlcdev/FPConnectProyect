@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 using FPConnect.view;
 using FPConnect.view.UserControls; // Asegúrate de que este espacio de nombres esté importado
 
@@ -18,7 +19,9 @@ namespace FPConnect
         public MainWindow()
         {
             InitializeComponent();
+
             
+
             mainFrame.Source = new Uri("pages/InicioGridControl.xaml", UriKind.Relative);
 
             IsInicioButtonPressed = true;
@@ -28,6 +31,10 @@ namespace FPConnect
             IsCoordinacionButtonPressed = false;
             IsGestionUsuariosButtonPressed = false;
             UpdateButtonStyles();
+
+            Storyboard slideAnimacion = (Storyboard)FindResource("SlideInStoryboard");
+            slideAnimacion.Begin();
+
         }
 
         private bool IsMaximize = false;
