@@ -461,7 +461,6 @@ C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Deb
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Debug\MaterialDesignThemes.Wpf.dll
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Debug\Microsoft.Xaml.Behaviors.dll
-C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Debug\RestSharp.dll
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Debug\System.Buffers.dll
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Debug\System.Memory.dll
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Debug\System.Numerics.Vectors.dll
@@ -524,7 +523,6 @@ C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Deb
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Debug\Microsoft.Xaml.Behaviors.pdb
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Debug\Microsoft.Xaml.Behaviors.xml
-C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Debug\RestSharp.xml
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Debug\System.Buffers.xml
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Debug\System.Memory.xml
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Debug\System.Numerics.Vectors.xml
@@ -582,3 +580,11 @@ C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Deb
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\AlumnosSubPages\AlumnosActuales.baml
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\AlumnosSubPages\Archivados.baml
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\AlumnosSubPages\Informacion.baml
+C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\Forms\Alumnos\FormModAlumno.g.cs
+C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\Forms\Alumnos\FormModAlumno.baml
+C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\Forms\FormDelAlumno.g.cs
+C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\Forms\FormDelAlumno.baml
+C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Debug\BouncyCastle.Cryptography.dll
+C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Debug\itextsharp.dll
+C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Debug\BouncyCastle.Cryptography.xml
+C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Debug\itextsharp.xml

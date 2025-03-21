@@ -15,8 +15,31 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
-   
-            <!--#region INICIO-->
+
+        <!--#region Mis estilos generales -->
+            <Style x:Key="textBoxNormal" TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
+                <Setter Property="Foreground" Value="#121518" />
+                <Setter Property="Width" Value="250" />
+                <Setter Property="BorderBrush" Value="Black"/>
+                <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="#2090ff"/>
+                
+            </Style>
+
+            <Style x:Key="textBoxPassword" TargetType="PasswordBox" BasedOn="{StaticResource MaterialDesignPasswordBox}">
+                <Setter Property="Foreground" Value="#121518" />
+                <Setter Property="Width" Value="250" />
+                <Setter Property="BorderBrush" Value="Black"/>
+                <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="#2090ff"/>
+
+            </Style>
+
+            <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignComboBox}">
+                <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="#2090ff"/>
+            </Style>
+            
+            <!--#endregion-->
+            
+        <!--#region Inicio-->
             
         <SolidColorBrush x:Key="BlackColor" Color="#083353"/>
             <SolidColorBrush x:Key="GreyColor" Color="#B7B7B7"/>
@@ -212,7 +235,7 @@
         <!--#endregion-->
         <!--#endregion-->
             
-        <!--#region gestion usuarios-->
+        <!--#region Gestion usuarios-->
             <Style x:Key="buttonGestionUsuarios" TargetType="Button">
                 <Setter Property="Background" Value="#C6C6C6" />
                 <Setter Property="BorderThickness" Value="0" />
@@ -306,6 +329,7 @@
                 <Setter Property="Height" Value="50" />
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="FontWeight" Value="SemiBold" />
+                <Setter Property="Cursor" Value="Hand"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
@@ -327,6 +351,7 @@
             <Style x:Key="buttonMainGreenGestionUsuarios" TargetType="Button" BasedOn="{StaticResource buttonMainGestionUsuarios}">
                 <Setter Property="Background" Value="#5FE7C4" />
                 <Setter Property="Foreground" Value="#ffffff" />
+                <Setter Property="Cursor" Value="Hand"/>
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
                         <Setter Property="Background" Value="#4ec7a8" />

@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FPConnect.view.Pages.Forms;
+using FPConnect.view.Pages.Forms.Alumnos;
 
 namespace FPConnect.view.Pages.AlumnosSubPages
 {
@@ -22,10 +24,11 @@ namespace FPConnect.view.Pages.AlumnosSubPages
     public partial class AlumnosActuales : Page
     {
         private ObservableCollection<Member> members { get; set; }
+        private Member selectedMember;
         public AlumnosActuales()
         {
             InitializeComponent();
-            
+
             var converter = new BrushConverter();
             members = new ObservableCollection<Member>();
 
@@ -64,6 +67,7 @@ namespace FPConnect.view.Pages.AlumnosSubPages
 
             membersDataGrid.ItemsSource = members;
             txtNumAlumnos.Text = GetAlumnosActuales().ToString();
+            selectedMember = new Member();
         }
 
         private int GetAlumnosActuales()
@@ -73,7 +77,7 @@ namespace FPConnect.view.Pages.AlumnosSubPages
 
         private void membersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            selectedMember = membersDataGrid.SelectedItem as Member;
         }
 
         public class Member
@@ -85,6 +89,56 @@ namespace FPConnect.view.Pages.AlumnosSubPages
             public string Position { get; set; }
             public string Email { get; set; }
             public string Phone { get; set; }
+            public bool IsSelected { get; set; }
+        }
+
+        private void btnEditarAlumno_Click(object sender, RoutedEventArgs e)
+        {
+            FormModAlumno formModAlumno = new FormModAlumno();
+
+            formModAlumno.txtNombre.Text = selectedMember.Name;
+            formModAlumno.txtApellido.Text = selectedMember.Position;
+            formModAlumno.txtCorreo.Text = selectedMember.Email;
+
+            //Console.WriteLine(selectedMember.Name); <- [Traza]
+
+            if (formModAlumno.ShowDialog() == true) // Muestra como modal
+            {
+                // Implementar logica
+            }
+        }
+
+        private void btnEliminarAlumno_Click(object sender, RoutedEventArgs e)
+        {
+            FormDelete formDelAlumno = new FormDelete();
+
+            if (formDelAlumno.ShowDialog() == true) // Muestra como modal
+            {
+                members.Remove(selectedMember);
+                // Se hace en memoria para probar
+                // Implementar logica en base de datos
+            }
+        }
+
+
+        // Arreglar checked
+
+        private void checkAll_Checked(object sender, RoutedEventArgs e)
+        {
+            foreach (var member in members)
+            {
+                member.IsSelected = true;
+            }
+            membersDataGrid.Items.Refresh();
+        }
+
+        private void checkAll_Unchecked(object sender, RoutedEventArgs e)
+        {
+            foreach (var member in members)
+            {
+                member.IsSelected = false;
+            }
+            membersDataGrid.Items.Refresh();
         }
 
     }

@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      
       xmlns:local="clr-namespace:FPConnect.view.Pages.AlumnosSubPages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -40,19 +41,19 @@
                 <!--Implementar logica (backend)-->
             </ComboBox>
 
-            <Button x:Name="btnCargar" Content="Cargar" Grid.Column="4"  Style="{StaticResource addButton}" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="77,0,0,0" Click="btnCargar_Click"/>
-                   
+            <Button x:Name="btnDescargar" Width="40"  Grid.Column="4" Cursor="Hand" Margin="20 0 0 0"
+                    Style="{StaticResource addButton}" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTip="Descargar lista en PDF" Click="btnDescargar_Click"
+                     >
+                <Icon:PackIconMaterial Kind="Download" Style="{StaticResource gridButtonIcon}"/>
+            </Button>
+
+            <Button x:Name="btnCargar" Content="Cargar" Grid.Column="5" Cursor="Hand" Style="{StaticResource addButton}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20 0 0 0" Click="btnCargar_Click"/>
+
         </Grid>
 
         <DataGrid x:Name="archivadosDataGrid" Grid.Row="1" Margin="0 20 0 0" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  Style="{DynamicResource DataGridStyle1}" SelectionChanged="archivadosDataGrid_SelectionChanged" Visibility="Collapsed">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
-                    <DataGridCheckBoxColumn.HeaderTemplate>
-                        <DataTemplate>
-                            <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
-                        </DataTemplate>
-                    </DataGridCheckBoxColumn.HeaderTemplate>
-                </DataGridCheckBoxColumn>
+
                 <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Number}"/>
                 <DataGridTemplateColumn Header="Alumno" IsReadOnly="True" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
@@ -70,22 +71,6 @@
                 <DataGridTextColumn Header="Apellido" Binding="{Binding Position}" IsReadOnly="True" Width="*"/>
                 <DataGridTextColumn Header="Dirección de email" Binding="{Binding Email}" IsReadOnly="True" Width="*"/>
                 <DataGridTextColumn Header="Número de teléfono" Binding="{Binding Phone}" IsReadOnly="True" Width="*"/>
-                <DataGridTemplateColumn Header="Acciones" IsReadOnly="True" Width="auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Button x:Name="btnEditarAlumno" Background="#3090ff" BorderBrush="AliceBlue" Style="{StaticResource gridEditButton}">
-                                    <!--Boton editar alumno-->
-                                    <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
-                                    <!--Boton borrar alumno-->
-                                </Button>
-                                <Button Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}">
-                                    <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
-                                </Button>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

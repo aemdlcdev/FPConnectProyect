@@ -38,11 +38,11 @@
                     <TextBlock Text="Iniciar Sesión" Margin="20" Foreground="Black" TextAlignment="Center" FontSize="38" FontFamily="Great Vibes"/>
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <materialDesign:PackIcon Kind="User" Width="25" Height="25" Foreground="Black"/>
-                        <TextBox x:Name="txtUsername" Margin="10 0" materialDesign:HintAssist.Hint="Introduce el usuario o email" Foreground="Black" Width="250" BorderBrush="Black" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
+                        <TextBox x:Name="txtUsername" Margin="10 0" materialDesign:HintAssist.Hint="Introduce el usuario o email" Style="{StaticResource textBoxNormal}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <materialDesign:PackIcon Kind="Lock" Width="25" Height="25" Foreground="Black"/>
-                        <PasswordBox x:Name="txtPassword" Margin="10 0" materialDesign:HintAssist.Hint="********" Foreground="Black" Width="250" BorderBrush="Black" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
+                        <PasswordBox x:Name="txtPassword" Margin="10 0" materialDesign:HintAssist.Hint="********" Style="{StaticResource textBoxPassword}"/>
                     </StackPanel>
                     <StackPanel Margin="10" HorizontalAlignment="Center">
                         <Button Width="100" Height="40" Style="{StaticResource MaterialDesignRaisedButton}" 

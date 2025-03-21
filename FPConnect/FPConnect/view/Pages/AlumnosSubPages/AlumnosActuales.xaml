@@ -17,8 +17,9 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
-            
+
         </Grid.RowDefinitions>
+        
         <!--Busqueda texto-->
         <TextBlock Text="Alumnos" Grid.Row="1" FontSize="18" FontWeight="SemiBold" Foreground="#121518" Margin=" 25 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <TextBlock Name="txtNumAlumnos" Grid.Row="1" FontSize="18" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
@@ -33,10 +34,10 @@
         </Grid>
         <DataGrid x:Name="membersDataGrid" Grid.Row="2" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  Style="{DynamicResource DataGridStyle1}" SelectionChanged="membersDataGrid_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
+                <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}" Binding="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}">
                     <DataGridCheckBoxColumn.HeaderTemplate>
                         <DataTemplate>
-                            <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
+                            <CheckBox Name="checkAll" Style="{StaticResource CheckBoxStyle1}" Checked="checkAll_Checked" Unchecked="checkAll_Unchecked"/>
                         </DataTemplate>
                     </DataGridCheckBoxColumn.HeaderTemplate>
                 </DataGridCheckBoxColumn>
@@ -61,12 +62,12 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button x:Name="btnEditarAlumno" Background="#3090ff" BorderBrush="AliceBlue" Style="{StaticResource gridEditButton}">
+                                <Button x:Name="btnEditarAlumno" Click="btnEditarAlumno_Click" Background="#3090ff" BorderBrush="AliceBlue" Style="{StaticResource gridEditButton}">
                                     <!--Boton editar alumno-->
                                     <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                     <!--Boton borrar alumno-->
                                 </Button>
-                                <Button Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}">
+                                <Button Margin="5 0 0 0" Click="btnEliminarAlumno_Click" Style="{StaticResource gridRemoveButton}">
                                     <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
                                 </Button>
                             </StackPanel>

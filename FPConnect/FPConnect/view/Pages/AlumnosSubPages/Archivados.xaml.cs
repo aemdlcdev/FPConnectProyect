@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FPConnect.HelperClasses;
 using static FPConnect.view.Pages.AlumnosSubPages.AlumnosActuales;
 
 namespace FPConnect.view.Pages.AlumnosSubPages
@@ -85,6 +86,9 @@ namespace FPConnect.view.Pages.AlumnosSubPages
             public string Phone { get; set; }
         }
 
-        
+        private void btnDescargar_Click(object sender, RoutedEventArgs e)
+        {
+            PdfGenerator.GenerarPdfMiembros(members, "Lista miembros " + DateTime.Now.ToString());
+        }
     }
 }

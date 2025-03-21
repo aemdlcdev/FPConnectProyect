@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FPConnect.view.Pages.Forms;
+using MaterialDesignThemes.Wpf;
 using static FPConnect.view.Pages.AlumnosSubPages.AlumnosActuales;
 
 namespace FPConnect.view.Pages
@@ -22,10 +24,13 @@ namespace FPConnect.view.Pages
     /// </summary>
     public partial class GestionUsuarios : Page
     {
+        private Member selectedUsuario;
+        ObservableCollection<Member> members;
         public GestionUsuarios()
         {
+            
             InitializeComponent();
-            ObservableCollection<Member> members = new ObservableCollection<Member>();
+            members = new ObservableCollection<Member>();
             var converter = new BrushConverter();
             members = new ObservableCollection<Member>();
 
@@ -63,7 +68,28 @@ namespace FPConnect.view.Pages
             members.Add(new Member { Number = "30", Character = "S", BgColor = (Brush)converter.ConvertFromString("#0CA678"), Name = "Saeed Dasman", Position = "Murillo", Email = "saeed.dasi@hotmail.com", Phone = "817-320-5052" });
 
             usuariosDataGrid.ItemsSource = members;
+            selectedUsuario = new Member();
             
+        }
+
+        private void btnEliminarUsuario_Click(object sender, RoutedEventArgs e)
+        {
+            FormDelete formDelUsuario = new FormDelete();
+
+            if (formDelUsuario.ShowDialog() == true)
+            {
+                members.Remove(selectedUsuario);
+            }
+        }
+
+        private void usuariosDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectedUsuario = usuariosDataGrid.SelectedItem as Member;
+        }
+
+        private void btnModificarUsuario_Click(object sender, RoutedEventArgs e)
+        {
+            // Crear formulario e implementarlo
         }
     }
 }
