@@ -9,7 +9,7 @@
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
-             Height="auto" Width="auto">
+             >
 
     <Border CornerRadius="25" Padding="20" Background="#F7F6F4">
         <Grid>
