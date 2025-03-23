@@ -588,3 +588,5 @@ C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Deb
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Debug\itextsharp.dll
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Debug\BouncyCastle.Cryptography.xml
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Debug\itextsharp.xml
+C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\Forms\Usuarios\FormModUsuario.g.cs
+C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\Forms\Usuarios\FormModUsuario.baml

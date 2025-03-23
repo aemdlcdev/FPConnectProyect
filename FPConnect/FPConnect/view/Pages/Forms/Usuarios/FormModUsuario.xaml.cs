@@ -23,5 +23,15 @@ namespace FPConnect.view.Pages.Forms.Usuarios
         {
             InitializeComponent();
         }
+
+        private void Guardar_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
+        }
+
+        private void Cancelar_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult= false;
+        }
     }
 }

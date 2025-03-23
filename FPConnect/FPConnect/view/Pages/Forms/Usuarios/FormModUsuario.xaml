@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FPConnect.view.Pages.Forms.Usuarios"
         mc:Ignorable="d"
-        Title="FormAddUsuario" Height="450" Width="800">
+        Title="FormAddUsuario" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="#80000000" WindowState="Maximized" Topmost="True">
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
         <Border Background="#F7F6F4" BorderBrush="Black" BorderThickness="2" Padding="20"
             CornerRadius="10" Width="400">

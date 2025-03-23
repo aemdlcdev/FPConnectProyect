@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FPConnect.view.Pages.Forms;
+using FPConnect.view.Pages.Forms.Usuarios;
 using MaterialDesignThemes.Wpf;
 using static FPConnect.view.Pages.AlumnosSubPages.AlumnosActuales;
 
@@ -89,7 +90,11 @@ namespace FPConnect.view.Pages
 
         private void btnModificarUsuario_Click(object sender, RoutedEventArgs e)
         {
-            // Crear formulario e implementarlo
+            FormModUsuario formModUsuario = new FormModUsuario();
+            if (formModUsuario.ShowDialog() == true)
+            { 
+                // implementar logica
+            }
         }
     }
 }

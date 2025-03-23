@@ -301,6 +301,9 @@
     <Compile Include="view\Pages\Forms\FormDelAlumno.xaml.cs">
       <DependentUpon>FormDelAlumno.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\Pages\Forms\Usuarios\FormModUsuario.xaml.cs">
+      <DependentUpon>FormModUsuario.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\Pages\GestionUsuarios.xaml.cs">
       <DependentUpon>GestionUsuarios.xaml</DependentUpon>
     </Compile>
@@ -378,6 +381,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\Pages\Forms\FormDelAlumno.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Pages\Forms\Usuarios\FormModUsuario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

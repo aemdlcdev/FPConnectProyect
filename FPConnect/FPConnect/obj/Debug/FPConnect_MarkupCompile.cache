@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\App.xaml
-191496675509
+20-1662269246
 
-24817238682
+25-1327895359
 77-1947812118
-view\Login.xaml;view\MainWindow.xaml;view\Pages\AlumnosSubPages\AlumnosActuales.xaml;view\Pages\AlumnosSubPages\Archivados.xaml;view\Pages\AlumnosSubPages\Informacion.xaml;view\Pages\AlumnosGridControl.xaml;view\Pages\Coordinacion.xaml;view\Pages\Empresas.xaml;view\Pages\EventosGridControl.xaml;view\Pages\Forms\Alumnos\FormAddAlumno.xaml;view\Pages\Forms\Alumnos\FormModAlumno.xaml;view\Pages\Forms\FormDelAlumno.xaml;view\Pages\GestionUsuarios.xaml;view\Pages\InicioGridControl.xaml;view\UserControls\Inicio\InfoCard.xaml;view\UserControls\Inicio\Legends.xaml;view\UserControls\Inicio\UserCard.xaml;view\UserControls\Eventos\Item.xaml;view\UserControls\Eventos\MenuButton.xaml;
+view\Login.xaml;view\MainWindow.xaml;view\Pages\AlumnosSubPages\AlumnosActuales.xaml;view\Pages\AlumnosSubPages\Archivados.xaml;view\Pages\AlumnosSubPages\Informacion.xaml;view\Pages\AlumnosGridControl.xaml;view\Pages\Coordinacion.xaml;view\Pages\Empresas.xaml;view\Pages\EventosGridControl.xaml;view\Pages\Forms\Alumnos\FormAddAlumno.xaml;view\Pages\Forms\Alumnos\FormModAlumno.xaml;view\Pages\Forms\FormDelAlumno.xaml;view\Pages\Forms\Usuarios\FormModUsuario.xaml;view\Pages\GestionUsuarios.xaml;view\Pages\InicioGridControl.xaml;view\UserControls\Inicio\InfoCard.xaml;view\UserControls\Inicio\Legends.xaml;view\UserControls\Inicio\UserCard.xaml;view\UserControls\Eventos\Item.xaml;view\UserControls\Eventos\MenuButton.xaml;
 
 False
 
