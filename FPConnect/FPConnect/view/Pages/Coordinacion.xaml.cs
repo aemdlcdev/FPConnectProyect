@@ -24,5 +24,10 @@ namespace FPConnect.view.Pages
         {
             InitializeComponent();
         }
+
+        private void membersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

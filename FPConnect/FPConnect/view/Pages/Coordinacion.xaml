@@ -3,12 +3,91 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
       xmlns:local="clr-namespace:FPConnect.view.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Coordinacion">
 
     <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            
+        </Grid.RowDefinitions>
         
+        <Border Grid.Column="0" Style="{StaticResource whiteBorder}" Margin="20 0 20 20">
+            <Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Border Width="50" Height="50" CornerRadius="10" Margin="5 0 20 0">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                <GradientStop Color="#56FB8B" Offset="0"/>
+                                <GradientStop Color="#54FA65" Offset="1"/>
+
+                            </LinearGradientBrush>
+                        </Border.Background>
+
+                        <Image Source="/Images/task.png" Width="40" Height="40" />
+                    </Border>
+
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="Bienvenido al centro de coordinación" Style="{StaticResource titleText}" FontSize="26" FontWeight="Bold"/>
+                        <TextBlock Text="Agrega, modifica o da por hecho tus tareas!" Foreground="#6C879A" Margin="0 3 0 0"/>
+                    </StackPanel>
+                </StackPanel>
+
+            </Grid>
+        </Border>
+
+        <DataGrid x:Name="membersDataGrid" Margin="20 0 20 20" Grid.Row="1" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  Style="{DynamicResource DataGridStyle1}" SelectionChanged="membersDataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                
+                <DataGridTemplateColumn Header="Titulo" IsReadOnly="True" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}">
+                                    <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
+                                </Border>
+
+                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Fecha" Binding="{Binding Position}" IsReadOnly="True" Width="75"/>
+                <DataGridTemplateColumn Header="Empresa" IsReadOnly="True" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <ComboBox Name="cbxEmpresas"/>
+                                <ComboBoxItem Content="Indra"/>
+                                <ComboBoxItem Content="NTTData"/>
+                                <ComboBoxItem Content="Solision"/>
+                                <ComboBoxItem Content="Inetum"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Estado actual" Binding="{Binding Phone}" IsReadOnly="True" Width="*"/>
+                <DataGridTemplateColumn Header="Modificar estado" IsReadOnly="True" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="btnEditarAlumno" Background="#3090ff" BorderBrush="AliceBlue" Style="{StaticResource gridEditButton}">
+                                    <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
+                                </Button>
+                                <Button Margin="5 0 0 0"  Style="{StaticResource gridRemoveButton}">
+                                    <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </Page>

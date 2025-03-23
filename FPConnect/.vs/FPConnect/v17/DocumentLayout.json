@@ -3,24 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|c:\\users\\alejandro\\documents\\github\\fpconnectproyect\\fpconnect\\fpconnect\\view\\pages\\forms\\usuarios\\formmodusuario.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\view\\pages\\forms\\usuarios\\formmodusuario.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|c:\\users\\alejandro\\documents\\github\\fpconnectproyect\\fpconnect\\fpconnect\\view\\pages\\coordinacion.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\view\\pages\\coordinacion.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|c:\\users\\alejandro\\documents\\github\\fpconnectproyect\\fpconnect\\fpconnect\\view\\pages\\forms\\usuarios\\formmodusuario.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\view\\pages\\forms\\usuarios\\formmodusuario.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|c:\\users\\alejandro\\documents\\github\\fpconnectproyect\\fpconnect\\fpconnect\\view\\pages\\coordinacion.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\view\\pages\\coordinacion.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|c:\\users\\alejandro\\documents\\github\\fpconnectproyect\\fpconnect\\fpconnect\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|c:\\users\\alejandro\\documents\\github\\fpconnectproyect\\fpconnect\\fpconnect\\view\\pages\\gestionusuarios.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\view\\pages\\gestionusuarios.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|c:\\users\\alejandro\\documents\\github\\fpconnectproyect\\fpconnect\\fpconnect\\view\\pages\\gestionusuarios.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\view\\pages\\gestionusuarios.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|c:\\users\\alejandro\\documents\\github\\fpconnectproyect\\fpconnect\\fpconnect\\view\\pages\\forms\\alumnos\\formmodalumno.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\view\\pages\\forms\\alumnos\\formmodalumno.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,65 +34,51 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "FormModAlumno.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\Forms\\Alumnos\\FormModAlumno.xaml.cs",
-              "RelativeDocumentMoniker": "FPConnect\\view\\Pages\\Forms\\Alumnos\\FormModAlumno.xaml.cs",
-              "ToolTip": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\Forms\\Alumnos\\FormModAlumno.xaml.cs",
-              "RelativeToolTip": "FPConnect\\view\\Pages\\Forms\\Alumnos\\FormModAlumno.xaml.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABEAAAA1AAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "view\\Pages\\Coordinacion.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\Coordinacion.xaml.cs",
+              "RelativeDocumentMoniker": "FPConnect\\view\\Pages\\Coordinacion.xaml.cs",
+              "ToolTip": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\Coordinacion.xaml.cs",
+              "RelativeToolTip": "FPConnect\\view\\Pages\\Coordinacion.xaml.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAApwB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T18:26:25.091Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "FormModUsuario.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\Forms\\Usuarios\\FormModUsuario.xaml.cs",
-              "RelativeDocumentMoniker": "FPConnect\\view\\Pages\\Forms\\Usuarios\\FormModUsuario.xaml.cs",
-              "ToolTip": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\Forms\\Usuarios\\FormModUsuario.xaml.cs",
-              "RelativeToolTip": "FPConnect\\view\\Pages\\Forms\\Usuarios\\FormModUsuario.xaml.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAArwCEAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T18:26:00.469Z",
+              "WhenOpened": "2025-03-23T18:56:35.283Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "GestionUsuarios.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\GestionUsuarios.xaml.cs",
-              "RelativeDocumentMoniker": "FPConnect\\view\\Pages\\GestionUsuarios.xaml.cs",
-              "ToolTip": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\GestionUsuarios.xaml.cs",
-              "RelativeToolTip": "FPConnect\\view\\Pages\\GestionUsuarios.xaml.cs",
-              "ViewState": "AgIAAEkAAAAAAAAAAAAgwF8AAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T18:24:44.907Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "GestionUsuarios.xaml",
               "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\GestionUsuarios.xaml",
               "RelativeDocumentMoniker": "FPConnect\\view\\Pages\\GestionUsuarios.xaml",
               "ToolTip": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\GestionUsuarios.xaml",
               "RelativeToolTip": "FPConnect\\view\\Pages\\GestionUsuarios.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-23T18:24:33.891Z",
+              "WhenOpened": "2025-03-23T18:55:31.398Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FormModUsuario.xaml",
-              "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\Forms\\Usuarios\\FormModUsuario.xaml",
-              "RelativeDocumentMoniker": "FPConnect\\view\\Pages\\Forms\\Usuarios\\FormModUsuario.xaml",
-              "ToolTip": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\Forms\\Usuarios\\FormModUsuario.xaml",
-              "RelativeToolTip": "FPConnect\\view\\Pages\\Forms\\Usuarios\\FormModUsuario.xaml",
+              "DocumentIndex": 2,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\App.xaml",
+              "RelativeDocumentMoniker": "FPConnect\\App.xaml",
+              "ToolTip": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\App.xaml",
+              "RelativeToolTip": "FPConnect\\App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-23T18:23:12.089Z",
+              "WhenOpened": "2025-03-23T18:54:40.5Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Coordinacion.xaml",
+              "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\Coordinacion.xaml",
+              "RelativeDocumentMoniker": "FPConnect\\view\\Pages\\Coordinacion.xaml",
+              "ToolTip": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\Coordinacion.xaml",
+              "RelativeToolTip": "FPConnect\\view\\Pages\\Coordinacion.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-23T18:46:11.632Z",
               "EditorCaption": ""
             }
           ]
