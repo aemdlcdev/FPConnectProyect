@@ -1,0 +1,59 @@
+// En Program.cs o Startup.cs donde configuras los servicios
+services.AddSingleton<PasswordResetService>();
+
+// En appsettings.json
+{
+  "EmailSettings": {
+    "SmtpServer": "smtp.tuservidor.com",
+    "Port": 587,
+    "EnableSsl": true,
+    "Username": "tu@email.com",
+    "Password": "tucontraseña",
+    "FromEmail": "no-reply@tuaplicacion.com",
+    "FromName": "Tu Aplicación"
+  },
+  "AppSettings": {
+    "BaseUrl": "https://tuaplicacion.com"
+  }
+}
+
+// Ejemplo de uso en un método de tu aplicación principal:
+public class TuClasePrincipal
+{
+    private readonly PasswordResetService _passwordResetService;
+    
+    public TuClasePrincipal(PasswordResetService passwordResetService)
+    {
+        _passwordResetService = passwordResetService;
+    }
+    
+    public async Task ManejadorOlvideContraseña(string email)
+    {
+        bool resultado = await _passwordResetService.InitiatePasswordReset(email);
+        if (resultado)
+        {
+            // Mostrar mensaje de éxito al usuario
+            Console.WriteLine("Se ha enviado un correo con las instrucciones para restablecer la contraseña");
+        }
+        else
+        {
+            // Mostrar mensaje genérico (por seguridad)
+            Console.WriteLine("Si el correo está registrado, recibirás un enlace de restablecimiento");
+        }
+    }
+    
+    public void FinalizarRestablecimientoContraseña(string token, string nuevaContraseña)
+    {
+        bool resultado = _passwordResetService.CompletePasswordReset(token, nuevaContraseña);
+        if (resultado)
+        {
+            // Mostrar mensaje de éxito
+            Console.WriteLine("Contraseña actualizada exitosamente");
+        }
+        else
+        {
+            // Mostrar error
+            Console.WriteLine("El enlace es inválido o ha expirado");
+        }
+    }
+}

@@ -1,0 +1,263 @@
+using System;
+using System.Net;
+using System.Net.Mail;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+
+// Este es un servicio que puedes implementar dentro de tu aplicación principal
+public class PasswordResetService
+{
+    private readonly IConfiguration _configuration;
+    // Dependiendo de tu implementación, podrías necesitar inyectar otros servicios
+    // como tu repositorio de usuarios, etc.
+    
+    public PasswordResetService(IConfiguration configuration)
+    {
+        _configuration = configuration;
+    }
+    
+    /// <summary>
+    /// Inicia el proceso de restablecimiento de contraseña para un usuario
+    /// </summary>
+    /// <param name="email">Correo electrónico del usuario</param>
+    /// <returns>True si el proceso se inició correctamente, False en caso contrario</returns>
+    public async Task<bool> InitiatePasswordReset(string email)
+    {
+        if (string.IsNullOrEmpty(email))
+        {
+            throw new ArgumentException("El correo electrónico es requerido");
+        }
+        
+        // 1. Verificar si el usuario existe
+        var user = FindUserByEmail(email);
+        if (user == null)
+        {
+            // Por seguridad, no revelamos si el correo existe
+            return false;
+        }
+        
+        // 2. Generar token único (válido por tiempo limitado)
+        string token = GenerateResetToken();
+        DateTime expiryTime = DateTime.UtcNow.AddHours(24);
+        
+        // 3. Guardar token en la base de datos
+        SaveResetToken(user.Id, token, expiryTime);
+        
+        // 4. Enviar correo con enlace de restablecimiento
+        try
+        {
+            await SendPasswordResetEmail(user.Email, token);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            // Log error
+            Console.WriteLine($"Error al enviar correo: {ex.Message}");
+            return false;
+        }
+    }
+    
+    /// <summary>
+    /// Completa el proceso de restablecimiento de contraseña
+    /// </summary>
+    /// <param name="token">Token de restablecimiento</param>
+    /// <param name="newPassword">Nueva contraseña</param>
+    /// <returns>True si la contraseña se actualizó correctamente, False en caso contrario</returns>
+    public bool CompletePasswordReset(string token, string newPassword)
+    {
+        if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(newPassword))
+        {
+            throw new ArgumentException("Token y nueva contraseña son requeridos");
+        }
+        
+        // 1. Validar token
+        var tokenInfo = ValidateToken(token);
+        if (tokenInfo == null || tokenInfo.ExpiryTime < DateTime.UtcNow)
+        {
+            return false; // Token inválido o expirado
+        }
+        
+        // 2. Actualizar contraseña del usuario
+        UpdateUserPassword(tokenInfo.UserId, newPassword);
+        
+        // 3. Invalidar token usado
+        InvalidateToken(token);
+        
+        return true;
+    }
+    
+    private string GenerateResetToken()
+    {
+        // Genera un token seguro aleatorio
+        byte[] randomBytes = new byte[32];
+        using (var rng = RandomNumberGenerator.Create())
+        {
+            rng.GetBytes(randomBytes);
+        }
+        return Convert.ToBase64String(randomBytes).Replace("+", "-").Replace("/", "_").Replace("=", "");
+    }
+    
+    private async Task SendPasswordResetEmail(string email, string token)
+    {
+        string resetUrl = $"{_configuration["AppSettings:BaseUrl"]}/reset-password?token={token}";
+        
+        using (var client = new SmtpClient())
+        {
+            // Configuración del servidor SMTP desde appsettings.json
+            client.Host = _configuration["EmailSettings:SmtpServer"];
+            client.Port = int.Parse(_configuration["EmailSettings:Port"]);
+            client.EnableSsl = bool.Parse(_configuration["EmailSettings:EnableSsl"]);
+            client.Credentials = new NetworkCredential(
+                _configuration["EmailSettings:Username"],
+                _configuration["EmailSettings:Password"]
+            );
+            
+            using (var message = new MailMessage())
+            {
+                message.From = new MailAddress(
+                    _configuration["EmailSettings:FromEmail"], 
+                    _configuration["EmailSettings:FromName"]
+                );
+                message.To.Add(new MailAddress(email));
+                message.Subject = "Restablecimiento de contraseña";
+                message.Body = $@"
+                    <html>
+                    <body>
+                        <h2>Restablecimiento de contraseña</h2>
+                        <p>Has solicitado restablecer tu contraseña.</p>
+                        <p>Haz clic en el siguiente enlace para crear una nueva contraseña:</p>
+                        <p><a href='{resetUrl}'>Restablecer contraseña</a></p>
+                        <p>Este enlace es válido por 24 horas.</p>
+                        <p>Si no solicitaste restablecer tu contraseña, puedes ignorar este correo.</p>
+                    </body>
+                    </html>
+                ";
+                message.IsBodyHtml = true;
+                
+                await client.SendMailAsync(message);
+            }
+        }
+    }
+    
+    // Estos métodos deben ser reemplazados con tu implementación real
+    // para interactuar con la base de datos de tu aplicación
+    
+    private UserInfo FindUserByEmail(string email)
+    {
+        // Reemplazar con tu lógica real para buscar usuarios
+        // Por ejemplo, usando Entity Framework o tu ORM preferido
+        
+        // Ejemplo simulado
+        if (email == "usuario@ejemplo.com")
+        {
+            return new UserInfo { Id = 1, Email = email };
+        }
+        return null;
+    }
+    
+    private void SaveResetToken(int userId, string token, DateTime expiryTime)
+    {
+        // Reemplazar con tu lógica real para guardar tokens
+        // Por ejemplo:
+        // using (var context = new TuDbContext())
+        // {
+        //     context.PasswordResetTokens.Add(new PasswordResetToken
+        //     {
+        //         UserId = userId,
+        //         Token = token,
+        //         ExpiryTime = expiryTime
+        //     });
+        //     context.SaveChanges();
+        // }
+        
+        // Simulación
+        Console.WriteLine($"Token guardado para usuario {userId}: {token}, expira: {expiryTime}");
+    }
+    
+    private TokenInfo ValidateToken(string token)
+    {
+        // Reemplazar con tu lógica real para validar tokens
+        // Por ejemplo:
+        // using (var context = new TuDbContext())
+        // {
+        //     return context.PasswordResetTokens
+        //             .Where(t => t.Token == token && !t.Used)
+        //             .Select(t => new TokenInfo { ... })
+        //             .FirstOrDefault();
+        // }
+        
+        // Simulación
+        if (token == "token-simulado")
+        {
+            return new TokenInfo
+            {
+                UserId = 1,
+                Token = token,
+                ExpiryTime = DateTime.UtcNow.AddHours(23) // Aún válido
+            };
+        }
+        return null;
+    }
+    
+    private void UpdateUserPassword(int userId, string newPassword)
+    {
+        // Reemplazar con tu lógica real para actualizar contraseñas
+        // Por ejemplo:
+        // using (var context = new TuDbContext())
+        // {
+        //     var user = context.Users.Find(userId);
+        //     if (user != null)
+        //     {
+        //         user.PasswordHash = HashPassword(newPassword);
+        //         context.SaveChanges();
+        //     }
+        // }
+        
+        string hashedPassword = HashPassword(newPassword);
+        Console.WriteLine($"Contraseña actualizada para usuario {userId}");
+    }
+    
+    private string HashPassword(string password)
+    {
+        // Implementa un hash seguro para la contraseña
+        // Por ejemplo, usando BCrypt o PBKDF2
+        using (var sha256 = SHA256.Create())
+        {
+            var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+            return Convert.ToBase64String(hashedBytes);
+        }
+    }
+    
+    private void InvalidateToken(string token)
+    {
+        // Reemplazar con tu lógica real para invalidar tokens
+        // Por ejemplo:
+        // using (var context = new TuDbContext())
+        // {
+        //     var resetToken = context.PasswordResetTokens.FirstOrDefault(t => t.Token == token);
+        //     if (resetToken != null)
+        //     {
+        //         resetToken.Used = true;
+        //         context.SaveChanges();
+        //     }
+        // }
+        
+        Console.WriteLine($"Token invalidado: {token}");
+    }
+}
+
+// Clases auxiliares
+public class UserInfo
+{
+    public int Id { get; set; }
+    public string Email { get; set; }
+}
+
+public class TokenInfo
+{
+    public int UserId { get; set; }
+    public string Token { get; set; }
+    public DateTime ExpiryTime { get; set; }
+}
