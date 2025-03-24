@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
+using FPConnect.domain;
+using FPConnect.persistence.Manages;
 
 namespace FPConnect.view
 {
@@ -9,9 +12,17 @@ namespace FPConnect.view
     /// </summary>
     public partial class Login : Window
     {
+        private ObservableCollection<Usuario> users ;
+        private UsuarioManage usuarioManage;
         public Login()
         {
             InitializeComponent();
+            usuarioManage = new UsuarioManage();
+            users = usuarioManage.LeerUsuarios();
+            foreach (Usuario usuario in users) 
+            {
+                Console.WriteLine(usuario.idUsuario + " " + usuario.email + " " + usuario.password);
+            }
             
         }
 
