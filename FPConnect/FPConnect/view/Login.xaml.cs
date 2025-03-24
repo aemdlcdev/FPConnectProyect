@@ -41,5 +41,10 @@ namespace FPConnect.view
                 MessageBox.Show("Invalid username or password", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void txtForgotPassword_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            txtForgotPassword.Text = "Revisa la bandeja de tu email.";
+        }
     }
 }
