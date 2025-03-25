@@ -89,7 +89,7 @@ namespace PassWordResetApi.Controllers
             await _context.SaveChangesAsync();
 
             // Envía el correo electrónico con el enlace de restablecimiento de contraseña
-            var resetLink = $"https://localhost:8000/reset-password.html?token={resetToken}";
+            var resetLink = $"https://fpconnect-resetpassword.netlify.app/index.html?token={resetToken}";
             var message = $"Haga clic en el siguiente enlace para restablecer su contraseña: {resetLink}";
             await _emailService.SendEmailAsync(request.Email, "Restablecimiento de contraseña", message);
 
