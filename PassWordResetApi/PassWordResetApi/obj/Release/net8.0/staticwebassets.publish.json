@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "6QolJ8FeBHM7GSAA/gDOcMAuWprgyQP/3f355lnGFso=",
+  "Source": "PassWordResetApi",
+  "BasePath": "_content/PassWordResetApi",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

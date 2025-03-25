@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "NSMJ807W357/BFUO6yZmE9jydnF7Bm9Fu8aWoY6AZnc=",
+  "Source": "PassWordResetApi",
+  "BasePath": "_content/PassWordResetApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

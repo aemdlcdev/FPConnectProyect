@@ -26,7 +26,7 @@ namespace PassWordResetApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Usuario>>> Get()
         {
-            return await _context.Usuario.ToListAsync(); // Devuelve la lista de usuarios
+            return await _context.Usuario.ToListAsync(); // devuelve todos los usuarios de la base de datos (fcp.usuario)
         }
 
         // GET api/user/{id}
@@ -38,7 +38,7 @@ namespace PassWordResetApi.Controllers
             {
                 return NotFound("Usuario no encontrado");
             }
-            return Ok(user); // Devuelve un solo usuario por ID
+            return Ok(user); // devuvelve un usuario por ID
         }
 
         // PUT api/user/{id}
@@ -81,10 +81,10 @@ namespace PassWordResetApi.Controllers
                 return NotFound("Usuario no encontrado");
             }
 
-            // Genera un token de restablecimiento de contraseña
+            // Genero un token de restablecimiento de contraseña
             var resetToken = Guid.NewGuid().ToString();
             user.ResetPasswordToken = resetToken;
-            user.ResetPasswordTokenExpiry = DateTime.UtcNow.AddHours(1); // El token expira en 1 hora
+            user.ResetPasswordTokenExpiry = DateTime.UtcNow.AddHours(1); // Le pongo validez de una hora
 
             await _context.SaveChangesAsync();
 
