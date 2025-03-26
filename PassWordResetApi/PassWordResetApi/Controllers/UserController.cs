@@ -107,7 +107,8 @@ namespace PassWordResetApi.Controllers
             }
 
             // Restablece la contraseña del usuario
-            user.password = request.NewPassword;
+            user.password = Seguridad.EncriptarContraseña(request.NewPassword);
+
             user.ResetPasswordToken = null;
             user.ResetPasswordTokenExpiry = null;
 

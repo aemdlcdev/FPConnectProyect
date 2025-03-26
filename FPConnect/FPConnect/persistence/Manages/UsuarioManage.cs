@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FPConnect.domain;
+using FPConnect.HelperClasses;
 
 namespace FPConnect.persistence.Manages
 {
@@ -14,7 +15,7 @@ namespace FPConnect.persistence.Manages
     {
         private DataTable dataTable { get; set; }
         private ObservableCollection<Usuario> listaUsuarios { get; set; }
-        private DBBroker dbBroker = DBBroker.obtenerAgente();
+        private DBBroker dbBroker = DBBroker.ObtenerAgente();
 
         public UsuarioManage()
         {
@@ -22,33 +23,42 @@ namespace FPConnect.persistence.Manages
             listaUsuarios = new ObservableCollection<Usuario>();
         }
 
-        public ObservableCollection<Usuario> LeerUsuarios()
+        
+
+        public Usuario autentificarUsuario(string correo, string password)
         {
-            Usuario usuario = null;
+            var db = DBBroker.ObtenerAgente();
+            string passwordEncrypted = Seguridad.EncriptarContraseña(password);
 
-            ObservableCollection<Object> aux = DBBroker.obtenerAgente().leer("SELECT * FROM fpc.usuario");
-
-            foreach (ObservableCollection<Object> c in aux)
+            string query = "SELECT id_usuario, email, password FROM fpc.usuario WHERE email = @email AND password = @password LIMIT 1;";
+            var parametros = new Dictionary<string, object>
             {
-                usuario = new Usuario(int.Parse(c[0].ToString()), c[1].ToString(), c[2].ToString());
+                { "@email", correo }, 
+                { "@password", passwordEncrypted }
+            };
 
-                this.listaUsuarios.Add(usuario);
+            var resultado = db.Leer(query, parametros);
+
+            if (resultado.Count > 0)
+            {
+                
+                var fila = resultado[0] as ObservableCollection<object>; 
+
+                
+                Usuario usuario = new Usuario
+                {
+                    idUsuario = Convert.ToInt32(fila[0]), 
+                    email = fila[1].ToString(), 
+                    password = fila[2].ToString() 
+                };
+
+                Console.WriteLine("Inicio de sesión exitoso.");
+                return usuario; // Devolvemos el objeto Usuario
             }
-
-            return listaUsuarios;
-
-        }
-
-        public void ModificarUsuario(Usuario usuario)
-        {
-            string sql = $"UPDATE fpc.usuario SET email = '{usuario.email}', password = '{usuario.password}' WHERE idUsuario = '{usuario.idUsuario}'";
-            dbBroker.modificar(sql);
-
-            var usuarioExistente = listaUsuarios.FirstOrDefault(u => u.idUsuario == u.idUsuario);
-            if (usuarioExistente != null)
+            else
             {
-                usuarioExistente.email = usuario.email;
-                usuarioExistente.password = usuario.password;
+                Console.WriteLine("Credenciales incorrectas.");
+                return null; // Usuario no encontrado
             }
         }
 

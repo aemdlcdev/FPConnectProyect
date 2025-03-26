@@ -38,7 +38,7 @@
                     <TextBlock Text="Iniciar Sesión" Margin="20" Foreground="Black" TextAlignment="Center" FontSize="38" FontFamily="Great Vibes"/>
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <materialDesign:PackIcon Kind="User" Width="25" Height="25" Foreground="Black"/>
-                        <TextBox x:Name="txtUsername" Margin="10 0" materialDesign:HintAssist.Hint="Introduce el email" Style="{StaticResource textBoxNormal}" />
+                        <TextBox x:Name="txtUsername" Margin="10 0" materialDesign:HintAssist.Hint="Introduce tu email" Style="{StaticResource textBoxNormal}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <materialDesign:PackIcon Kind="Lock" Width="25" Height="25" Foreground="Black"/>
@@ -49,16 +49,16 @@
                         <TextBlock x:Name="txtForgotPassword" Text="¿Has olvidado la contraseña?" Style="{StaticResource textGestionUsuarios}" TextDecorations="Underline" Cursor="Hand" MouseDown="txtForgotPassword_MouseDown"/>
                     </StackPanel>
                     <StackPanel Margin="10" HorizontalAlignment="Center">
-                        <Button Width="100" Height="40" Style="{StaticResource MaterialDesignRaisedButton}" 
+                        <Button Width="150" Height="40" Style="{StaticResource MaterialDesignRaisedButton}" 
                          materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="Black"
-                         Background="#F5F5F5" Foreground="Black" ToolTip="Login" x:Name="btnLogin" Content="Login" Click="btnLogin_Click">
+                         Background="#F5F5F5" Foreground="Black" ToolTip="Iniciar Sesión" x:Name="btnLogin" Content="Iniciar Sesión" Click="btnLogin_Click">
                         </Button>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
             <StackPanel Width="100">
                 <Button Margin="10 20" Style="{StaticResource MaterialDesignFloatingActionButton}" Background="{x:Null}"
-                 ToolTip="Close" x:Name="btnExit" Click="btnExit_Click" BorderBrush="Black">
+                 ToolTip="Cerrar" x:Name="btnExit" Click="btnExit_Click" BorderBrush="Black">
                     <materialDesign:PackIcon Kind="Close" Foreground="Black" Width="30" Height="30" />
                 </Button>
             </StackPanel>

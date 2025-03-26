@@ -442,8 +442,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="HelperClasses\Seguridad.cs" />
     <Compile Include="domain\Usuario.cs" />
     <Compile Include="HelperClasses\PdfGenerator.cs" />
+    <Compile Include="HelperClasses\SesionUsuario.cs" />
     <Compile Include="persistence\DBBroker.cs" />
     <Compile Include="persistence\Manages\UsuarioManage.cs" />
     <Compile Include="view\Pages\AlumnosSubPages\AlumnosActuales.xaml.cs">
@@ -677,12 +679,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\management.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Global.asax" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.5.1.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.5.1.0\build\MaterialDesignThemes.targets')" />

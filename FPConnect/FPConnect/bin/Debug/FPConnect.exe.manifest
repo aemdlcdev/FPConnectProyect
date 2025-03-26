@@ -79,14 +79,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FPConnect.exe" size="695736">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FPConnect.exe" size="698808">
       <assemblyIdentity name="FPConnect" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>hldbeyKu/R1HYojEm7Hyq0GanE/v637XGJZqXPtLZ60=</dsig:DigestValue>
+        <dsig:DigestValue>DLgCRs/yw3xumyAWHB/hxI/wBzXk7v9R9fL9WjqfO+0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -1333,15 +1333,6 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>MAb7zkVNxqRsQaLu1lxh0WImu3KpfO9gj9PdnqGKWhQ=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Global.asax" size="341">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>ETsI1ecWldP5ntK8+RqFd6FHHgUQLPYHeAn5oX/6hqQ=</dsig:DigestValue>
     </hash>
   </file>
   <file name="logoFPConnect.ico" size="49838">

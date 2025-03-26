@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   passwordRules.innerHTML = `
     <div class="rule" id="length-rule">
       <span class="rule-icon">❌</span>
-      <span class="rule-text">Al menos 8 caracteres</span>
+      <span class="rule-text">Entre 8 y 30 caracteres</span>
     </div>
     <div class="rule" id="uppercase-rule">
       <span class="rule-icon">❌</span>
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Función para validar contraseña
   function validatePassword(password) {
     const rules = {
-      length: password.length >= 8,
+      length: password.length >= 8 && password.length <= 30,
       uppercase: /[A-Z]/.test(password),
       lowercase: /[a-z]/.test(password),
       number: /[0-9]/.test(password),
@@ -98,10 +98,11 @@ document.addEventListener('DOMContentLoaded', () => {
           });
 
           if (response.ok) {
-              showAlert('¡Contraseña actualizada con éxito! Serás redirigido al inicio de sesión', 'success');
-              setTimeout(() => {
-                  window.location.href = 'index.html';
-              }, 2000);
+              // Ocultar el formulario, botones y subtítulo
+              form.style.display = 'none';
+              document.getElementById('cancel-btn').style.display = 'none';
+              document.querySelector('.subtitle').style.display = 'none';
+              showAlert('¡Contraseña actualizada con éxito!', 'success');
           } else {
               const errorData = await response.json();
               showAlert(errorData.message || 'Ha ocurrido un error al actualizar tu contraseña. Por favor, intenta nuevamente', 'error');
