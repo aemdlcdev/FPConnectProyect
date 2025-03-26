@@ -64,23 +64,23 @@
                     <!--Entradas-->
                     <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 10">
                         <materialDesign:PackIcon Kind="User" Width="25" Height="25" Margin="10" Foreground="Black"/>
-                        <TextBox x:Name="txtNombreUsuario" Margin="10 0" materialDesign:HintAssist.Hint="Introduce el nombre de usuario" Style="{StaticResource textBoxNormal}"/>
+                        <TextBox x:Name="txtNombreUsuario" Margin="10 0" materialDesign:HintAssist.Hint="Introduce el nombre" Style="{StaticResource textBoxNormal}"/>
                     </StackPanel>
 
-                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 10">
+                    <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 10">
                         <materialDesign:PackIcon Kind="Password" Width="25" Height="25" Margin="10" Foreground="Black"/>
                         <PasswordBox x:Name="txtPassword" Margin="10 0" materialDesign:HintAssist.Hint="Introduce la contraseña" Style="{StaticResource textBoxPassword}" />
                     </StackPanel>
 
                     <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 10">
-                        <materialDesign:PackIcon Kind="CardAccountDetails" Width="25" Height="25" Margin="10" Foreground="Black"/>
-                        <TextBox x:Name="txtNombre" Margin="10 0" materialDesign:HintAssist.Hint="Introduce el nombre" Style="{StaticResource textBoxNormal}"/>
+                        <materialDesign:PackIcon Kind="Phone" Width="25" Height="25" Margin="10" Foreground="Black"/>
+                        <TextBox x:Name="txtNombre" Margin="10 0" materialDesign:HintAssist.Hint="Introduce el teléfono" Style="{StaticResource textBoxNormal}"/>
                     </StackPanel>
-                    <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 10">
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 10">
                         <materialDesign:PackIcon Kind="CardAccountDetails" Width="25" Height="25" Margin="10" Foreground="Black"/>
                         <TextBox x:Name="txtApellido" Margin="10 0" materialDesign:HintAssist.Hint="Introduce el apellido" Style="{StaticResource textBoxNormal}"/>
                     </StackPanel>
-                    <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 10">
+                    <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 10">
                         <materialDesign:PackIcon Kind="Email" Width="25" Height="25" Margin="10" Foreground="Black"/>
                         <TextBox x:Name="txtEmail" Margin="10 0" materialDesign:HintAssist.Hint="Introduce el email" Style="{StaticResource textBoxNormal}"/>
                     </StackPanel>
@@ -95,7 +95,8 @@
                         <ComboBoxItem Content="Administrador"/>
                     </ComboBox>
                     
-
+                    
+                    
                     <ComboBox x:Name="cbDept" materialDesign:HintAssist.Hint="Departamento" FontSize="16" Grid.Row="8" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 10">
                         <ComboBoxItem Content="Administración"/>
                         <ComboBoxItem Content="Automoción"/>

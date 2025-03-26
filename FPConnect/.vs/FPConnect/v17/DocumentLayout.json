@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|c:\\users\\alejandro\\documents\\github\\fpconnectproyect\\fpconnect\\fpconnect\\view\\pages\\gestionusuarios.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\view\\pages\\gestionusuarios.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|c:\\users\\alejandro\\documents\\github\\fpconnectproyect\\fpconnect\\fpconnect\\view\\pages\\iniciogridcontrol.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\view\\pages\\iniciogridcontrol.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\fpconnect\\persistence\\manages\\usuariomanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\persistence\\manages\\usuariomanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -46,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,7 +62,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
+              "Title": "GestionUsuarios.xaml",
+              "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\GestionUsuarios.xaml",
+              "RelativeDocumentMoniker": "FPConnect\\view\\Pages\\GestionUsuarios.xaml",
+              "ToolTip": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\GestionUsuarios.xaml",
+              "RelativeToolTip": "FPConnect\\view\\Pages\\GestionUsuarios.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-26T12:12:30.285Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "InicioGridControl.xaml",
+              "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\InicioGridControl.xaml",
+              "RelativeDocumentMoniker": "FPConnect\\view\\Pages\\InicioGridControl.xaml",
+              "ToolTip": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\InicioGridControl.xaml",
+              "RelativeToolTip": "FPConnect\\view\\Pages\\InicioGridControl.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-26T11:59:43.578Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Empresas.xaml",
               "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\Empresas.xaml",
               "RelativeDocumentMoniker": "FPConnect\\view\\Pages\\Empresas.xaml",
@@ -66,7 +98,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "SesionUsuario.cs",
               "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\HelperClasses\\SesionUsuario.cs",
               "RelativeDocumentMoniker": "FPConnect\\HelperClasses\\SesionUsuario.cs",
@@ -79,7 +111,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "Seguridad.cs",
               "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\HelperClasses\\Seguridad.cs",
               "RelativeDocumentMoniker": "FPConnect\\HelperClasses\\Seguridad.cs",
@@ -92,7 +124,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "Login.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Login.xaml.cs",
               "RelativeDocumentMoniker": "FPConnect\\view\\Login.xaml.cs",
@@ -105,7 +137,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "Login.xaml",
               "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Login.xaml",
               "RelativeDocumentMoniker": "FPConnect\\view\\Login.xaml",
@@ -117,7 +149,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\App.xaml.cs",
               "RelativeDocumentMoniker": "FPConnect\\App.xaml.cs",
@@ -130,7 +162,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Usuario.cs",
               "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\domain\\Usuario.cs",
               "RelativeDocumentMoniker": "FPConnect\\domain\\Usuario.cs",
@@ -143,20 +175,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "UsuarioManage.cs",
               "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\persistence\\Manages\\UsuarioManage.cs",
               "RelativeDocumentMoniker": "FPConnect\\persistence\\Manages\\UsuarioManage.cs",
               "ToolTip": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\persistence\\Manages\\UsuarioManage.cs",
               "RelativeToolTip": "FPConnect\\persistence\\Manages\\UsuarioManage.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAgwCIAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAACMAAAAAAAAAAAAgwCwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-24T17:23:10.23Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "DBBroker.cs",
               "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\persistence\\DBBroker.cs",
               "RelativeDocumentMoniker": "FPConnect\\persistence\\DBBroker.cs",
