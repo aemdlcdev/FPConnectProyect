@@ -15,7 +15,7 @@ namespace FPConnect.persistence.Manages
     {
         private DataTable dataTable { get; set; }
         private ObservableCollection<Usuario> listaUsuarios { get; set; }
-        private DBBroker dbBroker = DBBroker.ObtenerAgente();
+        private DBBroker db = DBBroker.ObtenerAgente();
 
         public UsuarioManage()
         {
@@ -23,11 +23,29 @@ namespace FPConnect.persistence.Manages
             listaUsuarios = new ObservableCollection<Usuario>();
         }
 
-        
+        public ObservableCollection<Usuario> LeerUsuarios()
+        {
+
+            Usuario usuario = null;
+            db = DBBroker.ObtenerAgente();
+
+            var resultado = db.LeerSinParametros("SELECT id_usuario, email, password FROM usuario;");
+
+            foreach (ObservableCollection<Object> c in resultado)
+            {
+                usuario = new Usuario(
+                    int.Parse(c[0].ToString()), //id
+                    c[1].ToString(), //email
+                    c[2].ToString()); //password
+
+                this.listaUsuarios.Add(usuario);
+            }
+            return listaUsuarios;
+        }
 
         public Usuario autentificarUsuario(string correo, string password)
         {
-            var db = DBBroker.ObtenerAgente();
+            db = DBBroker.ObtenerAgente();
             string passwordEncrypted = Seguridad.EncriptarContraseña(password);
 
             string query = "SELECT id_usuario, email, password FROM fpc.usuario WHERE email = @email AND password = @password LIMIT 1;";
@@ -53,12 +71,12 @@ namespace FPConnect.persistence.Manages
                 };
 
                 Console.WriteLine("Inicio de sesión exitoso.");
-                return usuario; // Devolvemos el objeto Usuario
+                return usuario;
             }
             else
             {
                 Console.WriteLine("Credenciales incorrectas.");
-                return null; // Usuario no encontrado
+                return null; // usuario no encontrado
             }
         }
 

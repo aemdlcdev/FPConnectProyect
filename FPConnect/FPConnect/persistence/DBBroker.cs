@@ -25,7 +25,33 @@ namespace FPConnect.persistence
             return _instancia;
         }
 
-        // ✅ Método seguro para leer datos con parámetros
+        // Leer sin parametros
+        public ObservableCollection<object> LeerSinParametros(string sql)
+        {
+            ObservableCollection<object> resultado = new ObservableCollection<object>();
+            conectar();
+
+            using (MySqlCommand com = new MySqlCommand(sql, conexion))
+            {
+                using (MySqlDataReader reader = com.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        ObservableCollection<object> fila = new ObservableCollection<object>();
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            fila.Add(reader[i].ToString());
+                        }
+                        resultado.Add(fila);
+                    }
+                }
+            }
+            desconectar();
+            return resultado;
+        }
+
+
+        // Leer con parametros
         public ObservableCollection<object> Leer(string sql, Dictionary<string, object> parametros)
         {
             ObservableCollection<object> resultado = new ObservableCollection<object>();
@@ -33,7 +59,7 @@ namespace FPConnect.persistence
 
             using (MySqlCommand com = new MySqlCommand(sql, conexion))
             {
-                // Agrega parámetros para evitar SQL Injection
+                
                 foreach (var param in parametros)
                 {
                     com.Parameters.AddWithValue(param.Key, param.Value);
@@ -56,7 +82,7 @@ namespace FPConnect.persistence
             return resultado;
         }
 
-        // ✅ Método seguro para modificar datos con parámetros
+        // Modificar (insertar, modificar, borrar) con parametros
         public int Modificar(string sql, Dictionary<string, object> parametros)
         {
             int resultado;
