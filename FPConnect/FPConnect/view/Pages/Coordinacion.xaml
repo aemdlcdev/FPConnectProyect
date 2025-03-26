@@ -34,7 +34,7 @@
 
                     <StackPanel VerticalAlignment="Center">
                         <TextBlock Text="Bienvenido al centro de coordinación" Style="{StaticResource titleText}" FontSize="26" FontWeight="Bold"/>
-                        <TextBlock Text="Agrega, modifica o da por hecho tus tareas!" Foreground="#6C879A" Margin="0 3 0 0"/>
+                        <TextBlock Text="Agrega, modifica o da por hechas tus tareas!" Foreground="#6C879A" Margin="0 3 0 0"/>
                     </StackPanel>
                 </StackPanel>
 
