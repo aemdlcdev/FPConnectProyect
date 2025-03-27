@@ -45,7 +45,7 @@ namespace FPConnect.view
             string email = txtUsername.Text;
             string password = txtPassword.Password;
 
-            Usuario usuario = new Usuario();
+            Profesor usuario = new Profesor();
             usuario = usuario.autentificarUsuario(email, password);
 
             if (usuario!=null)

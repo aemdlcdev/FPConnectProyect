@@ -1,0 +1,87 @@
+erDiagram
+    CENTRO ||--o{ FAMILIA_PROFESIONAL : "1..* tiene" 
+    
+    FAMILIA_PROFESIONAL ||--o{ PERFIL : "1..* contiene"
+    FAMILIA_PROFESIONAL ||--o{ TAREA_COORDINACION : "0..* genera"
+    FAMILIA_PROFESIONAL ||--o{ PROFESOR : "1..* agrupa"
+
+    PERFIL ||--o{ ALUMNO : "1..* define"
+
+    PROFESOR }|--o{ ALUMNO : "1..* tutoriza"
+    PROFESOR }|--o{ EVENTO : "0..* crea"
+    PROFESOR }|--o{ EMPRESA : "0..* gestiona"
+    PROFESOR }|--o{ TAREA_COORDINACION : "0..* participa"
+
+    GRADO ||--o{ ALUMNO : "1..* agrupa"
+    
+    ALUMNO }|--o{ ASIGNACION_EMPRESA : "0..* tiene"
+    ALUMNO ||--o{ CONVOCATORIA : "1..* participa"
+    
+    EMPRESA ||--o{ ASIGNACION_EMPRESA : "1..* ofrece"
+    
+    CENTRO {
+        int id_centro
+        string nombre
+        string direccion
+    }
+
+    FAMILIA_PROFESIONAL {
+        int id_familia
+        string nombre
+    }
+
+    PERFIL {
+        int id_perfil
+        string nombre
+    }
+
+    PROFESOR {
+        int id_profesor
+        string nombre
+        string apellidos
+        string email
+    }
+
+    ALUMNO {
+        int id_alumno
+        string nombre
+        string apellidos
+    }
+
+    GRADO {
+        int id_grado
+        string nombre
+        string nivel
+    }
+
+    EMPRESA {
+        int id_empresa
+        string nombre
+        date fecha_inicio_acuerdo
+        date fecha_fin_acuerdo
+    }
+
+    ASIGNACION_EMPRESA {
+        string fase
+        date fecha_asignacion
+    }
+
+    CONVOCATORIA {
+        int id_convocatoria
+        string nombre
+        date fecha_inicio
+        date fecha_fin
+    }
+
+    EVENTO {
+        string nombre
+        date fecha
+        time hora
+        string estado
+    }
+
+    TAREA_COORDINACION {
+        string titulo
+        string descripcion
+        date fecha_creacion
+    }

@@ -8,27 +8,27 @@ using FPConnect.persistence.Manages;
 
 namespace FPConnect.domain
 {
-    class Usuario
+    class Profesor
     {
         public int idUsuario {  get; set; }
         public string email { get; set; }
         public string password { get; set; }
 
-        private UsuarioManage um;
+        private ProfesorManage um;
 
-        public Usuario() { um = new UsuarioManage(); }
+        public Profesor() { um = new ProfesorManage(); }
 
-        public Usuario (int id,string email, string password)
+        public Profesor (int id,string email, string password)
         {
             this.idUsuario = id;
             this.email = email;
             this.password = password;
-            um = new UsuarioManage();
+            um = new ProfesorManage();
         }
 
         
 
-        public Usuario autentificarUsuario(string email, string password) 
+        public Profesor autentificarUsuario(string email, string password) 
         {
            return um.autentificarUsuario (email, password);
         }

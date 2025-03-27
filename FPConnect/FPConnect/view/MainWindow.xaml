@@ -101,6 +101,13 @@
                                 </StackPanel>
                             </Button>
 
+                            <Button Name="btnGestionFamilias" Style="{StaticResource menuButton}" Click="btnGestionUsuarios_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="FamilyTree" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Familias"/>
+                                </StackPanel>
+                            </Button>
+
                             <Button Name="btnGestionUsuarios" Style="{StaticResource menuButton}" Click="btnGestionUsuarios_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="AccountSettings" Style="{StaticResource menuButtonIcon}"/>

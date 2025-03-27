@@ -11,29 +11,29 @@ using FPConnect.HelperClasses;
 namespace FPConnect.persistence.Manages
 {
 
-    class UsuarioManage
+    class ProfesorManage
     {
         private DataTable dataTable { get; set; }
-        private ObservableCollection<Usuario> listaUsuarios { get; set; }
+        private ObservableCollection<Profesor> listaUsuarios { get; set; }
         private DBBroker db = DBBroker.ObtenerAgente();
 
-        public UsuarioManage()
+        public ProfesorManage()
         {
             dataTable = new DataTable();
-            listaUsuarios = new ObservableCollection<Usuario>();
+            listaUsuarios = new ObservableCollection<Profesor>();
         }
 
-        public ObservableCollection<Usuario> LeerUsuarios()
+        public ObservableCollection<Profesor> LeerUsuarios()
         {
 
-            Usuario usuario = null;
+            Profesor usuario = null;
             db = DBBroker.ObtenerAgente();
 
             var resultado = db.LeerSinParametros("SELECT id_usuario, email, password FROM usuario;");
 
             foreach (ObservableCollection<Object> c in resultado)
             {
-                usuario = new Usuario(
+                usuario = new Profesor(
                     int.Parse(c[0].ToString()), //id
                     c[1].ToString(), //email
                     c[2].ToString()); //password
@@ -43,7 +43,7 @@ namespace FPConnect.persistence.Manages
             return listaUsuarios;
         }
 
-        public Usuario autentificarUsuario(string correo, string password)
+        public Profesor autentificarUsuario(string correo, string password)
         {
             db = DBBroker.ObtenerAgente();
             string passwordEncrypted = Seguridad.EncriptarContraseña(password);
@@ -63,7 +63,7 @@ namespace FPConnect.persistence.Manages
                 var fila = resultado[0] as ObservableCollection<object>; 
 
                 
-                Usuario usuario = new Usuario
+                Profesor usuario = new Profesor
                 {
                     idUsuario = Convert.ToInt32(fila[0]), 
                     email = fila[1].ToString(), 
