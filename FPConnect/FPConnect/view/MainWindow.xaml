@@ -59,7 +59,7 @@
 
                         <!--Menu Titulo-->
                         <TextBlock Text="FPConnect" Foreground="White" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="0 25 0 10" TextAlignment="Center"/>
-                        <TextBlock Text="Alejandro, España" Foreground="White" FontSize="14" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="5,0,0,0" TextAlignment="Center"/>
+                        <TextBlock x:Name="txtNombre" Text="Alejandro, España" Foreground="White" FontSize="14" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="5,0,0,0" TextAlignment="Center"/>
 
                         <!--Menu Separador-->
                         <Separator Margin="25" Background="#ffffff" DockPanel.Dock="Top" Height="0.8"/>

@@ -24,16 +24,16 @@ namespace PassWordResetApi.Controllers
 
         // GET api/user
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Usuario>>> Get()
+        public async Task<ActionResult<IEnumerable<Profesores>>> Get()
         {
-            return await _context.Usuario.ToListAsync(); // devuelve todos los usuarios de la base de datos (fcp.usuario)
+            return await _context.Profesores.ToListAsync(); // devuelve todos los usuarios de la base de datos (fcp.usuario)
         }
 
         // GET api/user/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<Usuario>> Get(int id)
+        public async Task<ActionResult<Profesores>> Get(int id)
         {
-            var user = await _context.Usuario.FindAsync(id);
+            var user = await _context.Profesores.FindAsync(id);
             if (user == null)
             {
                 return NotFound("Usuario no encontrado");
@@ -43,9 +43,9 @@ namespace PassWordResetApi.Controllers
 
         // PUT api/user/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Usuario updatedUser)
+        public async Task<IActionResult> Put(int id, [FromBody] Profesores updatedUser)
         {
-            if (id != updatedUser.id_usuario)
+            if (id != updatedUser.id_profesor)
             {
                 return BadRequest("ID del usuario no coincide");
             }
@@ -58,7 +58,7 @@ namespace PassWordResetApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!_context.Usuario.Any(e => e.id_usuario == id))
+                if (!_context.Profesores.Any(e => e.id_profesor == id))
                 {
                     return NotFound("Usuario no encontrado");
                 }
@@ -75,7 +75,8 @@ namespace PassWordResetApi.Controllers
         [HttpPost("reset-password")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request)
         {
-            var user = await _context.Usuario.FirstOrDefaultAsync(u => u.email == request.Email);
+            var user = await _context.Profesores.FirstOrDefaultAsync(u => u.email == request.Email);
+            Console.WriteLine(user.email);
             if (user == null)
             {
                 return NotFound("Usuario no encontrado");
@@ -83,8 +84,8 @@ namespace PassWordResetApi.Controllers
 
             // Genero un token de restablecimiento de contraseña
             var resetToken = Guid.NewGuid().ToString();
-            user.ResetPasswordToken = resetToken;
-            user.ResetPasswordTokenExpiry = DateTime.UtcNow.AddHours(1); // Le pongo validez de una hora
+            user.reset_password_token = resetToken;
+            user.reset_password_token_expiry = DateTime.UtcNow.AddHours(1); // Le pongo validez de una hora
 
             await _context.SaveChangesAsync();
 
@@ -100,8 +101,8 @@ namespace PassWordResetApi.Controllers
         [HttpPost("confirm-reset-password")]
         public async Task<IActionResult> ConfirmResetPassword([FromBody] ConfirmResetPasswordRequest request)
         {
-            var user = await _context.Usuario.FirstOrDefaultAsync(u => u.ResetPasswordToken == request.Token);
-            if (user == null || user.ResetPasswordTokenExpiry < DateTime.UtcNow)
+            var user = await _context.Profesores.FirstOrDefaultAsync(u => u.reset_password_token == request.Token);
+            if (user == null || user.reset_password_token_expiry < DateTime.UtcNow)
             {
                 return BadRequest("Token inválido o expirado");
             }
@@ -109,8 +110,8 @@ namespace PassWordResetApi.Controllers
             // Restablece la contraseña del usuario
             user.password = Seguridad.EncriptarContraseña(request.NewPassword);
 
-            user.ResetPasswordToken = null;
-            user.ResetPasswordTokenExpiry = null;
+            user.reset_password_token = null;
+            user.reset_password_token_expiry = null;
 
             await _context.SaveChangesAsync();
 

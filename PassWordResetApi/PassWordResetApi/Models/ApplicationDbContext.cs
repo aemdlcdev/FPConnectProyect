@@ -8,7 +8,7 @@ namespace PassWordResetApi.Models
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<Profesores> Profesores { get; set; }
     }
 }
 

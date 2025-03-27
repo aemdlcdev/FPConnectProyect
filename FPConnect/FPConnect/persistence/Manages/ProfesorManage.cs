@@ -29,14 +29,17 @@ namespace FPConnect.persistence.Manages
             Profesor usuario = null;
             db = DBBroker.ObtenerAgente();
 
-            var resultado = db.LeerSinParametros("SELECT id_usuario, email, password FROM usuario;");
+            var resultado = db.LeerSinParametros("SELECT id_profesor,nombre,apellidos, email, password,id_rol FROM fpc.profesores;");
 
             foreach (ObservableCollection<Object> c in resultado)
             {
                 usuario = new Profesor(
                     int.Parse(c[0].ToString()), //id
-                    c[1].ToString(), //email
-                    c[2].ToString()); //password
+                    c[1].ToString(), //nombre
+                    c[2].ToString(), //apellidos
+                    c[3].ToString(), //email
+                    c[4].ToString(), //password
+                    int.Parse(c[5].ToString())); //rol
 
                 this.listaUsuarios.Add(usuario);
             }
@@ -48,7 +51,7 @@ namespace FPConnect.persistence.Manages
             db = DBBroker.ObtenerAgente();
             string passwordEncrypted = Seguridad.EncriptarContraseña(password);
 
-            string query = "SELECT id_usuario, email, password FROM fpc.usuario WHERE email = @email AND password = @password LIMIT 1;";
+            string query = "SELECT id_profesor,nombre,apellidos, email, password,id_rol FROM fpc.profesores WHERE email = @email AND password = @password LIMIT 1;";
             var parametros = new Dictionary<string, object>
             {
                 { "@email", correo }, 
@@ -63,15 +66,15 @@ namespace FPConnect.persistence.Manages
                 var fila = resultado[0] as ObservableCollection<object>; 
 
                 
-                Profesor usuario = new Profesor
+                Profesor profesor = new Profesor
                 {
-                    idUsuario = Convert.ToInt32(fila[0]), 
+                    id_profesor = Convert.ToInt32(fila[0]), 
                     email = fila[1].ToString(), 
                     password = fila[2].ToString() 
                 };
 
                 Console.WriteLine("Inicio de sesión exitoso.");
-                return usuario;
+                return profesor;
             }
             else
             {

@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
+using FPConnect.HelperClasses;
 using FPConnect.view;
 using FPConnect.view.UserControls; // Asegúrate de que este espacio de nombres esté importado
 
@@ -19,8 +20,8 @@ namespace FPConnect
         public MainWindow()
         {
             InitializeComponent();
+            txtNombre.Text = SesionUsuario.NombreUsuario;
 
-            
 
             mainFrame.Source = new Uri("pages/InicioGridControl.xaml", UriKind.Relative);
 
