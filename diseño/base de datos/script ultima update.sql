@@ -175,3 +175,69 @@ CREATE TABLE EventosProfesores (
     CONSTRAINT fk_eventosprofesores_profesores FOREIGN KEY (id_profesor) REFERENCES Profesores(id_profesor),
     CONSTRAINT fk_eventosprofesores_estados FOREIGN KEY (id_estado) REFERENCES EstadosEmpresa(id_estado)
 );
+
+
+-- INDICES
+
+-- Tabla Centros
+CREATE INDEX idx_centros_nombre ON Centros(nombre);
+
+-- Tabla FamiliasProfesionales
+CREATE INDEX idx_familiasprofesionales_id_centro ON FamiliasProfesionales(id_centro);
+CREATE INDEX idx_familiasprofesionales_nombre ON FamiliasProfesionales(nombre);
+
+-- Tabla Perfiles
+CREATE INDEX idx_perfiles_id_familia ON Perfiles(id_familia);
+
+-- Tabla Grados
+CREATE INDEX idx_grados_id_centro ON Grados(id_centro);
+
+-- Tabla Roles
+CREATE INDEX idx_roles_id_centro ON Roles(id_centro);
+
+-- Tabla Profesores
+CREATE INDEX idx_profesores_id_rol ON Profesores(id_rol);
+CREATE INDEX idx_profesores_email ON Profesores(email);
+
+-- Tabla ProfesoresFamilias
+CREATE INDEX idx_profesoresfamilias_id_familia ON ProfesoresFamilias(id_familia);
+
+-- Tabla ProfesoresGrados
+CREATE INDEX idx_profesoresgrados_id_grado ON ProfesoresGrados(id_grado);
+
+-- Tabla TiposFase
+CREATE INDEX idx_tiposfase_id_centro ON TiposFase(id_centro);
+
+-- Tabla EstadosEmpresa
+CREATE INDEX idx_estadosempresa_id_centro ON EstadosEmpresa(id_centro);
+
+-- Tabla FasesAsignacion
+CREATE INDEX idx_fasesasignacion_id_centro ON FasesAsignacion(id_centro);
+
+-- Tabla Convocatorias
+CREATE INDEX idx_convocatorias_id_tipo_fase ON Convocatorias(id_tipo_fase);
+
+-- Tabla Alumnos
+CREATE INDEX idx_alumnos_id_profesor ON Alumnos(id_profesor);
+CREATE INDEX idx_alumnos_id_perfil ON Alumnos(id_perfil);
+CREATE INDEX idx_alumnos_id_grado ON Alumnos(id_grado);
+CREATE INDEX idx_alumnos_id_convocatoria ON Alumnos(id_convocatoria);
+
+-- Tabla Empresas
+CREATE INDEX idx_empresas_id_centro ON Empresas(id_centro);
+CREATE INDEX idx_empresas_id_estado ON Empresas(id_estado);
+
+-- Tabla EmpresasProfesores
+CREATE INDEX idx_empresasprofesores_id_profesor ON EmpresasProfesores(id_profesor);
+
+-- Tabla AsignacionEmpresas
+CREATE INDEX idx_asignacionempresas_id_alumno ON AsignacionEmpresas(id_alumno);
+CREATE INDEX idx_asignacionempresas_id_empresa ON AsignacionEmpresas(id_empresa);
+CREATE INDEX idx_asignacionempresas_id_fase ON AsignacionEmpresas(id_fase);
+
+-- Tabla TareasCoordinacion
+CREATE INDEX idx_tareascoordinacion_id_familia ON TareasCoordinacion(id_familia);
+
+-- Tabla EventosProfesores
+CREATE INDEX idx_eventosprofesores_id_profesor ON EventosProfesores(id_profesor);
+CREATE INDEX idx_eventosprofesores_id_estado ON EventosProfesores(id_estado);
