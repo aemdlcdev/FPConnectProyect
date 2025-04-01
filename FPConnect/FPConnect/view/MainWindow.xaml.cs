@@ -2,6 +2,8 @@
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
+using FPConnect.domain;
 using FPConnect.HelperClasses;
 using FPConnect.view;
 using FPConnect.view.UserControls; // Asegúrate de que este espacio de nombres esté importado
@@ -17,12 +19,14 @@ namespace FPConnect
         public bool IsCoordinacionButtonPressed { get; set; }
         public bool IsGestionUsuariosButtonPressed { get; set; }
 
-        public MainWindow()
+        private Profesor profesor { get; set; }
+
+        public MainWindow(Profesor profesor)
         {
             InitializeComponent();
-            txtNombre.Text = SesionUsuario.NombreUsuario;
-
-
+            
+            this.profesor = profesor;
+            Console.WriteLine("Rol: " + this.profesor.id_rol + this.profesor.nombre);
             mainFrame.Source = new Uri("pages/InicioGridControl.xaml", UriKind.Relative);
 
             IsInicioButtonPressed = true;
@@ -35,6 +39,9 @@ namespace FPConnect
 
             Storyboard slideAnimacion = (Storyboard)FindResource("SlideInStoryboard");
             slideAnimacion.Begin();
+            txtNombre.Text = SesionUsuario.NombreUsuario + ", España ";
+            
+            configurarUsuario();
 
         }
 
@@ -206,6 +213,38 @@ namespace FPConnect
             btnEmpresas.Style = (Style)FindResource(IsEmpresasButtonPressed ? "menuButtonPressed" : "menuButton");
             btnCoordinacion.Style = (Style)FindResource(IsCoordinacionButtonPressed ? "menuButtonPressed" : "menuButton");
             btnGestionUsuarios.Style = (Style)FindResource(IsGestionUsuariosButtonPressed ? "menuButtonPressed" : "menuButton");
+        }
+
+        // ...
+
+        private void configurarUsuario()
+        {
+            if (SesionUsuario.sexo.Equals("m"))
+            {
+                imgSexo.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Images/male.png"));
+
+            }
+            else
+            {
+                imgSexo.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Images/female.png"));
+
+            }
+
+            if (this.profesor.id_rol == 2)
+            {
+                btnGestionFamilias.Visibility = Visibility.Collapsed;
+                btnGestionFamilias.IsEnabled = false;
+            }
+            if (this.profesor.id_rol == 3)
+            {
+                btnGestionUsuarios.Visibility = Visibility.Collapsed;
+                btnGestionUsuarios.IsEnabled = false;
+                btnGestionFamilias.Visibility = Visibility.Collapsed;
+                btnGestionFamilias.IsEnabled = false;
+                txtSep1.Visibility = Visibility.Collapsed;
+                txtSep2.Visibility = Visibility.Collapsed;
+                txtAvanzado.Visibility = Visibility.Collapsed;
+            }
         }
 
     }

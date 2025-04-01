@@ -52,7 +52,7 @@
                         <Border Width="80" Height="80" Padding="3" Background="White" CornerRadius="100" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="20 -30 0 0">
                             <Ellipse>
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource="/Images/male.png"/>
+                                    <ImageBrush x:Name="imgSexo" ImageSource="/Images/male.png"/>
                                 </Ellipse.Fill>
                             </Ellipse>
                         </Border>
@@ -100,7 +100,24 @@
                                     <TextBlock Text="Coordinación"/>
                                 </StackPanel>
                             </Button>
+                            
 
+                            
+
+                        </StackPanel>
+
+                        <!--Menu Separador-->
+                        <Separator Name="txtSep1" Margin="25 10 25 0" Background="#ffffff" DockPanel.Dock="Top" Height="0.8"/>
+                        <TextBlock Name="txtAvanzado" Text="Avanzado" Foreground="White" FontSize="14" DockPanel.Dock="Top" Margin="0 0 0 -20" TextAlignment="Center"/>
+                        <Separator Name="txtSep2" Margin="25 25 25 0" Background="#ffffff" DockPanel.Dock="Top" Height="0.8"/>
+                        <StackPanel DockPanel.Dock="Top" >
+                            
+                            <Button Name="btnGestionUsuarios" Style="{StaticResource menuButton}" Click="btnGestionUsuarios_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="AccountSettings" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Gestionar Usuarios"/>
+                                </StackPanel>
+                            </Button>
                             <Button Name="btnGestionFamilias" Style="{StaticResource menuButton}" Click="btnGestionUsuarios_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="FamilyTree" Style="{StaticResource menuButtonIcon}"/>
@@ -108,15 +125,9 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button Name="btnGestionUsuarios" Style="{StaticResource menuButton}" Click="btnGestionUsuarios_Click">
-                                <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="AccountSettings" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Gestionar Usuarios"/>
-                                </StackPanel>
-                            </Button>
+
 
                         </StackPanel>
-
                         <Button Name="btnLogout" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20" Click="btnLogout_Click">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>

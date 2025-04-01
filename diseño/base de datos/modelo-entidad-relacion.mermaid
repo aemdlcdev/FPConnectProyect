@@ -1,0 +1,149 @@
+erDiagram
+    Centros ||--o{ FamiliasProfesionales : "1:N tiene"
+    Centros ||--o{ Grados : "1:N ofrece"
+    Centros ||--o{ Roles : "1:N define"
+    Centros ||--o{ TiposFase : "1:N establece"
+    Centros ||--o{ EstadosEmpresa : "1:N gestiona"
+    Centros ||--o{ FasesAsignacion : "1:N controla"
+    Centros ||--o{ Empresas : "1:N colabora"
+    
+    FamiliasProfesionales ||--o{ Perfiles : "1:N contiene"
+    FamiliasProfesionales ||--o{ TareasCoordinacion : "1:N asocia"
+    
+    Roles ||--o{ Profesores : "1:N asigna"
+    
+    TiposFase ||--o{ Convocatorias : "1:N determina"
+    
+    Profesores ||--o{ Alumnos : "1:N tutoriza"
+    Profesores }o--o{ FamiliasProfesionales : "N:M pertenece"
+    Profesores }o--o{ Grados : "N:M imparte"
+    Profesores }o--o{ Empresas : "N:M gestiona"
+    Profesores ||--o{ EventosProfesores : "1:N programa"
+    
+    Perfiles ||--o{ Alumnos : "1:N cursa"
+    
+    Grados ||--o{ Alumnos : "1:N matricula"
+    
+    Convocatorias ||--o{ Alumnos : "1:N participa"
+    
+    EstadosEmpresa ||--o{ Empresas : "1:N clasifica"
+    EstadosEmpresa ||--o{ EventosProfesores : "1:N categoriza"
+    
+    Alumnos ||--o{ AsignacionEmpresas : "1:N recibe"
+    Empresas ||--o{ AsignacionEmpresas : "1:N proporciona"
+    
+    FasesAsignacion ||--o{ AsignacionEmpresas : "1:N regula"
+    
+    Centros {
+        int id_centro PK
+        string nombre
+        string direccion
+        string horario
+        string telefono
+    }
+    
+    FamiliasProfesionales {
+        int id_familia PK
+        int id_centro FK
+        string nombre
+    }
+    
+    Perfiles {
+        int id_perfil PK
+        int id_familia FK
+        string nombre
+    }
+    
+    Grados {
+        int id_grado PK
+        int id_centro FK
+        string nombre
+    }
+    
+    Roles {
+        int id_rol PK
+        int id_centro FK
+        string nombre
+    }
+    
+    Profesores {
+        int id_profesor PK
+        int id_rol FK
+        string nombre
+        string apellidos
+        string email
+        string password
+        string reset_password_token
+        datetime reset_password_token_expiry
+    }
+    
+    TiposFase {
+        int id_tipo_fase PK
+        int id_centro FK
+        string nombre
+    }
+    
+    EstadosEmpresa {
+        int id_estado PK
+        int id_centro FK
+        string nombre
+    }
+    
+    FasesAsignacion {
+        int id_fase PK
+        int id_centro FK
+        string nombre
+    }
+    
+    Convocatorias {
+        int id_convocatoria PK
+        int id_tipo_fase FK
+        date fecha_inicio
+        date fecha_fin
+    }
+    
+    Alumnos {
+        int id_alumno PK
+        string nombre
+        string apellidos
+        int id_profesor FK
+        int id_perfil FK
+        int id_grado FK
+        int id_convocatoria FK
+    }
+    
+    Empresas {
+        int id_empresa PK
+        int id_centro FK
+        string nombre
+        string direccion
+        date fecha_inicio_acuerdo
+        date fecha_fin_acuerdo
+        int id_estado FK
+    }
+    
+    AsignacionEmpresas {
+        int id_asignacion PK
+        int id_alumno FK
+        int id_empresa FK
+        int id_fase FK
+        date fecha_asignacion
+    }
+    
+    TareasCoordinacion {
+        int id_tarea PK
+        int id_familia FK
+        string titulo
+        string descripcion
+        date fecha_creacion
+    }
+    
+    EventosProfesores {
+        int id_evento PK
+        int id_profesor FK
+        string nombre
+        date fecha
+        time hora
+        int id_estado FK
+        string descripcion
+    }

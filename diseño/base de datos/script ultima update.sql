@@ -3,7 +3,8 @@ CREATE TABLE Centros (
     id_centro INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     nombre VARCHAR(100) NOT NULL,
     direccion VARCHAR(200) NOT NULL,
-    horario VARCHAR(200) NOT NULL
+    horario VARCHAR(200) NOT NULL,
+    telefono VARCHAR(20) NOT NULL
 );
 
 -- Tabla de Familias Profesionales
@@ -25,25 +26,30 @@ CREATE TABLE Perfiles (
 -- Tabla de Grados
 CREATE TABLE Grados (
     id_grado INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    nombre VARCHAR(50) NOT NULL -- Básica, Media, Superior
+    id_centro INT NOT NULL,
+    nombre VARCHAR(50) NOT NULL, -- Básica, Media, Superior
+    CONSTRAINT fk_grados_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro)
 );
 
 -- Tabla para Roles
 CREATE TABLE Roles (
     id_rol INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    nombre VARCHAR(50) NOT NULL -- Ejemplo: Docente, Supervisor
+    id_centro INT NOT NULL,
+    nombre VARCHAR(50) NOT NULL, -- Ejemplo: Docente, Supervisor
+    CONSTRAINT fk_roles_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro)
 );
 
--- Modificar la tabla Profesores
+-- Tabla de Profesores
 CREATE TABLE Profesores (
     id_profesor INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    id_rol INT NOT NULL,
     nombre VARCHAR(100) NOT NULL,
     apellidos VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
     password VARCHAR(255) NOT NULL, -- Contraseña del profesor
     reset_password_token VARCHAR(255), -- Token para restablecer contraseña
     reset_password_token_expiry DATETIME, -- Fecha de expiración del token
-    id_rol INT NOT NULL,
+    sexo VARCHAR(1) NOT NULL,
     CONSTRAINT fk_profesores_roles FOREIGN KEY (id_rol) REFERENCES Roles(id_rol)
 );
 
@@ -68,27 +74,33 @@ CREATE TABLE ProfesoresGrados (
 -- Tabla para Tipo de Fase
 CREATE TABLE TiposFase (
     id_tipo_fase INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    nombre VARCHAR(50) NOT NULL -- Ejemplo: Ordinaria, Extraordinaria
+    id_centro INT NOT NULL,
+    nombre VARCHAR(50) NOT NULL, -- Ejemplo: Ordinaria, Extraordinaria
+    CONSTRAINT fk_tiposfase_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro)
 );
 
 -- Tabla para Estado de Empresas
 CREATE TABLE EstadosEmpresa (
     id_estado INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    nombre VARCHAR(50) NOT NULL -- Ejemplo: Vigente, Caducada
+    id_centro INT NOT NULL,
+    nombre VARCHAR(50) NOT NULL, -- Ejemplo: Vigente, Caducada
+    CONSTRAINT fk_estadosempresa_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro)
 );
 
 -- Tabla para Fase de Asignación
 CREATE TABLE FasesAsignacion (
     id_fase INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    nombre VARCHAR(50) NOT NULL -- Ejemplo: Provisional, Validada
+    id_centro INT NOT NULL,
+    nombre VARCHAR(50) NOT NULL, -- Ejemplo: Provisional, Validada
+    CONSTRAINT fk_fasesasignacion_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro)
 );
 
 -- Tabla de Convocatorias
 CREATE TABLE Convocatorias (
     id_convocatoria INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    id_tipo_fase INT NOT NULL,
     fecha_inicio DATE NOT NULL,
     fecha_fin DATE NOT NULL,
-    id_tipo_fase INT NOT NULL,
     CONSTRAINT fk_convocatorias_tiposfase FOREIGN KEY (id_tipo_fase) REFERENCES TiposFase(id_tipo_fase)
 );
 
@@ -110,12 +122,14 @@ CREATE TABLE Alumnos (
 -- Tabla de Empresas
 CREATE TABLE Empresas (
     id_empresa INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    id_centro INT NOT NULL,
     nombre VARCHAR(100) NOT NULL,
     direccion VARCHAR(200) NOT NULL,
     fecha_inicio_acuerdo DATE NOT NULL,
     fecha_fin_acuerdo DATE NOT NULL,
     id_estado INT NOT NULL,
-    CONSTRAINT fk_empresas_estados FOREIGN KEY (id_estado) REFERENCES EstadosEmpresa(id_estado)
+    CONSTRAINT fk_empresas_estados FOREIGN KEY (id_estado) REFERENCES EstadosEmpresa(id_estado),
+    CONSTRAINT fk_empresas_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro)
 );
 
 -- Tabla de Gestión de Empresas por Profesores

@@ -12,14 +12,12 @@ namespace FPConnect.persistence.Manages
 {
 
     class ProfesorManage
-    {
-        private DataTable dataTable { get; set; }
+    {       
         private ObservableCollection<Profesor> listaUsuarios { get; set; }
         private DBBroker db = DBBroker.ObtenerAgente();
 
         public ProfesorManage()
-        {
-            dataTable = new DataTable();
+        {         
             listaUsuarios = new ObservableCollection<Profesor>();
         }
 
@@ -29,7 +27,7 @@ namespace FPConnect.persistence.Manages
             Profesor usuario = null;
             db = DBBroker.ObtenerAgente();
 
-            var resultado = db.LeerSinParametros("SELECT id_profesor,nombre,apellidos, email, password,id_rol FROM fpc.profesores;");
+            var resultado = db.LeerSinParametros("SELECT id_profesor,nombre,apellidos, email, password,sexo,id_rol FROM fpc.profesores;");
 
             foreach (ObservableCollection<Object> c in resultado)
             {
@@ -39,6 +37,7 @@ namespace FPConnect.persistence.Manages
                     c[2].ToString(), //apellidos
                     c[3].ToString(), //email
                     c[4].ToString(), //password
+                    c[6].ToString(), //sexo
                     int.Parse(c[5].ToString())); //rol
 
                 this.listaUsuarios.Add(usuario);
@@ -51,14 +50,14 @@ namespace FPConnect.persistence.Manages
             db = DBBroker.ObtenerAgente();
             string passwordEncrypted = Seguridad.EncriptarContraseña(password);
 
-            string query = "SELECT id_profesor,nombre,apellidos, email, password,id_rol FROM fpc.profesores WHERE email = @email AND password = @password LIMIT 1;";
+            string query = "SELECT id_profesor,nombre,apellidos, email, password,sexo,id_rol FROM fpc.profesores WHERE email = @email AND password = @password LIMIT 1;";
             var parametros = new Dictionary<string, object>
             {
                 { "@email", correo }, 
                 { "@password", passwordEncrypted }
             };
 
-            var resultado = db.Leer(query, parametros);
+            var resultado = db.LeerConParametros(query, parametros);
 
             if (resultado.Count > 0)
             {
@@ -68,9 +67,13 @@ namespace FPConnect.persistence.Manages
                 
                 Profesor profesor = new Profesor
                 {
-                    id_profesor = Convert.ToInt32(fila[0]), 
-                    email = fila[1].ToString(), 
-                    password = fila[2].ToString() 
+                    id_profesor = Convert.ToInt32(fila[0]),
+                    nombre = fila[1].ToString(),
+                    apellidos = fila[2].ToString(),
+                    email = fila[3].ToString(), 
+                    password = fila[4].ToString(),
+                    sexo = fila[5].ToString(),
+                    id_rol = Convert.ToInt32(fila[6])
                 };
 
                 Console.WriteLine("Inicio de sesión exitoso.");

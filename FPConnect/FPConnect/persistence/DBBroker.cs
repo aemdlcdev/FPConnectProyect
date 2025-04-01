@@ -52,7 +52,7 @@ namespace FPConnect.persistence
 
 
         // Leer con parametros
-        public ObservableCollection<object> Leer(string sql, Dictionary<string, object> parametros)
+        public ObservableCollection<object> LeerConParametros(string sql, Dictionary<string, object> parametros)
         {
             ObservableCollection<object> resultado = new ObservableCollection<object>();
             conectar();

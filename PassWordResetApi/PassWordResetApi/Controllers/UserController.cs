@@ -76,7 +76,7 @@ namespace PassWordResetApi.Controllers
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request)
         {
             var user = await _context.Profesores.FirstOrDefaultAsync(u => u.email == request.Email);
-            Console.WriteLine(user.email);
+            
             if (user == null)
             {
                 return NotFound("Usuario no encontrado");

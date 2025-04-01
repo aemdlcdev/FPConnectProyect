@@ -8,6 +8,7 @@ using System.Web;
 using System.Windows;
 using System.Windows.Input;
 using FPConnect.domain;
+using FPConnect.HelperClasses;
 using FPConnect.persistence.Manages;
 
 namespace FPConnect.view
@@ -50,7 +51,11 @@ namespace FPConnect.view
 
             if (usuario!=null)
             {
-                MainWindow mainWindow = new MainWindow();
+                SesionUsuario.NombreUsuario = usuario.nombre;
+                SesionUsuario.id_profesor = usuario.id_profesor;
+                SesionUsuario.sexo = usuario.sexo;
+
+                MainWindow mainWindow = new MainWindow(usuario);
                 mainWindow.Show();
                 this.Close();
             }

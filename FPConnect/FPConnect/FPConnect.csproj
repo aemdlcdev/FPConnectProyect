@@ -442,11 +442,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="domain\Centro.cs" />
     <Compile Include="HelperClasses\Seguridad.cs" />
     <Compile Include="domain\Profesor.cs" />
     <Compile Include="HelperClasses\PdfGenerator.cs" />
     <Compile Include="HelperClasses\SesionUsuario.cs" />
     <Compile Include="persistence\DBBroker.cs" />
+    <Compile Include="persistence\Manages\CentroManage.cs" />
     <Compile Include="persistence\Manages\ProfesorManage.cs" />
     <Compile Include="view\Pages\AlumnosSubPages\AlumnosActuales.xaml.cs">
       <DependentUpon>AlumnosActuales.xaml</DependentUpon>
