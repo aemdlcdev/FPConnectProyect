@@ -7,12 +7,39 @@ CREATE TABLE Centros (
     telefono VARCHAR(20) NOT NULL
 );
 
+-- Tabla para Roles
+CREATE TABLE Roles (
+    id_rol INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    id_centro INT NOT NULL,
+    nombre VARCHAR(50) NOT NULL, -- Ejemplo: Docente, Supervisor
+    CONSTRAINT fk_roles_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro)
+);
+
 -- Tabla de Familias Profesionales
 CREATE TABLE FamiliasProfesionales (
     id_familia INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     id_centro INT NOT NULL,
     nombre VARCHAR(100) NOT NULL,
     CONSTRAINT fk_familias_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro)
+);
+
+-- Tabla de Profesores (MODIFICADA)
+CREATE TABLE Profesores (
+    id_profesor INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    id_rol INT NOT NULL,
+    id_centro INT NOT NULL, -- Nueva columna para relación directa con centro
+    id_familia INT NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    apellidos VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    cargo VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL, -- Contraseña del profesor
+    reset_password_token VARCHAR(255), -- Token para restablecer contraseña
+    reset_password_token_expiry DATETIME, -- Fecha de expiración del token
+    sexo VARCHAR(1) NOT NULL,
+    CONSTRAINT fk_profesores_roles FOREIGN KEY (id_rol) REFERENCES Roles(id_rol),
+    CONSTRAINT fk_profesores_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro),
+    CONSTRAINT fk_profesores_familias FOREIGN KEY (id_familia) REFERENCES FamiliasProfesionales(id_familia)
 );
 
 -- Tabla de Perfiles
@@ -31,36 +58,31 @@ CREATE TABLE Grados (
     CONSTRAINT fk_grados_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro)
 );
 
--- Tabla para Roles
-CREATE TABLE Roles (
-    id_rol INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    id_centro INT NOT NULL,
-    nombre VARCHAR(50) NOT NULL, -- Ejemplo: Docente, Supervisor
-    CONSTRAINT fk_roles_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro)
-);
-
--- Tabla de Profesores
-CREATE TABLE Profesores (
-    id_profesor INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    id_rol INT NOT NULL,
+-- Tabla de Cursos
+CREATE TABLE Cursos (
+    id_curso INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    id_grado INT NOT NULL,
     nombre VARCHAR(100) NOT NULL,
-    apellidos VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    password VARCHAR(255) NOT NULL, -- Contraseña del profesor
-    reset_password_token VARCHAR(255), -- Token para restablecer contraseña
-    reset_password_token_expiry DATETIME, -- Fecha de expiración del token
-    sexo VARCHAR(1) NOT NULL,
-    CONSTRAINT fk_profesores_roles FOREIGN KEY (id_rol) REFERENCES Roles(id_rol)
+    descripcion TEXT,
+    fecha_inicio DATE NOT NULL,
+    fecha_fin DATE NOT NULL,
+    CONSTRAINT fk_cursos_grados FOREIGN KEY (id_grado) REFERENCES Grados(id_grado)
 );
 
--- Tabla de Relación Profesores-Familias Profesionales
-CREATE TABLE ProfesoresFamilias (
-    id_profesor INT NOT NULL,
-    id_familia INT NOT NULL,
-    PRIMARY KEY (id_profesor, id_familia),
-    CONSTRAINT fk_profesoresfamilias_profesores FOREIGN KEY (id_profesor) REFERENCES Profesores(id_profesor),
-    CONSTRAINT fk_profesoresfamilias_familias FOREIGN KEY (id_familia) REFERENCES FamiliasProfesionales(id_familia)
+-- Tabla de Cargos
+CREATE TABLE Cargos (
+    id_cargo INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    id_centro INT NOT NULL, 
+    id_profesor INT NOT NULL, -- Relación con la tabla Profesores
+    nombre VARCHAR(100) NOT NULL, -- Ejemplo: Director, Coordinador, Docente
+    descripcion TEXT, 
+    fecha_inicio DATE NOT NULL, 
+    fecha_fin DATE, 
+    CONSTRAINT fk_cargos_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro),
+    CONSTRAINT fk_cargos_profesores FOREIGN KEY (id_profesor) REFERENCES Profesores(id_profesor)
 );
+
+-- ELIMINADO: Tabla de Relación Profesores-Familias Profesionales (ProfesoresFamilias)
 
 -- Tabla de Relación Profesores-Grados
 CREATE TABLE ProfesoresGrados (
@@ -197,10 +219,11 @@ CREATE INDEX idx_roles_id_centro ON Roles(id_centro);
 
 -- Tabla Profesores
 CREATE INDEX idx_profesores_id_rol ON Profesores(id_rol);
+CREATE INDEX idx_profesores_id_centro ON Profesores(id_centro); -- Nuevo índice para centro
+CREATE INDEX idx_profesores_id_familia ON Profesores(id_familia);
 CREATE INDEX idx_profesores_email ON Profesores(email);
 
--- Tabla ProfesoresFamilias
-CREATE INDEX idx_profesoresfamilias_id_familia ON ProfesoresFamilias(id_familia);
+-- ELIMINADO: Índice de ProfesoresFamilias
 
 -- Tabla ProfesoresGrados
 CREATE INDEX idx_profesoresgrados_id_grado ON ProfesoresGrados(id_grado);
@@ -241,3 +264,12 @@ CREATE INDEX idx_tareascoordinacion_id_familia ON TareasCoordinacion(id_familia)
 -- Tabla EventosProfesores
 CREATE INDEX idx_eventosprofesores_id_profesor ON EventosProfesores(id_profesor);
 CREATE INDEX idx_eventosprofesores_id_estado ON EventosProfesores(id_estado);
+
+-- Índices para la tabla Cursos
+CREATE INDEX idx_cursos_id_grado ON Cursos(id_grado);
+CREATE INDEX idx_cursos_nombre ON Cursos(nombre);
+
+-- Índices para la tabla Cargos
+CREATE INDEX idx_cargos_id_centro ON Cargos(id_centro);
+CREATE INDEX idx_cargos_id_profesor ON Cargos(id_profesor);
+CREATE INDEX idx_cargos_nombre ON Cargos(nombre);
