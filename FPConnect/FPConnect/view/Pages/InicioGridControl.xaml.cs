@@ -16,6 +16,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FPConnect.domain;
+using FPConnect.HelperClasses;
 
 
 namespace DataGrid.view
@@ -26,9 +28,20 @@ namespace DataGrid.view
     public partial class InicioGridControl : Page
     {
         
+        private Centro operacionesCentro;
         public InicioGridControl()
         {
             InitializeComponent();
+            operacionesCentro = new Centro();
+            //Console.WriteLine("Id centro" + SesionUsuario.IdCentro);
+            Centro nuevoCentro = new Centro();
+            nuevoCentro = operacionesCentro.LeerCentroPorId(SesionUsuario.IdCentro);
+
+            txtDireccion.Text = nuevoCentro.direccion;
+            txtHorario.Text = nuevoCentro.horario;
+            txtTelefono.Text = nuevoCentro.telefono;
+            logo.Source = nuevoCentro.logo;
+
         }
         
     }

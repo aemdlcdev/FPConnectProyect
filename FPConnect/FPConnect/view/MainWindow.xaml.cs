@@ -26,7 +26,7 @@ namespace FPConnect
             InitializeComponent();
             
             this.profesor = profesor;
-            Console.WriteLine("Rol: " + this.profesor.id_rol + this.profesor.nombre);
+            //Console.WriteLine("Rol: " + this.profesor.id_rol + this.profesor.nombre);
             mainFrame.Source = new Uri("pages/InicioGridControl.xaml", UriKind.Relative);
 
             IsInicioButtonPressed = true;

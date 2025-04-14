@@ -54,7 +54,7 @@ namespace FPConnect.view
                 SesionUsuario.NombreUsuario = usuario.nombre;
                 SesionUsuario.id_profesor = usuario.id_profesor;
                 SesionUsuario.sexo = usuario.sexo;
-
+                SesionUsuario.IdCentro = usuario.id_centro;
                 MainWindow mainWindow = new MainWindow(usuario);
                 mainWindow.Show();
                 this.Close();

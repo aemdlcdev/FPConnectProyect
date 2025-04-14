@@ -4,7 +4,8 @@ CREATE TABLE Centros (
     nombre VARCHAR(100) NOT NULL,
     direccion VARCHAR(200) NOT NULL,
     horario VARCHAR(200) NOT NULL,
-    telefono VARCHAR(20) NOT NULL
+    telefono VARCHAR(20) NOT NULL,
+    logo MEDIUMBLOB
 );
 
 -- Tabla para Roles

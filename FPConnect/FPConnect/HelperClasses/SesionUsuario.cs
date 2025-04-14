@@ -11,7 +11,7 @@ namespace FPConnect.HelperClasses
         public static int id_profesor { get; set; }
         public static string NombreUsuario { get; set; }
         public static int IdRol { get; set; }
-
+        public static int IdCentro { get; set; }
         public static string sexo { get; set; }
         public static bool EstaAutenticado => !string.IsNullOrEmpty(NombreUsuario);
     }
