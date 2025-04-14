@@ -27,7 +27,7 @@ CREATE TABLE FamiliasProfesionales (
 CREATE TABLE Profesores (
     id_profesor INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     id_rol INT NOT NULL,
-    id_centro INT NOT NULL, -- Nueva columna para relación directa con centro
+    id_centro INT NOT NULL,
     id_familia INT NOT NULL,
     nombre VARCHAR(100) NOT NULL,
     apellidos VARCHAR(100) NOT NULL,
@@ -126,7 +126,7 @@ CREATE TABLE Convocatorias (
     CONSTRAINT fk_convocatorias_tiposfase FOREIGN KEY (id_tipo_fase) REFERENCES TiposFase(id_tipo_fase)
 );
 
--- Tabla de Alumnos
+-- Tabla de Alumnos (MODIFICADA: añadido id_curso)
 CREATE TABLE Alumnos (
     id_alumno INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     nombre VARCHAR(100) NOT NULL,
@@ -134,10 +134,12 @@ CREATE TABLE Alumnos (
     id_profesor INT NOT NULL,
     id_perfil INT NOT NULL,
     id_grado INT NOT NULL,
+    id_curso INT NOT NULL, -- Nueva columna para curso específico
     id_convocatoria INT NOT NULL,
     CONSTRAINT fk_alumnos_profesores FOREIGN KEY (id_profesor) REFERENCES Profesores(id_profesor),
     CONSTRAINT fk_alumnos_perfiles FOREIGN KEY (id_perfil) REFERENCES Perfiles(id_perfil),
     CONSTRAINT fk_alumnos_grados FOREIGN KEY (id_grado) REFERENCES Grados(id_grado),
+    CONSTRAINT fk_alumnos_cursos FOREIGN KEY (id_curso) REFERENCES Cursos(id_curso),
     CONSTRAINT fk_alumnos_convocatorias FOREIGN KEY (id_convocatoria) REFERENCES Convocatorias(id_convocatoria)
 );
 
@@ -219,11 +221,9 @@ CREATE INDEX idx_roles_id_centro ON Roles(id_centro);
 
 -- Tabla Profesores
 CREATE INDEX idx_profesores_id_rol ON Profesores(id_rol);
-CREATE INDEX idx_profesores_id_centro ON Profesores(id_centro); -- Nuevo índice para centro
+CREATE INDEX idx_profesores_id_centro ON Profesores(id_centro);
 CREATE INDEX idx_profesores_id_familia ON Profesores(id_familia);
 CREATE INDEX idx_profesores_email ON Profesores(email);
-
--- ELIMINADO: Índice de ProfesoresFamilias
 
 -- Tabla ProfesoresGrados
 CREATE INDEX idx_profesoresgrados_id_grado ON ProfesoresGrados(id_grado);
@@ -244,6 +244,7 @@ CREATE INDEX idx_convocatorias_id_tipo_fase ON Convocatorias(id_tipo_fase);
 CREATE INDEX idx_alumnos_id_profesor ON Alumnos(id_profesor);
 CREATE INDEX idx_alumnos_id_perfil ON Alumnos(id_perfil);
 CREATE INDEX idx_alumnos_id_grado ON Alumnos(id_grado);
+CREATE INDEX idx_alumnos_id_curso ON Alumnos(id_curso); -- Nuevo índice para curso
 CREATE INDEX idx_alumnos_id_convocatoria ON Alumnos(id_convocatoria);
 
 -- Tabla Empresas
