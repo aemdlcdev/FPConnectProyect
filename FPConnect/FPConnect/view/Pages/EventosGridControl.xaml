@@ -122,7 +122,9 @@
 
                                 <fa:ImageAwesome Icon="Bell" Width="15" Height="15" Foreground="#eba5bb"/>
                                 <TextBlock Text="Hora y minuto (00 : 00)" Name="lblTime" Style="{StaticResource textHintC}" MouseDown="lblTime_MouseDown"/>
-                                <TextBox x:Name="txtTime" Style="{StaticResource textBox}" TextChanged="txtTime_TextChanged"/>
+                                <TextBox x:Name="txtTime" 
+                                PreviewTextInput="txtTime_PreviewTextInput" 
+                                Style="{StaticResource textBox}" TextChanged="txtTime_TextChanged"/>
 
                             </Grid>
 

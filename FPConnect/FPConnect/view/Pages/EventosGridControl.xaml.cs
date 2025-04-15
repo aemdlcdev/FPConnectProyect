@@ -330,15 +330,34 @@ namespace FPConnect.view.UserControls.Eventos
 
         private void txtNota_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtNota.Text) && txtNota.Text.Length > 0)
+            
+            string textoActual = txtNota.Text;
+
+            // Verificar si el texto no está vacío
+            if (!string.IsNullOrEmpty(textoActual))
             {
-                lblNota.Visibility = Visibility.Collapsed;
+                // Ignorar espacios iniciales y capitalizar la primera letra no vacía
+                int primerCaracterNoEspacio = textoActual.TakeWhile(char.IsWhiteSpace).Count();
+                if (primerCaracterNoEspacio < textoActual.Length)
+                {
+                    char primeraLetra = char.ToUpper(textoActual[primerCaracterNoEspacio]);
+                    string textoFormateado = textoActual.Substring(0, primerCaracterNoEspacio) + primeraLetra + textoActual.Substring(primerCaracterNoEspacio + 1);
+
+                    // Actualizar el texto solo si es diferente para evitar bucles infinitos
+                    if (textoActual != textoFormateado)
+                    {
+                        txtNota.Text = textoFormateado;
+
+                        // Mover el cursor al final del texto
+                        txtNota.SelectionStart = txtNota.Text.Length;
+                    }
+                }
             }
-            else
-            {
-                lblNota.Visibility = Visibility.Visible;
-            }
+
+            // Mostrar u ocultar el placeholder (lblNota)
+            lblNota.Visibility = string.IsNullOrEmpty(txtNota.Text) ? Visibility.Visible : Visibility.Collapsed;
         }
+
 
         private void lblTime_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -414,5 +433,17 @@ namespace FPConnect.view.UserControls.Eventos
                 MessageBox.Show($"Error al crear evento: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void txtTime_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            // Expresión regular para validar el formato 00:00
+            string pattern = @"^\d{0,2}(:\d{0,2})?$";
+            string newText = ((TextBox)sender).Text.Insert(((TextBox)sender).SelectionStart, e.Text);
+
+            // Validar si el texto resultante cumple con el patrón
+            e.Handled = !System.Text.RegularExpressions.Regex.IsMatch(newText, pattern);
+        }
+
+
     }
 }
