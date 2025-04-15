@@ -137,6 +137,8 @@
 
                 <!--Notas-->
 
+                <StackPanel x:Name="containerNotas"></StackPanel>
+
             </StackPanel>
             
         </Grid>

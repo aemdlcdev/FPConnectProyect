@@ -79,14 +79,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FPConnect.exe" size="705976">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FPConnect.exe" size="711096">
       <assemblyIdentity name="FPConnect" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>U6f98MPjFtRrFf95BY3u0UppPowBOlc7HVlzAuVHdNk=</dsig:DigestValue>
+        <dsig:DigestValue>WKlR47JhZfLOfiXc3/zzcpZp/vjkkAgBT2hZwo2SLTA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

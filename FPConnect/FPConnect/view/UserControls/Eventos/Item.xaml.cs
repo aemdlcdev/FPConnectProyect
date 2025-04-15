@@ -26,6 +26,16 @@ namespace FPConnect.view.UserControls.Eventos
             set { SetValue(TimeProperty, value); }
         }
 
+        public System.DateTime EventDate
+        {
+            get { return (System.DateTime)GetValue(EventDateProperty); }
+            set { SetValue(EventDateProperty, value); }
+        }
+
+        public static readonly DependencyProperty EventDateProperty =
+            DependencyProperty.Register("EventDate", typeof(System.DateTime), typeof(Item));
+
+
         public static readonly DependencyProperty TimeProperty = DependencyProperty.Register("Time", typeof(string), typeof(Item));
 
         public SolidColorBrush Color

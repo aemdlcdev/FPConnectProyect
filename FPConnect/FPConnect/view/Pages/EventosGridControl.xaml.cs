@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FPConnect.domain;
+using FPConnect.HelperClasses;
 using FPConnect.view.UserControls.Eventos;
 
 namespace FPConnect.view.UserControls.Eventos
@@ -23,18 +26,28 @@ namespace FPConnect.view.UserControls.Eventos
     public partial class EventosGridControl : Page
     {
         private int currentYear;
+        private EventosProfesores ep;
+
+        // Variable global para la fecha seleccionada
+        private DateTime fechaSeleccionada;
+
+        private ObservableCollection<EventosProfesores> todosLosEventos;
 
         public EventosGridControl()
         {
             InitializeComponent();
-            currentYear = DateTime.Now.Year;
-            tDayNumber.Text = DateTime.Now.Day.ToString();
-            tDay.Text = DateTime.Now.ToString("dddd", new System.Globalization.CultureInfo("es-ES"));
-            tMonth.Text = DateTime.Now.ToString("MMMM", new System.Globalization.CultureInfo("es-ES"));
+
+            // Inicializar con la fecha actual
+            fechaSeleccionada = DateTime.Now;
+            currentYear = fechaSeleccionada.Year;
+
+            tDayNumber.Text = fechaSeleccionada.Day.ToString();
+            tDay.Text = fechaSeleccionada.ToString("dddd", new System.Globalization.CultureInfo("es-ES"));
+            tMonth.Text = fechaSeleccionada.ToString("MMMM", new System.Globalization.CultureInfo("es-ES"));
             GetMesActualConLetras();
 
             // Aplicar estilo al botón del mes actual
-            int mesActual = DateTime.Now.Month;
+            int mesActual = fechaSeleccionada.Month;
             foreach (var child in mesesStackArriba.Children)
             {
                 if (child is Button mesButton && int.Parse(mesButton.Content.ToString()) == mesActual)
@@ -43,6 +56,54 @@ namespace FPConnect.view.UserControls.Eventos
                     mesButton.FontWeight = FontWeights.SemiBold;
                 }
             }
+
+            ep = new EventosProfesores();
+            CargarEventos();
+
+        }
+
+        private void CargarEventos()
+        {
+            // Cargar todos los eventos del profesor actual
+            todosLosEventos = ep.LeerEventosPorIdProfesor(SesionUsuario.id_profesor);
+
+            // Mostrar eventos para la fecha actual
+            MostrarEventosParaFechaSeleccionada();
+        }
+
+        private void MostrarEventosParaFechaSeleccionada()
+        {
+            // Limpiar eventos actuales
+            containerNotas.Children.Clear();
+
+            // Filtrar eventos para la fecha seleccionada
+            var eventosDia = todosLosEventos.Where(e =>
+                e.fecha.Year == fechaSeleccionada.Year &&
+                e.fecha.Month == fechaSeleccionada.Month &&
+                e.fecha.Day == fechaSeleccionada.Day).ToList();
+
+            // Mostrar los eventos filtrados
+            foreach (var evento in eventosDia)
+            {
+                var newItem = new Item
+                {
+                    Title = evento.nombre,
+                    Time = evento.hora,
+                    EventDate = evento.fecha,
+                    Color = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f1f1f1")),
+                    Icon = FontAwesome.WPF.FontAwesomeIcon.CircleThin,
+                    IconBell = FontAwesome.WPF.FontAwesomeIcon.Bell
+                };
+
+                // Agregar el nuevo item al StackPanel
+                containerNotas.Children.Add(newItem);
+            }
+        }
+
+        // Método para obtener la fecha formateada como yyyy/MM/dd
+        private string ObtenerFechaFormateada()
+        {
+            return fechaSeleccionada.ToString("yyyy/MM/dd");
         }
 
         private void MesButton_Click(object sender, RoutedEventArgs e)
@@ -52,28 +113,29 @@ namespace FPConnect.view.UserControls.Eventos
                 // Obtener el mes seleccionado del contenido del botón
                 int mesSeleccionado = int.Parse(button.Content.ToString());
 
-                // Obtener la fecha actual
-                DateTime fechaActual = DateTime.Now;
-
                 // Verificar si el mes seleccionado es el mes actual
                 DateTime nuevaFecha;
-                if (mesSeleccionado == fechaActual.Month)
+                if (mesSeleccionado == DateTime.Now.Month && fechaSeleccionada.Year == DateTime.Now.Year)
                 {
                     // Si es el mes actual, establecer la fecha seleccionada en el día actual
-                    nuevaFecha = new DateTime(fechaActual.Year, mesSeleccionado, fechaActual.Day);
+                    nuevaFecha = new DateTime(fechaSeleccionada.Year, mesSeleccionado, DateTime.Now.Day);
                 }
                 else
                 {
-                    // Si no es el mes actual, establecer la fecha seleccionada en el primer día del mes
-                    nuevaFecha = new DateTime(fechaActual.Year, mesSeleccionado, 1);
+                    // Si no es el mes actual, o no es el año actual, mantener el día actual si es válido
+                    int dia = Math.Min(fechaSeleccionada.Day, DateTime.DaysInMonth(fechaSeleccionada.Year, mesSeleccionado));
+                    nuevaFecha = new DateTime(fechaSeleccionada.Year, mesSeleccionado, dia);
                 }
 
+                // Actualizar la variable global
+                fechaSeleccionada = nuevaFecha;
+
                 // Actualizar el calendario al mes seleccionado
-                calendario.DisplayDate = nuevaFecha;
-                calendario.SelectedDate = nuevaFecha;
+                calendario.DisplayDate = fechaSeleccionada;
+                calendario.SelectedDate = fechaSeleccionada;
 
                 // Actualizar el TextBlock lblMes con el nombre del mes correspondiente
-                lblMes.Text = nuevaFecha.ToString("MMMM", new System.Globalization.CultureInfo("es-ES"));
+                lblMes.Text = fechaSeleccionada.ToString("MMMM", new System.Globalization.CultureInfo("es-ES"));
 
                 // Actualizar el estilo de los botones para reflejar el mes seleccionado
                 foreach (var child in ((StackPanel)button.Parent).Children)
@@ -86,9 +148,12 @@ namespace FPConnect.view.UserControls.Eventos
                 }
 
                 // Actualizar las variables tDay y tMonth
-                tDayNumber.Text = nuevaFecha.Day.ToString();
-                tDay.Text = nuevaFecha.ToString("dddd", new System.Globalization.CultureInfo("es-ES"));
-                tMonth.Text = nuevaFecha.ToString("MMMM", new System.Globalization.CultureInfo("es-ES"));
+                tDayNumber.Text = fechaSeleccionada.Day.ToString();
+                tDay.Text = fechaSeleccionada.ToString("dddd", new System.Globalization.CultureInfo("es-ES"));
+                tMonth.Text = fechaSeleccionada.ToString("MMMM", new System.Globalization.CultureInfo("es-ES"));
+
+                MostrarEventosParaFechaSeleccionada();
+
             }
         }
 
@@ -96,19 +161,30 @@ namespace FPConnect.view.UserControls.Eventos
         {
             if (calendario.SelectedDate.HasValue)
             {
-                DateTime selectedDate = calendario.SelectedDate.Value;
-                tDayNumber.Text = selectedDate.Day.ToString();
-                tDay.Text = selectedDate.ToString("dddd", new System.Globalization.CultureInfo("es-ES"));
-                tMonth.Text = selectedDate.ToString("MMMM", new System.Globalization.CultureInfo("es-ES"));
+                // Actualizar la variable global con la fecha seleccionada
+                fechaSeleccionada = calendario.SelectedDate.Value;
+
+                tDayNumber.Text = fechaSeleccionada.Day.ToString();
+                tDay.Text = fechaSeleccionada.ToString("dddd", new System.Globalization.CultureInfo("es-ES"));
+                tMonth.Text = fechaSeleccionada.ToString("MMMM", new System.Globalization.CultureInfo("es-ES"));
+
+                MostrarEventosParaFechaSeleccionada();
+
             }
         }
 
         private void calendario_DisplayDateChanged(object sender, CalendarDateChangedEventArgs e)
         {
+            // Actualizar la variable global con la fecha mostrada
             DateTime displayDate = calendario.DisplayDate;
+            fechaSeleccionada = displayDate;
+
             tDayNumber.Text = displayDate.Day.ToString();
             tDay.Text = displayDate.ToString("dddd", new System.Globalization.CultureInfo("es-ES"));
             tMonth.Text = displayDate.ToString("MMMM", new System.Globalization.CultureInfo("es-ES"));
+
+            MostrarEventosParaFechaSeleccionada();
+
         }
 
         private void btnAnioAnterior_Click(object sender, RoutedEventArgs e)
@@ -136,10 +212,13 @@ namespace FPConnect.view.UserControls.Eventos
 
         private void UpdateCalendarYear()
         {
-            DateTime fechaActual = DateTime.Now;
-            DateTime nuevaFecha = new DateTime(currentYear, fechaActual.Month, 1);
-            calendario.DisplayDate = nuevaFecha;
-            calendario.SelectedDate = nuevaFecha;
+            // Actualizar la variable global con el nuevo año
+            int mes = fechaSeleccionada.Month;
+            int dia = Math.Min(fechaSeleccionada.Day, DateTime.DaysInMonth(currentYear, mes));
+            fechaSeleccionada = new DateTime(currentYear, mes, dia);
+
+            calendario.DisplayDate = fechaSeleccionada;
+            calendario.SelectedDate = fechaSeleccionada;
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -183,28 +262,49 @@ namespace FPConnect.view.UserControls.Eventos
 
         private void GetMesActualConLetras()
         {
-            string mes = DateTime.Now.ToString("MMMM", new System.Globalization.CultureInfo("es-ES"));
+            string mes = fechaSeleccionada.ToString("MMMM", new System.Globalization.CultureInfo("es-ES"));
             mes = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(mes.ToLower()).ToLower();
 
             lblMes.Text = mes;
         }
 
+        // Actualizar btnAddNote_Click para añadir el evento a la colección local
         private void btnAddNote_Click(object sender, RoutedEventArgs e)
         {
-            // Crear un nuevo item
+            string hora = string.IsNullOrEmpty(txtTime.Text) ? "00:00" : txtTime.Text;
+
+            // Crear nuevo evento
+            EventosProfesores nuevoEvento = new EventosProfesores(
+                SesionUsuario.id_profesor,
+                txtNota.Text,
+                fechaSeleccionada,
+                hora,
+                2  // Estado por defecto (por hacer)
+            );
+
+            // Insertar en base de datos
+            ep.InsertarEvento(nuevoEvento);
+
+            // Añadir a la colección local para no tener que recargar
+            todosLosEventos.Add(nuevoEvento);
+
+            // Crear un nuevo item visual
             var newItem = new Item
             {
                 Title = txtNota.Text,
                 Time = txtTime.Text,
+                EventDate = fechaSeleccionada,
                 Color = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f1f1f1")),
                 Icon = FontAwesome.WPF.FontAwesomeIcon.CircleThin,
                 IconBell = FontAwesome.WPF.FontAwesomeIcon.Bell
             };
 
             // Agregar el nuevo item al StackPanel
-            derecha.Children.Add(newItem);
+            containerNotas.Children.Add(newItem);
+
+            // Limpiar los campos
+            txtNota.Text = string.Empty;
+            txtTime.Text = string.Empty;
         }
     }
-
-
 }

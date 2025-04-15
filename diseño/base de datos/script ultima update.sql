@@ -110,6 +110,14 @@ CREATE TABLE EstadosEmpresa (
     CONSTRAINT fk_estadosempresa_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro)
 );
 
+-- NUEVA: Tabla para Estado de Eventos
+CREATE TABLE EstadosEventos (
+    id_estado INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    id_centro INT NOT NULL,
+    nombre VARCHAR(50) NOT NULL, -- Ejemplo: Pendiente, Completado, Cancelado
+    CONSTRAINT fk_estadoseventos_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro)
+);
+
 -- Tabla para Fase de Asignación
 CREATE TABLE FasesAsignacion (
     id_fase INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -188,7 +196,7 @@ CREATE TABLE TareasCoordinacion (
     CONSTRAINT fk_tareascoordinacion_familias FOREIGN KEY (id_familia) REFERENCES FamiliasProfesionales(id_familia)
 );
 
--- Tabla de Eventos Profesores
+-- Tabla de Eventos Profesores (MODIFICADA: ahora referencia a EstadosEventos)
 CREATE TABLE EventosProfesores (
     id_evento INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     id_profesor INT NOT NULL,
@@ -198,7 +206,7 @@ CREATE TABLE EventosProfesores (
     id_estado INT NOT NULL,
     descripcion TEXT NOT NULL,
     CONSTRAINT fk_eventosprofesores_profesores FOREIGN KEY (id_profesor) REFERENCES Profesores(id_profesor),
-    CONSTRAINT fk_eventosprofesores_estados FOREIGN KEY (id_estado) REFERENCES EstadosEmpresa(id_estado)
+    CONSTRAINT fk_eventosprofesores_estados FOREIGN KEY (id_estado) REFERENCES EstadosEventos(id_estado)
 );
 
 
@@ -234,6 +242,10 @@ CREATE INDEX idx_tiposfase_id_centro ON TiposFase(id_centro);
 
 -- Tabla EstadosEmpresa
 CREATE INDEX idx_estadosempresa_id_centro ON EstadosEmpresa(id_centro);
+
+-- NUEVO: Índices para EstadosEventos
+CREATE INDEX idx_estadoseventos_id_centro ON EstadosEventos(id_centro);
+CREATE INDEX idx_estadoseventos_nombre ON EstadosEventos(nombre);
 
 -- Tabla FasesAsignacion
 CREATE INDEX idx_fasesasignacion_id_centro ON FasesAsignacion(id_centro);
