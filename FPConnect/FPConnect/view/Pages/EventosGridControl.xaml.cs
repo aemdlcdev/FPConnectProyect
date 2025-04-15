@@ -27,6 +27,7 @@ namespace FPConnect.view.UserControls.Eventos
     {
         private int currentYear;
         private EventosProfesores ep;
+        private bool isProcessingEvent = false;
 
         // Variable global para la fecha seleccionada
         private DateTime fechaSeleccionada;
@@ -85,20 +86,116 @@ namespace FPConnect.view.UserControls.Eventos
             // Mostrar los eventos filtrados
             foreach (var evento in eventosDia)
             {
+                var icono = evento.id_estado == 1 ? FontAwesome.WPF.FontAwesomeIcon.CheckCircle : FontAwesome.WPF.FontAwesomeIcon.CircleThin;
+
                 var newItem = new Item
                 {
                     Title = evento.nombre,
                     Time = evento.hora,
                     EventDate = evento.fecha,
+                    IdEvento = evento.id_evento, // Asignar ID
                     Color = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f1f1f1")),
-                    Icon = FontAwesome.WPF.FontAwesomeIcon.CircleThin,
+                    Icon = icono,
                     IconBell = FontAwesome.WPF.FontAwesomeIcon.Bell
                 };
 
+                // Suscribirse a los eventos
+                newItem.EventoCompletado -= Item_EventoCompletado; // Quitar cualquier suscripción previa
+                newItem.EventoCompletado += Item_EventoCompletado;
+
+                newItem.EventoBorrado -= Item_EventoBorrado; // Quitar cualquier suscripción previa
+                newItem.EventoBorrado += Item_EventoBorrado;
+                Console.WriteLine($"Añadiendo Item con ID: {evento.id_evento}");
                 // Agregar el nuevo item al StackPanel
                 containerNotas.Children.Add(newItem);
             }
         }
+
+        private void Item_EventoCompletado(object sender, int idEvento)
+        {
+            if (isProcessingEvent)
+            {
+                Console.WriteLine("Ya estamos procesando un evento. Ignorando solicitud adicional.");
+                return;
+            }
+
+            isProcessingEvent = true;
+            Console.WriteLine($"Comenzando a procesar evento completado para ID: {idEvento}");
+
+            try
+            {
+                // Buscar el evento en la colección
+                var evento = todosLosEventos.FirstOrDefault(e => e.id_evento == idEvento);
+                if (evento != null)
+                {
+                    // Actualizar estado (1 = Completado)
+                    evento.id_estado = 1;
+
+                    // Actualizar en base de datos
+                    ep.ModificarEvento(evento);
+
+                    // Actualizar visualmente
+                    if (sender is Item item)
+                    {
+                        item.Icon = FontAwesome.WPF.FontAwesomeIcon.CheckCircle;
+                    }
+
+                    MessageBox.Show("Evento marcado como completado", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            finally
+            {
+                Console.WriteLine($"Terminando procesamiento para ID: {idEvento}");
+                isProcessingEvent = false;
+            }
+        }
+
+        private void Item_EventoBorrado(object sender, int idEvento)
+        {
+            if (isProcessingEvent)
+            {
+                Console.WriteLine("Ya estamos procesando un evento. Ignorando solicitud adicional.");
+                return;
+            }
+
+            isProcessingEvent = true;
+            Console.WriteLine($"Comenzando a procesar evento completado para ID: {idEvento}");
+
+            try
+            {
+                MessageBoxResult result = MessageBox.Show("¿Estás seguro de que deseas eliminar este evento?",
+                                                       "Confirmar eliminación",
+                                                       MessageBoxButton.YesNo,
+                                                       MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    // Eliminar de la base de datos
+                    ep.EliminarEvento(idEvento);
+
+                    // Eliminar de la colección local
+                    var eventoAEliminar = todosLosEventos.FirstOrDefault(e => e.id_evento == idEvento);
+                    if (eventoAEliminar != null)
+                    {
+                        todosLosEventos.Remove(eventoAEliminar);
+                    }
+
+                    // Eliminar de la UI
+                    if (sender is Item item)
+                    {
+                        containerNotas.Children.Remove(item);
+                    }
+
+                    MessageBox.Show("Evento eliminado correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            finally
+            {
+                Console.WriteLine($"Terminando procesamiento para ID: {idEvento}");
+                isProcessingEvent = false;
+            }
+        }
+
 
         // Método para obtener la fecha formateada como yyyy/MM/dd
         private string ObtenerFechaFormateada()
@@ -268,7 +365,6 @@ namespace FPConnect.view.UserControls.Eventos
             lblMes.Text = mes;
         }
 
-        // Actualizar btnAddNote_Click para añadir el evento a la colección local
         private void btnAddNote_Click(object sender, RoutedEventArgs e)
         {
             string hora = string.IsNullOrEmpty(txtTime.Text) ? "00:00" : txtTime.Text;
@@ -282,29 +378,41 @@ namespace FPConnect.view.UserControls.Eventos
                 2  // Estado por defecto (por hacer)
             );
 
-            // Insertar en base de datos
-            ep.InsertarEvento(nuevoEvento);
-
-            // Añadir a la colección local para no tener que recargar
-            todosLosEventos.Add(nuevoEvento);
-
-            // Crear un nuevo item visual
-            var newItem = new Item
+            try
             {
-                Title = txtNota.Text,
-                Time = txtTime.Text,
-                EventDate = fechaSeleccionada,
-                Color = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f1f1f1")),
-                Icon = FontAwesome.WPF.FontAwesomeIcon.CircleThin,
-                IconBell = FontAwesome.WPF.FontAwesomeIcon.Bell
-            };
+                // Insertar y obtener ID
+                int nuevoId = ep.InsertarEvento(nuevoEvento);
 
-            // Agregar el nuevo item al StackPanel
-            containerNotas.Children.Add(newItem);
+                // Actualizar el ID del evento
+                nuevoEvento.id_evento = nuevoId;
 
-            // Limpiar los campos
-            txtNota.Text = string.Empty;
-            txtTime.Text = string.Empty;
+                // Añadir a la colección
+                todosLosEventos.Add(nuevoEvento);
+
+                // Crear item visual con ID correcto
+                var newItem = new Item
+                {
+                    Title = txtNota.Text,
+                    Time = txtTime.Text,
+                    EventDate = fechaSeleccionada,
+                    IdEvento = nuevoId,
+                    Color = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f1f1f1")),
+                    Icon = FontAwesome.WPF.FontAwesomeIcon.CircleThin,
+                    IconBell = FontAwesome.WPF.FontAwesomeIcon.Bell
+                };
+
+                // Suscribir eventos
+                newItem.EventoCompletado += Item_EventoCompletado;
+                newItem.EventoBorrado += Item_EventoBorrado;
+
+                containerNotas.Children.Add(newItem);
+                txtNota.Text = string.Empty;
+                txtTime.Text = string.Empty;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al crear evento: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

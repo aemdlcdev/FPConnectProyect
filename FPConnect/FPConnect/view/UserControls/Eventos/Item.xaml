@@ -52,10 +52,9 @@
             <Border Background="White" CornerRadius="5" Padding="0 4">
                 <StackPanel>
 
-                    <local:MenuButton Icon="Check" Caption="Check"/>
-                    <local:MenuButton Icon="BellSlash" Caption="Silenciar"/>
-                    <local:MenuButton Icon="Pencil" Caption="Editar"/>
-                    <local:MenuButton Icon="Trash" Caption="Borrar"/>
+                    <local:MenuButton x:Name="btnHecho" Icon="Check" Caption="Hecho" />
+                    <local:MenuButton x:Name="btnBorrar" Icon="Trash" Caption="Borrar"/>
+
 
                 </StackPanel>
             </Border>

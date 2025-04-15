@@ -82,6 +82,29 @@ namespace FPConnect.persistence
             return resultado;
         }
 
+        public int LeerUltimoEventoInsertado()
+        {
+            int ultimoId = 0;
+            string sql = "SELECT LAST_INSERT_ID();";
+
+            conectar();
+
+            using (MySqlCommand com = new MySqlCommand(sql, conexion))
+            {
+                // Ejecutar la consulta y obtener el resultado
+                object resultado = com.ExecuteScalar();
+
+                // Convertir el resultado a entero si no es nulo
+                if (resultado != null && resultado != DBNull.Value)
+                {
+                    ultimoId = Convert.ToInt32(resultado);
+                }
+            }
+
+            desconectar();
+            return ultimoId;
+        }
+
         // Modificar (insertar, modificar, borrar) con parametros
         public int Modificar(string sql, Dictionary<string, object> parametros)
         {

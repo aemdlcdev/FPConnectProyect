@@ -39,11 +39,13 @@ namespace FPConnect.persistence.Manages
             return listaEventos;
 
         }
-
-        public void AgregarEvento(EventosProfesores evento)
+        public int AgregarEvento(EventosProfesores evento)
         {
             db = DBBroker.ObtenerAgente();
-            string sql = "INSERT INTO fpc.eventosprofesores (id_profesor,nombre,fecha,hora,id_estado) VALUES (@id_profesor,@nombre,@fecha,@hora,@id_estado);";
+
+            string sql = "INSERT INTO fpc.eventosprofesores (id_profesor, nombre, fecha, hora, id_estado) " +
+                         "VALUES (@id_profesor, @nombre, @fecha, @hora, @id_estado);";
+
             Dictionary<string, object> parametros = new Dictionary<string, object>
             {
                 { "@id_profesor", evento.id_profesor },
@@ -52,8 +54,16 @@ namespace FPConnect.persistence.Manages
                 { "@hora", evento.hora },
                 { "@id_estado", evento.id_estado }
             };
+
+            // Ejecutar la inserción
             db.Modificar(sql, parametros);
+
+            // Obtener el ID del evento recién insertado
+            int nuevoId = db.LeerUltimoEventoInsertado();
+
+            return nuevoId;
         }
+
         public void ModificarEvento(EventosProfesores evento)
         {
             db = DBBroker.ObtenerAgente();

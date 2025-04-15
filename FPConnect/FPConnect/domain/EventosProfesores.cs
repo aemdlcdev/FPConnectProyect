@@ -46,9 +46,9 @@ namespace FPConnect.domain
             return epm.LeerEventosPorIdProfesor(id_profesor);
         }
 
-        public void InsertarEvento(EventosProfesores evento)
+        public int InsertarEvento(EventosProfesores evento)
         {
-            epm.AgregarEvento(evento);
+            return epm.AgregarEvento(evento);
         }
 
         public void ModificarEvento(EventosProfesores evento)
