@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using FPConnect.persistence.Manages;
 
 namespace FPConnect.domain
@@ -19,14 +20,16 @@ namespace FPConnect.domain
         public string email { get; set; }
         public string password { get; set; }
         public string sexo { get; set; }
-       
+        public string character { get; set; }
+        public Brush bgColor { get; set; }
+
 
 
         private ProfesorManage um;
 
         public Profesor() { um = new ProfesorManage(); }
 
-        public Profesor( int id_rol, int id_centro, int id_familia, string nombre, string apellidos, string email, string password, string sexo)
+        public Profesor( int id_rol, int id_centro, int id_familia, string nombre, string apellidos, string email, string password, string sexo, string charcter, string bgColor)
         {
             this.id_rol = id_rol;
             this.id_centro = id_centro;
@@ -36,9 +39,11 @@ namespace FPConnect.domain
             this.email = email;
             this.password = password;
             this.sexo = sexo;
+            this.character = charcter;
+            this.bgColor = (Brush)new BrushConverter().ConvertFromString(bgColor);
             um = new ProfesorManage();
         }
-        public Profesor (int id_profesor,int id_rol,int id_centro,int id_familia, string nombre,string apellidos, string email, string password, string sexo)
+        public Profesor (int id_profesor,int id_rol,int id_centro,int id_familia, string nombre,string apellidos, string email, string password, string sexo, string character, string bgColor)
         {
             this.id_profesor = id_profesor;
             this.id_rol = id_rol;
@@ -49,10 +54,15 @@ namespace FPConnect.domain
             this.email = email;
             this.password = password;
             this.sexo = sexo;
+            this.character = character;
+            this.bgColor = (Brush)new BrushConverter().ConvertFromString(bgColor);
             um = new ProfesorManage();
         }
 
-        
+        public ObservableCollection<Profesor> LeerProfesoresPorCentro(int id_centro) 
+        {
+            return um.LeerProfesoresPorCentro(id_centro);
+        }
 
         public Profesor autentificarUsuario(string email, string password) 
         {
@@ -62,6 +72,16 @@ namespace FPConnect.domain
         public void InsertarProfesor(Profesor profesor, int[] grados)
         {
             um.InsertarProfesor(profesor, grados);
+        }
+
+        public void ModificarProfesor(Profesor profesor, int[] grados)
+        {
+            um.ModificarProfesor(profesor, grados);
+        }
+
+        public void EliminarProfesor(Profesor profesor)
+        {
+            um.BorrarProfesor(profesor);
         }
 
     }

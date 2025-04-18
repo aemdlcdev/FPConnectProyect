@@ -38,6 +38,7 @@ CREATE TABLE Profesores (
     reset_password_token VARCHAR(255), -- Token para restablecer contraseña
     reset_password_token_expiry DATETIME, -- Fecha de expiración del token
     sexo VARCHAR(1) NOT NULL,
+    character VARCHAR(2) NOT NULL,
     CONSTRAINT fk_profesores_roles FOREIGN KEY (id_rol) REFERENCES Roles(id_rol),
     CONSTRAINT fk_profesores_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro),
     CONSTRAINT fk_profesores_familias FOREIGN KEY (id_familia) REFERENCES FamiliasProfesionales(id_familia)

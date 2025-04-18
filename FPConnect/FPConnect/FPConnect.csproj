@@ -446,6 +446,7 @@
     <Compile Include="domain\EventosProfesores.cs" />
     <Compile Include="domain\FamiliaProfesional.cs" />
     <Compile Include="domain\Rol.cs" />
+    <Compile Include="HelperClasses\Colores.cs" />
     <Compile Include="HelperClasses\Seguridad.cs" />
     <Compile Include="domain\Profesor.cs" />
     <Compile Include="HelperClasses\PdfGenerator.cs" />

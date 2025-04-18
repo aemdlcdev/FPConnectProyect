@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using FPConnect.domain;
 using FPConnect.HelperClasses;
 
@@ -21,29 +22,53 @@ namespace FPConnect.persistence.Manages
             listaUsuarios = new ObservableCollection<Profesor>();
         }
 
-        public ObservableCollection<Profesor> LeerUsuarios()
+        public ObservableCollection<Profesor> LeerProfesoresPorCentro(int id_centro)
         {
+            ObservableCollection<Profesor> profesoresPorCentro = new ObservableCollection<Profesor>();
 
-            Profesor usuario = null;
+            // Consulta SQL para obtener los profesores por id_centro
+            string query = "SELECT id_profesor, id_rol, id_centro, id_familia, nombre, apellidos, email, password, sexo, first_char, bgColor FROM fpc.profesores WHERE id_centro = @id_centro;";
 
-            var resultado = db.LeerSinParametros("SELECT id_profesor,id_rol,id_centro,id_familia,nombre,apellidos, email, password,sexo FROM fpc.profesores;");
-
-            foreach (ObservableCollection<Object> c in resultado)
+            // Parámetros para la consulta
+            var parametros = new Dictionary<string, object>
             {
-                usuario = new Profesor(
-                    int.Parse(c[0].ToString()), //id
-                    int.Parse(c[1].ToString()), //id_rol
-                    int.Parse(c[2].ToString()), //id_centro
-                    int.Parse(c[3].ToString()), //id_familia
-                    c[4].ToString(), //nombre
-                    c[5].ToString(), //apellidos
-                    c[6].ToString(), //email
-                    c[7].ToString(), //password
-                    c[8].ToString());
-                this.listaUsuarios.Add(usuario);
+                { "@id_centro", id_centro }
+            };
+
+            // Ejecutar la consulta
+            var resultado = db.LeerConParametros(query, parametros);
+
+            // Procesar los resultados
+            foreach (ObservableCollection<object> fila in resultado)
+            {
+                try
+                {
+                    Profesor profesor = new Profesor(
+                        int.Parse(fila[0].ToString()), // id_profesor
+                        int.Parse(fila[1].ToString()), // id_rol
+                        int.Parse(fila[2].ToString()), // id_centro
+                        int.Parse(fila[3].ToString()), // id_familia
+                        fila[4].ToString().Trim(), // nombre
+                        fila[5].ToString().Trim(), // apellidos
+                        fila[6].ToString().Trim(), // email
+                        fila[7].ToString().Trim(), // password
+                        fila[8].ToString().Trim(), // sexo
+                        fila[9].ToString().Trim(), // character (primera letra del nombre)
+                        fila[10].ToString().Trim() // bgColor
+                    );
+
+                    profesoresPorCentro.Add(profesor);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error al procesar el profesor: {ex.Message}");
+                }
             }
-            return listaUsuarios;
+
+            return profesoresPorCentro;
         }
+
+
 
         public Profesor autentificarUsuario(string correo, string password)
         {           
@@ -90,7 +115,7 @@ namespace FPConnect.persistence.Manages
 
         public void InsertarProfesor(Profesor profesor, int[] grados) 
         {
-            string query = "INSERT INTO fpc.profesores (id_rol,id_centro,id_familia,nombre,apellidos,email,password,sexo) VALUES (@id_rol,@id_centro,@id_familia,@nombre,@apellidos,@email,@password,@sexo);";
+            string query = "INSERT INTO fpc.profesores (id_rol,id_centro,id_familia,nombre,apellidos,email,password,sexo,first_char,bgColor) VALUES (@id_rol,@id_centro,@id_familia,@nombre,@apellidos,@email,@password,@sexo,@first_char,@bgColor);";
             var parametros = new Dictionary<string, object>
             {
                 { "@id_rol", profesor.id_rol },
@@ -100,7 +125,9 @@ namespace FPConnect.persistence.Manages
                 { "@apellidos", profesor.apellidos },
                 { "@email", profesor.email },
                 { "@password", Seguridad.EncriptarContraseña(profesor.password) }, // Encriptar la contraseña
-                { "@sexo", profesor.sexo }
+                { "@sexo", profesor.sexo },
+                { "@first_char", profesor.character },
+                { "@bgColor", Colores.GetRandomColor() } 
             };
 
             db.Modificar(query, parametros);
@@ -124,5 +151,50 @@ namespace FPConnect.persistence.Manages
 
         }
 
+        public void ModificarProfesor(Profesor profesor, int[] grados)
+        {
+            string query = "UPDATE fpc.profesores SET id_rol = @id_rol, id_centro = @id_centro, id_familia = @id_familia, nombre = @nombre, apellidos = @apellidos, email = @email, password = @password, sexo = @sexo WHERE id_profesor = @id_profesor;";
+            var parametros = new Dictionary<string, object>
+            {
+                { "@id_profesor", profesor.id_profesor },
+                { "@id_rol", profesor.id_rol },
+                { "@id_centro", profesor.id_centro },
+                { "@id_familia", profesor.id_familia },
+                { "@nombre", profesor.nombre },
+                { "@apellidos", profesor.apellidos },
+                { "@email", profesor.email },
+                { "@password", Seguridad.EncriptarContraseña(profesor.password) }, 
+                { "@sexo", profesor.sexo }
+            };
+
+            db.Modificar(query, parametros);
+
+            string queryGrados = "UPDATE fpc.profesoresgrados SET id_grado = @id_grado WHERE id_profesor = @id_profesor;";
+            int id_grado = 0; // Inicializar id_grado
+            for (int i = 0; i < grados.Length; i++)
+            {
+                if (grados[i] != 0)
+                {
+                    id_grado = grados[i];
+                    var parametrosGrados = new Dictionary<string, object>
+                    {
+                        { "@id_profesor", db.LeerUltimoIdInsertado() },
+                        { "@id_grado", id_grado }
+                    };
+                    db.Modificar(queryGrados, parametrosGrados);
+                }
+            }
+
+        }
+
+        public void BorrarProfesor(Profesor profesor)
+        {
+            string query = "DELETE FROM fpc.profesores WHERE id_profesor = @id_profesor;";
+            var parametros = new Dictionary<string, object>
+            {
+                { "@id_profesor", profesor.id_profesor}
+            };
+            db.Modificar(query, parametros);
+        }
     }
 }

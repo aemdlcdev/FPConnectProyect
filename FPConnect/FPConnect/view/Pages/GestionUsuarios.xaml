@@ -119,22 +119,29 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <DataGrid x:Name="usuariosDataGrid" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  Style="{DynamicResource DataGridStyle1}" SelectionChanged="usuariosDataGrid_SelectionChanged">
+                    <DataGrid x:Name="profesoresDataGrid" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  Style="{DynamicResource DataGridStyle1}" SelectionChanged="usuariosDataGrid_SelectionChanged">
                         <DataGrid.Columns>
-                            <DataGridTemplateColumn Header="Nombre" IsReadOnly="True" Width="120">
+                            <DataGridTemplateColumn Header="Nombre" IsReadOnly="True" Width="80">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}">
-                                                <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
+                                            <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding bgColor}">
+                                                <TextBlock Text="{Binding character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
                                             </Border>
-                                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding nombre}" VerticalAlignment="Center"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTextColumn Header="Departamento" Binding="{Binding Position}" IsReadOnly="True" Width="120"/>
-                            <DataGridTextColumn Header="Email" Binding="{Binding Phone}" IsReadOnly="True" Width="100"/>
+                            <DataGridTextColumn Header="Departamento" Binding="{Binding id_familia}" IsReadOnly="True" Width="70"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding email}" IsReadOnly="True" Width="150"/>
+                            <DataGridTextColumn Header="id" Binding="{Binding id_profesor}" IsReadOnly="True" Visibility="Hidden"/>
+                            <DataGridTextColumn Header="id_rol" Binding="{Binding id_rol}" IsReadOnly="True" Visibility="Hidden"/>
+                            <DataGridTextColumn Header="id_centro" Binding="{Binding id_centro}" IsReadOnly="True" Visibility="Hidden"/>
+                            <DataGridTextColumn Header="apellidos" Binding="{Binding apellidos}" IsReadOnly="True" Visibility="Hidden"/>
+                            <DataGridTextColumn Header="password" Binding="{Binding password}" IsReadOnly="True" Visibility="Hidden"/>
+                            <DataGridTextColumn Header="sexo" Binding="{Binding sexo}" IsReadOnly="True" Visibility="Hidden"/>
+                            
                             <DataGridTemplateColumn Header="Acciones" IsReadOnly="True" Width="auto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
