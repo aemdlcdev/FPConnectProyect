@@ -79,9 +79,9 @@ namespace FPConnect.domain
             um.ModificarProfesor(profesor, grados);
         }
 
-        public void EliminarProfesor(Profesor profesor)
+        public void EliminarProfesor(int id_profesor)
         {
-            um.BorrarProfesor(profesor);
+            um.BorrarProfesor(id_profesor);
         }
 
     }

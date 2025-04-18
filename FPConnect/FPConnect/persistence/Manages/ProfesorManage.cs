@@ -187,13 +187,17 @@ namespace FPConnect.persistence.Manages
 
         }
 
-        public void BorrarProfesor(Profesor profesor)
+        public void BorrarProfesor(int id_profesor)
         {
+            string queryGrado = "DELETE FROM fpc.profesoresgrados WHERE id_profesor = @id_profesor;";
+            
             string query = "DELETE FROM fpc.profesores WHERE id_profesor = @id_profesor;";
+
             var parametros = new Dictionary<string, object>
             {
-                { "@id_profesor", profesor.id_profesor}
+                { "@id_profesor", id_profesor}
             };
+            db.Modificar(queryGrado, parametros);
             db.Modificar(query, parametros);
         }
     }
