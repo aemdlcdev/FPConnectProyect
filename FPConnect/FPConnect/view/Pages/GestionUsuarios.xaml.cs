@@ -98,7 +98,7 @@ namespace FPConnect.view.Pages
             {
                 profesores.Remove(selectedUsuario);
                 
-                profesor.EliminarProfesor(selectedUsuario);
+                profesor.EliminarProfesor(selectedUsuario.id_profesor);
             }
         }
 
