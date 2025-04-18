@@ -25,7 +25,6 @@ namespace FPConnect.persistence.Manages
         {
 
             Profesor usuario = null;
-            db = DBBroker.ObtenerAgente();
 
             var resultado = db.LeerSinParametros("SELECT id_profesor,id_rol,id_centro,id_familia,nombre,apellidos, email, password,sexo FROM fpc.profesores;");
 
@@ -47,8 +46,7 @@ namespace FPConnect.persistence.Manages
         }
 
         public Profesor autentificarUsuario(string correo, string password)
-        {
-            db = DBBroker.ObtenerAgente();
+        {           
             string passwordEncrypted = Seguridad.EncriptarContraseña(password);
 
             string query = "SELECT id_profesor,id_rol,id_centro,id_familia, nombre,apellidos, email, password,sexo FROM fpc.profesores WHERE email = @email AND password = @password LIMIT 1;";
@@ -88,6 +86,42 @@ namespace FPConnect.persistence.Manages
                 Console.WriteLine("Credenciales incorrectas.");
                 return null; // usuario no encontrado
             }
+        }
+
+        public void InsertarProfesor(Profesor profesor, int[] grados) 
+        {
+            string query = "INSERT INTO fpc.profesores (id_rol,id_centro,id_familia,nombre,apellidos,email,password,sexo) VALUES (@id_rol,@id_centro,@id_familia,@nombre,@apellidos,@email,@password,@sexo);";
+            var parametros = new Dictionary<string, object>
+            {
+                { "@id_rol", profesor.id_rol },
+                { "@id_centro", profesor.id_centro },
+                { "@id_familia", profesor.id_familia },
+                { "@nombre", profesor.nombre },
+                { "@apellidos", profesor.apellidos },
+                { "@email", profesor.email },
+                { "@password", Seguridad.EncriptarContraseña(profesor.password) }, // Encriptar la contraseña
+                { "@sexo", profesor.sexo }
+            };
+
+            db.Modificar(query, parametros);
+
+            string queryGrados = "INSERT INTO fpc.profesoresgrados (id_profesor,id_grado) VALUES (@id_profesor,@id_grado);";
+            int id_grado = 0; // Inicializar id_grado
+
+            for(int i = 0; i < grados.Length; i++)
+            {
+                if(grados[i] != 0) 
+                {
+                    id_grado = grados[i];
+                    var parametrosGrados = new Dictionary<string, object>
+                    {
+                        { "@id_profesor", db.LeerUltimoIdInsertado() }, 
+                        { "@id_grado", id_grado}
+                    };
+                    db.Modificar(queryGrados, parametrosGrados);
+                }
+            }              
+
         }
 
     }

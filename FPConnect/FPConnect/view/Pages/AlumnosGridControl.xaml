@@ -27,14 +27,7 @@
 
         </Grid>
 
-        <!--Top Buttons-->
-        <Button Style="{StaticResource topButton}" Margin="0 0 20 0" Background="#dcdcdc">
-            <Icon:PackIconMaterial Kind="Cog"/>
-        </Button>
-
-        <Button Style="{StaticResource topButton}" Margin="0 0 55 0">
-            <Icon:PackIconMaterial Kind="Bell"/>
-        </Button>
+        
 
         <!--Titulo-->
         <TextBlock Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" Foreground="#121518" 

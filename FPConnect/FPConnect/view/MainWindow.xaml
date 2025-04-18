@@ -19,7 +19,7 @@
             </ThicknessAnimation>
             <DoubleAnimation Storyboard.TargetName="MainContent" 
                  Storyboard.TargetProperty="Opacity"
-                 From="0" To="1" Duration="0:0:2"/>
+                 From="0" To="1" Duration="0:0:1"/>
         </Storyboard>
     </Window.Resources>
 

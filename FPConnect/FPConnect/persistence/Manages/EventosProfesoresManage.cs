@@ -59,7 +59,7 @@ namespace FPConnect.persistence.Manages
             db.Modificar(sql, parametros);
 
             // Obtener el ID del evento recién insertado
-            int nuevoId = db.LeerUltimoEventoInsertado();
+            int nuevoId = db.LeerUltimoIdInsertado();
 
             return nuevoId;
         }

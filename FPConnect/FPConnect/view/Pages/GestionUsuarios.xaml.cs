@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FPConnect.domain;
+using FPConnect.HelperClasses;
 using FPConnect.view.Pages.Forms;
 using FPConnect.view.Pages.Forms.Usuarios;
 using MaterialDesignThemes.Wpf;
@@ -27,6 +30,15 @@ namespace FPConnect.view.Pages
     {
         private Member selectedUsuario;
         ObservableCollection<Member> members;
+        int[] grados = new int[3];
+        private Profesor profesor;
+
+        private FamiliaProfesional fp;
+        ObservableCollection<FamiliaProfesional> familiaProfesionales;
+
+        private Rol rol;
+        private ObservableCollection<Rol> listaRoles;
+
         public GestionUsuarios()
         {
             
@@ -34,6 +46,11 @@ namespace FPConnect.view.Pages
             members = new ObservableCollection<Member>();
             var converter = new BrushConverter();
             members = new ObservableCollection<Member>();
+            profesor = new Profesor();
+            fp = new FamiliaProfesional();
+            familiaProfesionales = new ObservableCollection<FamiliaProfesional>();
+            rol = new Rol();
+            listaRoles = new ObservableCollection<Rol>();
 
             members.Add(new Member { Number = "1", Character = "J", BgColor = (Brush)converter.ConvertFromString("#1098AD"), Name = "John Doe", Position = "Murillo", Email = "john.doe@gmail.com", Phone = "415-954-1475" });
             members.Add(new Member { Number = "2", Character = "R", BgColor = (Brush)converter.ConvertFromString("#1E88E5"), Name = "Reza Alavi", Position = "Administrator", Email = "reza110@hotmail.com", Phone = "254-451-7893" });
@@ -68,6 +85,19 @@ namespace FPConnect.view.Pages
             members.Add(new Member { Number = "29", Character = "F", BgColor = (Brush)converter.ConvertFromString("#1E88E5"), Name = "Frank Underwood", Position = "Manager", Email = "frank@yahoo.com", Phone = "301-584-6966" });
             members.Add(new Member { Number = "30", Character = "S", BgColor = (Brush)converter.ConvertFromString("#0CA678"), Name = "Saeed Dasman", Position = "Murillo", Email = "saeed.dasi@hotmail.com", Phone = "817-320-5052" });
 
+
+            familiaProfesionales = fp.LeerFamiliasCentro(SesionUsuario.IdCentro);
+            listaRoles = rol.LeerRolesPorCentro(SesionUsuario.IdCentro);
+            foreach (FamiliaProfesional fp in familiaProfesionales)
+            {               
+                cbDept.Items.Add(fp);
+            }
+
+            foreach(Rol rol in listaRoles)
+            {
+                cbRol.Items.Add(rol);
+            }
+
             usuariosDataGrid.ItemsSource = members;
             selectedUsuario = new Member();
             
@@ -95,6 +125,75 @@ namespace FPConnect.view.Pages
             { 
                 // implementar logica
             }
+        }
+
+        private void btnGuardar_Click(object sender, RoutedEventArgs e)
+        {
+
+            string nombre = txtNombreUsuario.Text;  
+            string apellidos = txtApellido.Text;
+            string email = txtEmail.Text;
+            string password = txtPassword.Password;
+            string sexo = cbSexo.Text;
+
+            Rol rolSeleccionado = new Rol();
+            rolSeleccionado=cbRol.SelectedItem as Rol;
+            FamiliaProfesional fpSeleccionada = new FamiliaProfesional();
+            fpSeleccionada = cbDept.SelectedItem as FamiliaProfesional;
+
+            
+
+            if (sexo.Equals("Masculino")) 
+            {
+                sexo = "m";
+            } else 
+            {
+                sexo = "f";
+            }
+
+            if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(apellidos) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(sexo))
+            {
+                MessageBox.Show("Información", "Rellene todos los campos", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            if (cbxBasica.IsChecked == true) 
+            {
+                grados[0] = 1;
+            }
+            if (cbxMedia.IsChecked == true)
+            {
+                grados[1] = 2;
+            }
+            if (cbxSuperior.IsChecked == true)
+            {
+                grados[2] = 3;
+            }
+
+            if(cbxBasica.IsChecked!=true && cbxMedia.IsChecked!=true && cbxSuperior.IsChecked != true) 
+            {
+                MessageBox.Show("Información", "Seleccione al menos un grado", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else 
+            {
+                Console.WriteLine(rolSeleccionado.id_rol + " " + fpSeleccionada.id_familia);
+
+                Profesor nuevoProfesor = new Profesor(
+                rolSeleccionado.id_rol,
+                SesionUsuario.IdCentro,
+                fpSeleccionada.id_familia,
+                nombre,
+                apellidos,
+                email,
+                password,
+                sexo);
+
+                profesor.InsertarProfesor(nuevoProfesor, grados);
+
+                MessageBox.Show("Información","Usuario insertado correctamente",MessageBoxButton.OK,MessageBoxImage.Information);
+
+            }
+            
         }
     }
 }

@@ -82,7 +82,7 @@ namespace FPConnect.persistence
             return resultado;
         }
 
-        public int LeerUltimoEventoInsertado()
+        public int LeerUltimoIdInsertado()
         {
             int ultimoId = 0;
             string sql = "SELECT LAST_INSERT_ID();";
