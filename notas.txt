@@ -1,0 +1,27 @@
+this.id_profesor = id_profesor;
+this.id_rol = id_rol;
+this.id_centro = id_centro;
+this.id_familia = id_familia;
+this.nombre = nombre;
+this.apellidos = apellidos;
+this.email = email;
+this.password = password;
+this.sexo = sexo;
+this.character = character;
+this.bgColor = (Brush)new BrushConverter().ConvertFromString(bgColor);
+
+
+colores
+
+#1098AD
+
+#1E88E5
+
+#FF8F00
+
+#0CA678
+
+
+#6741D9
+
+#FF6D00

@@ -102,7 +102,6 @@ namespace FPConnect.view.Pages
             }
         }
 
-
         private void btnModificarUsuario_Click(object sender, RoutedEventArgs e)
         {
             FormModUsuario formModUsuario = new FormModUsuario();
