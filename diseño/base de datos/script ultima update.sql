@@ -38,7 +38,9 @@ CREATE TABLE Profesores (
     reset_password_token VARCHAR(255), -- Token para restablecer contraseña
     reset_password_token_expiry DATETIME, -- Fecha de expiración del token
     sexo VARCHAR(1) NOT NULL,
-    character VARCHAR(2) NOT NULL,
+    first_char VARCHAR(1) NOT NULL,
+    bgColor VARCHAR(8) NOT NULL,
+    activo INTEGER(1) NOT NULL -- 1 usuario activo, 0 usuario no activo
     CONSTRAINT fk_profesores_roles FOREIGN KEY (id_rol) REFERENCES Roles(id_rol),
     CONSTRAINT fk_profesores_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro),
     CONSTRAINT fk_profesores_familias FOREIGN KEY (id_familia) REFERENCES FamiliasProfesionales(id_familia)
@@ -83,8 +85,6 @@ CREATE TABLE Cargos (
     CONSTRAINT fk_cargos_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro),
     CONSTRAINT fk_cargos_profesores FOREIGN KEY (id_profesor) REFERENCES Profesores(id_profesor)
 );
-
--- ELIMINADO: Tabla de Relación Profesores-Familias Profesionales (ProfesoresFamilias)
 
 -- Tabla de Relación Profesores-Grados
 CREATE TABLE ProfesoresGrados (
