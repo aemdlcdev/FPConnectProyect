@@ -24,15 +24,17 @@ namespace FPConnect.persistence.Manages
 
         public ObservableCollection<Profesor> LeerProfesoresPorCentro(int id_centro)
         {
+            int activo = 1;
             ObservableCollection<Profesor> profesoresPorCentro = new ObservableCollection<Profesor>();
 
             // Consulta SQL para obtener los profesores por id_centro
-            string query = "SELECT id_profesor, id_rol, id_centro, id_familia, nombre, apellidos, email, password, sexo, first_char, bgColor FROM fpc.profesores WHERE id_centro = @id_centro;";
+            string query = "SELECT id_profesor, id_rol, id_centro, id_familia, nombre, apellidos, email, password, sexo, first_char, bgColor FROM fpc.profesores WHERE id_centro = @id_centro AND activo = @activo;";
 
             // Parámetros para la consulta
             var parametros = new Dictionary<string, object>
             {
-                { "@id_centro", id_centro }
+                { "@id_centro", id_centro },
+                { "@activo", activo } // Leer solo los profesores activos
             };
 
             // Ejecutar la consulta
@@ -73,12 +75,13 @@ namespace FPConnect.persistence.Manages
         public Profesor autentificarUsuario(string correo, string password)
         {           
             string passwordEncrypted = Seguridad.EncriptarContraseña(password);
-
-            string query = "SELECT id_profesor,id_rol,id_centro,id_familia, nombre,apellidos, email, password,sexo FROM fpc.profesores WHERE email = @email AND password = @password LIMIT 1;";
+            int activo = 1; // Solo vna a poder logearse usuarios activos
+            string query = "SELECT id_profesor,id_rol,id_centro,id_familia, nombre,apellidos, email, password,sexo FROM fpc.profesores WHERE email = @email AND activo = @activo AND password = @password LIMIT 1;";
             var parametros = new Dictionary<string, object>
             {
                 { "@email", correo }, 
-                { "@password", passwordEncrypted }
+                { "@password", passwordEncrypted },
+                { "@activo", activo } 
             };
 
             var resultado = db.LeerConParametros(query, parametros);
@@ -115,7 +118,7 @@ namespace FPConnect.persistence.Manages
 
         public void InsertarProfesor(Profesor profesor, int[] grados) 
         {
-            string query = "INSERT INTO fpc.profesores (id_rol,id_centro,id_familia,nombre,apellidos,email,password,sexo,first_char,bgColor) VALUES (@id_rol,@id_centro,@id_familia,@nombre,@apellidos,@email,@password,@sexo,@first_char,@bgColor);";
+            string query = "INSERT INTO fpc.profesores (id_rol,id_centro,id_familia,nombre,apellidos,email,password,sexo,first_char,bgColor,activo) VALUES (@id_rol,@id_centro,@id_familia,@nombre,@apellidos,@email,@password,@sexo,@first_char,@bgColor,@activo);";
             var parametros = new Dictionary<string, object>
             {
                 { "@id_rol", profesor.id_rol },
@@ -127,7 +130,8 @@ namespace FPConnect.persistence.Manages
                 { "@password", Seguridad.EncriptarContraseña(profesor.password) }, // Encriptar la contraseña
                 { "@sexo", profesor.sexo },
                 { "@first_char", profesor.character },
-                { "@bgColor", Colores.GetRandomColor() } 
+                { "@bgColor", Colores.GetRandomColor() },
+                { "@activo", 1 } // Pongo 1 por defecto ya que cuando creo un usuario esta activo
             };
 
             db.Modificar(query, parametros);

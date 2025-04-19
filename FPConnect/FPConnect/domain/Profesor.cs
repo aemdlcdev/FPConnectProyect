@@ -22,6 +22,7 @@ namespace FPConnect.domain
         public string sexo { get; set; }
         public string character { get; set; }
         public Brush bgColor { get; set; }
+        public int activo { get; set; } // 1 = activo, 0 = inactivo
 
 
 
@@ -29,7 +30,7 @@ namespace FPConnect.domain
 
         public Profesor() { um = new ProfesorManage(); }
 
-        public Profesor( int id_rol, int id_centro, int id_familia, string nombre, string apellidos, string email, string password, string sexo, string charcter, string bgColor)
+        public Profesor(int id_rol, int id_centro, int id_familia, string nombre, string apellidos, string email, string password, string sexo, string charcter, string bgColor)
         {
             this.id_rol = id_rol;
             this.id_centro = id_centro;
@@ -43,7 +44,24 @@ namespace FPConnect.domain
             this.bgColor = (Brush)new BrushConverter().ConvertFromString(bgColor);
             um = new ProfesorManage();
         }
-        public Profesor (int id_profesor,int id_rol,int id_centro,int id_familia, string nombre,string apellidos, string email, string password, string sexo, string character, string bgColor)
+
+        public Profesor( int id_rol, int id_centro, int id_familia, string nombre, string apellidos, string email, string password, string sexo, string charcter, string bgColor, int activo)
+        {
+            this.id_rol = id_rol;
+            this.id_centro = id_centro;
+            this.id_familia = id_familia;
+            this.nombre = nombre;
+            this.apellidos = apellidos;
+            this.email = email;
+            this.password = password;
+            this.sexo = sexo;
+            this.character = charcter;
+            this.bgColor = (Brush)new BrushConverter().ConvertFromString(bgColor);
+            this.activo = activo;
+            um = new ProfesorManage();
+            
+        }
+        public Profesor(int id_profesor, int id_rol, int id_centro, int id_familia, string nombre, string apellidos, string email, string password, string sexo, string character, string bgColor)
         {
             this.id_profesor = id_profesor;
             this.id_rol = id_rol;
@@ -56,6 +74,22 @@ namespace FPConnect.domain
             this.sexo = sexo;
             this.character = character;
             this.bgColor = (Brush)new BrushConverter().ConvertFromString(bgColor);
+            um = new ProfesorManage();
+        }
+        public Profesor (int id_profesor,int id_rol,int id_centro,int id_familia, string nombre,string apellidos, string email, string password, string sexo, string character, string bgColor, int activo)
+        {
+            this.id_profesor = id_profesor;
+            this.id_rol = id_rol;
+            this.id_centro = id_centro;
+            this.id_familia = id_familia;
+            this.nombre = nombre;
+            this.apellidos = apellidos;
+            this.email = email;
+            this.password = password;
+            this.sexo = sexo;
+            this.character = character;
+            this.bgColor = (Brush)new BrushConverter().ConvertFromString(bgColor);
+            this.activo = activo;
             um = new ProfesorManage();
         }
 
