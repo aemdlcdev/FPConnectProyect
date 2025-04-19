@@ -92,24 +92,63 @@ namespace FPConnect.view.Pages
                 return;
             }
 
-            FormDelete formDelUsuario = new FormDelete();
+            
+            var usuarioAEliminar = selectedUsuario;
 
-            if (formDelUsuario.ShowDialog() == true)
+            FormDelete formDelUsuario = new FormDelete();
+            try
             {
-                profesores.Remove(selectedUsuario);
-                
-                profesor.EliminarProfesor(selectedUsuario.id_profesor);
+                if (formDelUsuario.ShowDialog() == true)
+                {
+                    profesores.Remove(usuarioAEliminar); // quitarlo de la lista en memoria usando la variable de copia
+                    profesor.EliminarProfesor(usuarioAEliminar.id_profesor); // eliminar de la bbdd
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar el usuario: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        // REVISAR METODOS, VER SI ES NECESARIO HACER LA ASIGNACION DE SELECTEDUSUARIO DENTRO DE ELIMINAR Y MODIFICAR
 
         private void btnModificarUsuario_Click(object sender, RoutedEventArgs e)
         {
-            FormModUsuario formModUsuario = new FormModUsuario();
-            if (formModUsuario.ShowDialog() == true)
-            { 
-                // implementar logica
+            selectedUsuario = profesoresDataGrid.SelectedItem as Profesor;
+
+            if (selectedUsuario == null || selectedUsuario.id_profesor == 0)
+            {
+                MessageBox.Show("Seleccione un usuario válido antes de modificarlo.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            var profesorAModificar = selectedUsuario;
+
+            FormModUsuario formModUsuario = new FormModUsuario(profesorAModificar);
+
+            try
+            {
+                if (formModUsuario.ShowDialog() == true)
+                {
+                    
+                    int[] grados = new int[3]; // Deberías obtener los grados seleccionados del formulario
+
+                    // Llamar al método ModificarProfesor con el profesor actualizado
+                    profesor.ModificarProfesor(profesorAModificar, grados);
+
+                    // Actualizar la lista de profesores
+                    profesores = profesor.LeerProfesoresPorCentro(SesionUsuario.IdCentro);
+                    profesoresDataGrid.ItemsSource = profesores;
+
+                    MessageBox.Show("Usuario modificado correctamente", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al modificar el usuario: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
@@ -177,7 +216,7 @@ namespace FPConnect.view.Pages
                     character,
                     Colores.GetRandomColor()
                 );
-
+                profesores.Add(nuevoProfesor);
                 profesor.InsertarProfesor(nuevoProfesor, grados);
 
                 MessageBox.Show("Usuario insertado correctamente", "Información", MessageBoxButton.OK, MessageBoxImage.Information);

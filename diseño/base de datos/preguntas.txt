@@ -1,5 +1,7 @@
-los profesores deben de tener curso?
 
 null al borrar usuario
 
 de alumnos interesa saber el teléfono y email?
+
+profesores que interesa modificar?
+

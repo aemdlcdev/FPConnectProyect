@@ -157,7 +157,7 @@ namespace FPConnect.persistence.Manages
 
         public void ModificarProfesor(Profesor profesor, int[] grados)
         {
-            string query = "UPDATE fpc.profesores SET id_rol = @id_rol, id_centro = @id_centro, id_familia = @id_familia, nombre = @nombre, apellidos = @apellidos, email = @email, password = @password, sexo = @sexo WHERE id_profesor = @id_profesor;";
+            string query = "UPDATE fpc.profesores SET id_rol = @id_rol, id_centro = @id_centro, id_familia = @id_familia, nombre = @nombre, apellidos = @apellidos, email = @email, sexo = @sexo WHERE id_profesor = @id_profesor;";
             var parametros = new Dictionary<string, object>
             {
                 { "@id_profesor", profesor.id_profesor },
@@ -167,7 +167,6 @@ namespace FPConnect.persistence.Manages
                 { "@nombre", profesor.nombre },
                 { "@apellidos", profesor.apellidos },
                 { "@email", profesor.email },
-                { "@password", Seguridad.EncriptarContraseña(profesor.password) }, 
                 { "@sexo", profesor.sexo }
             };
 
@@ -193,16 +192,15 @@ namespace FPConnect.persistence.Manages
 
         public void BorrarProfesor(int id_profesor)
         {
-            string queryGrado = "DELETE FROM fpc.profesoresgrados WHERE id_profesor = @id_profesor;";
-            
-            string query = "DELETE FROM fpc.profesores WHERE id_profesor = @id_profesor;";
-
+            // Borrado logico, modificar profesor y poner activo en 0
+            string query = "UPDATE fpc.profesores SET activo = @activo WHERE id_profesor = @id_profesor;";
             var parametros = new Dictionary<string, object>
             {
-                { "@id_profesor", id_profesor}
+                { "@id_profesor", id_profesor },
+                { "@activo", 0 } // Cambiar el activo a 0 para borrado lógico
             };
-            db.Modificar(queryGrado, parametros);
             db.Modificar(query, parametros);
+
         }
     }
 }

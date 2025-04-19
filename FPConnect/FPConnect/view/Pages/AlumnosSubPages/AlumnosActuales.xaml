@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FPConnect.view.Pages.AlumnosSubPages"
       xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="850"
       Title="AlumnosActuales">
@@ -19,19 +20,16 @@
             <RowDefinition Height="*"/>
 
         </Grid.RowDefinitions>
-        
+
         <!--Busqueda texto-->
         <TextBlock Text="Alumnos" Grid.Row="1" FontSize="18" FontWeight="SemiBold" Foreground="#121518" Margin=" 25 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <TextBlock Name="txtNumAlumnos" Grid.Row="1" FontSize="18" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
-        <TextBlock Text="Filtrar por" Grid.Row="1" FontSize="13" FontWeight="SemiBold" Margin="0 0 215 0" Foreground="#121518" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 
-        <!--Caja de busqueda-->
-        <Grid Width="200" HorizontalAlignment="Right" Grid.Row="1">
-            <TextBlock Margin="15 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False" Panel.ZIndex="1" Text="Buscar miembros ..."
-            Visibility="{Binding ElementName=textBoxFilter, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
-
-            <TextBox Name="textBoxFilter" Style="{StaticResource filterTextBox}"/>
-        </Grid>
+        <ComboBox x:Name="cbGrado" materialDesign:HintAssist.Hint="Grado" Grid.Row="1" FontSize="16" Width="100" HorizontalAlignment="Left" Margin="135,0,0,0" />
+        <ComboBox x:Name="cbPerfil" materialDesign:HintAssist.Hint="Perfil" Grid.Row="1" FontSize="16" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="289,14,0,0" />
+        <ComboBox x:Name="cbCurso" materialDesign:HintAssist.Hint="Curso" Grid.Row="1" FontSize="16" Width="100" HorizontalAlignment="Left" Margin="438,0,0,0" />
+        <ComboBox x:Name="cbConvocatoria" materialDesign:HintAssist.Hint="Convocatoria" Grid.Row="1" FontSize="16" Width="110" HorizontalAlignment="Left" Margin="583,0,0,0" />
+        <Button x:Name="btnCargar" Content="Cargar" Grid.Row="1" Style="{StaticResource addButton}" Margin="716,10,0,10" Width="88" HorizontalAlignment="Left"/>
         <DataGrid x:Name="membersDataGrid" Grid.Row="2" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  Style="{DynamicResource DataGridStyle1}" SelectionChanged="membersDataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}" Binding="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}">

@@ -33,14 +33,13 @@ CREATE TABLE Profesores (
     nombre VARCHAR(100) NOT NULL,
     apellidos VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
-    cargo VARCHAR(100) NOT NULL,
     password VARCHAR(255) NOT NULL, -- Contraseña del profesor
     reset_password_token VARCHAR(255), -- Token para restablecer contraseña
     reset_password_token_expiry DATETIME, -- Fecha de expiración del token
     sexo VARCHAR(1) NOT NULL,
     first_char VARCHAR(1) NOT NULL,
     bgColor VARCHAR(8) NOT NULL,
-    activo INTEGER(1) NOT NULL -- 1 usuario activo, 0 usuario no activo
+    activo INTEGER(1) NOT NULL, -- 1 usuario activo, 0 usuario no activo
     CONSTRAINT fk_profesores_roles FOREIGN KEY (id_rol) REFERENCES Roles(id_rol),
     CONSTRAINT fk_profesores_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro),
     CONSTRAINT fk_profesores_familias FOREIGN KEY (id_familia) REFERENCES FamiliasProfesionales(id_familia)
@@ -143,14 +142,14 @@ CREATE TABLE Alumnos (
     apellidos VARCHAR(100) NOT NULL,
     id_profesor INT NOT NULL,
     id_perfil INT NOT NULL,
-    id_grado INT NOT NULL,
-    id_curso INT NOT NULL, -- Nueva columna para curso específico
+    id_curso INT NOT NULL,
     id_convocatoria INT NOT NULL,
+    id_fase INT NOT NULL, -- Nueva columna para fase de asignación
     CONSTRAINT fk_alumnos_profesores FOREIGN KEY (id_profesor) REFERENCES Profesores(id_profesor),
     CONSTRAINT fk_alumnos_perfiles FOREIGN KEY (id_perfil) REFERENCES Perfiles(id_perfil),
-    CONSTRAINT fk_alumnos_grados FOREIGN KEY (id_grado) REFERENCES Grados(id_grado),
     CONSTRAINT fk_alumnos_cursos FOREIGN KEY (id_curso) REFERENCES Cursos(id_curso),
-    CONSTRAINT fk_alumnos_convocatorias FOREIGN KEY (id_convocatoria) REFERENCES Convocatorias(id_convocatoria)
+    CONSTRAINT fk_alumnos_convocatorias FOREIGN KEY (id_convocatoria) REFERENCES Convocatorias(id_convocatoria),
+    CONSTRAINT fk_alumnos_fases FOREIGN KEY (id_fase) REFERENCES FasesAsignacion(id_fase)
 );
 
 -- Tabla de Empresas
@@ -246,7 +245,6 @@ CREATE INDEX idx_estadosempresa_id_centro ON EstadosEmpresa(id_centro);
 
 -- NUEVO: Índices para EstadosEventos
 CREATE INDEX idx_estadoseventos_id_centro ON EstadosEventos(id_centro);
-CREATE INDEX idx_estadoseventos_nombre ON EstadosEventos(nombre);
 
 -- Tabla FasesAsignacion
 CREATE INDEX idx_fasesasignacion_id_centro ON FasesAsignacion(id_centro);
@@ -257,9 +255,9 @@ CREATE INDEX idx_convocatorias_id_tipo_fase ON Convocatorias(id_tipo_fase);
 -- Tabla Alumnos
 CREATE INDEX idx_alumnos_id_profesor ON Alumnos(id_profesor);
 CREATE INDEX idx_alumnos_id_perfil ON Alumnos(id_perfil);
-CREATE INDEX idx_alumnos_id_grado ON Alumnos(id_grado);
 CREATE INDEX idx_alumnos_id_curso ON Alumnos(id_curso); -- Nuevo índice para curso
 CREATE INDEX idx_alumnos_id_convocatoria ON Alumnos(id_convocatoria);
+CREATE INDEX idx_alumnos_id_fase ON Alumnos(id_fase);
 
 -- Tabla Empresas
 CREATE INDEX idx_empresas_id_centro ON Empresas(id_centro);
