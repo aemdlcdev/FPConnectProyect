@@ -191,6 +191,11 @@ namespace FPConnect
             Login login = new Login();
             login.Show();
             this.Close();
+            SesionUsuario.NombreUsuario = null;
+            SesionUsuario.id_profesor = 0;
+            SesionUsuario.sexo = null;
+            SesionUsuario.IdCentro = 0;
+            SesionUsuario.IdRol = 0;
         }
 
         /// <summary>

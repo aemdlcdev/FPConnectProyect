@@ -484,6 +484,9 @@
     <Compile Include="view\Pages\Forms\Alumnos\FormModAlumno.xaml.cs">
       <DependentUpon>FormModAlumno.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\Pages\Forms\Empresas\FormAddEmpresa.xaml.cs">
+      <DependentUpon>FormAddEmpresa.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\Pages\Forms\FormDelAlumno.xaml.cs">
       <DependentUpon>FormDelAlumno.xaml</DependentUpon>
     </Compile>
@@ -563,6 +566,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\Pages\Forms\Alumnos\FormModAlumno.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Pages\Forms\Empresas\FormAddEmpresa.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -688,6 +695,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\management.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\oficina.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\company.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.5.1.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.5.1.0\build\MaterialDesignThemes.targets')" />

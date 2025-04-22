@@ -33,7 +33,7 @@ namespace FPConnect.view.Pages.Forms
             Nombre = txtNombre.Text;
             if (int.TryParse(txtEdad.Text, out int edad))
                 Edad = edad;
-            Correo = txtCorreo.Text;
+                Correo = txtCorreo.Text;
 
             Guardado = true;
             this.DialogResult = true; // Cierra la ventana modal

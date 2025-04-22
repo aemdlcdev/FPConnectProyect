@@ -1,4 +1,4 @@
-﻿<Page x:Class="FPConnect.view.Pages.AlumnosSubPages.Informacion"
+﻿<Page x:Class="FPConnect.view.Pages.AlumnosSubPages.AlumnosValidados"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -27,7 +27,7 @@
         <ComboBox x:Name="cbCurso" materialDesign:HintAssist.Hint="Curso" Grid.Row="1" FontSize="16" Width="100" HorizontalAlignment="Left" Margin="438,0,0,0" />
         <ComboBox x:Name="cbConvocatoria" materialDesign:HintAssist.Hint="Convocatoria" Grid.Row="1" FontSize="16" Width="110" HorizontalAlignment="Left" Margin="583,0,0,0" />
         <Button x:Name="btnCargar" Content="Cargar" Grid.Row="1" Style="{StaticResource addButton}" Margin="716,10,0,10" Width="88" HorizontalAlignment="Left"/>
-        <DataGrid x:Name="membersDataGrid" Grid.Row="2" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  Style="{DynamicResource DataGridStyle1}" SelectionChanged="membersDataGrid_SelectionChanged">
+        <DataGrid x:Name="alumnosDataGrid" Grid.Row="2" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  Style="{DynamicResource DataGridStyle1}" SelectionChanged="membersDataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}" Binding="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}">
                     <DataGridCheckBoxColumn.HeaderTemplate>

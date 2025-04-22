@@ -156,22 +156,16 @@ CREATE TABLE Alumnos (
 CREATE TABLE Empresas (
     id_empresa INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     id_centro INT NOT NULL,
+    id_familia INT NOT NULL, -- Nueva columna para familia profesional
     nombre VARCHAR(100) NOT NULL,
-    direccion VARCHAR(200) NOT NULL,
-    fecha_inicio_acuerdo DATE NOT NULL,
-    fecha_fin_acuerdo DATE NOT NULL,
+    email VARCHAR(200) NOT NULL,
+    telefono VARCHAR(20) NOT NULL,
+    anio_inicio_acuerdo INTEGER(4) NOT NULL,
+    anio_fin_acuerdo INTEGER(4),
     id_estado INT NOT NULL,
     CONSTRAINT fk_empresas_estados FOREIGN KEY (id_estado) REFERENCES EstadosEmpresa(id_estado),
-    CONSTRAINT fk_empresas_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro)
-);
-
--- Tabla de Gestión de Empresas por Profesores
-CREATE TABLE EmpresasProfesores (
-    id_empresa INT NOT NULL,
-    id_profesor INT NOT NULL,
-    PRIMARY KEY (id_empresa, id_profesor),
-    CONSTRAINT fk_empresasprofesores_empresas FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa),
-    CONSTRAINT fk_empresasprofesores_profesores FOREIGN KEY (id_profesor) REFERENCES Profesores(id_profesor)
+    CONSTRAINT fk_empresas_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro),
+    CONSTRAINT fk_empresas_familias FOREIGN KEY (id_familia) REFERENCES FamiliasProfesionales(id_familia)
 );
 
 -- Tabla de Asignación de Empresas a Alumnos
@@ -186,14 +180,16 @@ CREATE TABLE AsignacionEmpresas (
     CONSTRAINT fk_asignacionempresas_fases FOREIGN KEY (id_fase) REFERENCES FasesAsignacion(id_fase)
 );
 
--- Tabla de Tareas de Coordinación
+-- Tabla de Tareas de Coordinación (modificada)
 CREATE TABLE TareasCoordinacion (
     id_tarea INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     id_familia INT NOT NULL,
+    id_empresa INT NOT NULL, -- Nueva columna para empresa
     titulo VARCHAR(100) NOT NULL,
     descripcion TEXT NOT NULL,
     fecha_creacion DATE NOT NULL,
-    CONSTRAINT fk_tareascoordinacion_familias FOREIGN KEY (id_familia) REFERENCES FamiliasProfesionales(id_familia)
+    CONSTRAINT fk_tareascoordinacion_familias FOREIGN KEY (id_familia) REFERENCES FamiliasProfesionales(id_familia),
+    CONSTRAINT fk_tareascoordinacion_empresas FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa)
 );
 
 -- Tabla de Eventos Profesores (MODIFICADA: ahora referencia a EstadosEventos)

@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FPConnect.HelperClasses;
+using FPConnect.view.Pages.Forms.Empresas;
 
 namespace FPConnect.view.Pages
 {
@@ -23,6 +25,18 @@ namespace FPConnect.view.Pages
         public Empresas()
         {
             InitializeComponent();
+            txtHola.Text = "Hola " + SesionUsuario.NombreUsuario;
+        }
+
+        private void btnAddEmpresa_Click(object sender, RoutedEventArgs e)
+        {
+            FormAddEmpresa formAddEmpresa = new FormAddEmpresa();
+            formAddEmpresa.ShowDialog();
+            if (formAddEmpresa.DialogResult == true)
+            {
+                
+                MessageBox.Show("Empresa agregada correctamente.");
+            }
         }
     }
 }

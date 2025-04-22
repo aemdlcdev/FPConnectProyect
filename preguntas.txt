@@ -7,3 +7,6 @@ profesores que interesa modificar?
 
 una empresa puede estar en varias familias profesionales?
 
+no deja enviar partes
+
+organizar empresas por grados?
