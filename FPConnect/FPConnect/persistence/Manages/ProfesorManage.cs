@@ -28,7 +28,7 @@ namespace FPConnect.persistence.Manages
             ObservableCollection<Profesor> profesoresPorCentro = new ObservableCollection<Profesor>();
 
             // Consulta SQL para obtener los profesores por id_centro
-            string query = "SELECT id_profesor, id_rol, id_centro, id_familia,id_turno nombre, apellidos, email, password, sexo, first_char, bgColor FROM fpc.profesores WHERE id_centro = @id_centro AND activo = @activo;";
+            string query = "SELECT id_profesor, id_rol, id_centro, id_familia,id_turno, nombre, apellidos, email, password, sexo, first_char, bgColor FROM fpc.profesores WHERE id_centro = @id_centro AND activo = @activo;";
 
             // Parámetros para la consulta
             var parametros = new Dictionary<string, object>
@@ -50,13 +50,14 @@ namespace FPConnect.persistence.Manages
                         int.Parse(fila[1].ToString()), // id_rol
                         int.Parse(fila[2].ToString()), // id_centro
                         int.Parse(fila[3].ToString()), // id_familia
-                        fila[4].ToString().Trim(), // nombre
-                        fila[5].ToString().Trim(), // apellidos
-                        fila[6].ToString().Trim(), // email
-                        fila[7].ToString().Trim(), // password
-                        fila[8].ToString().Trim(), // sexo
-                        fila[9].ToString().Trim(), // character (primera letra del nombre)
-                        fila[10].ToString().Trim() // bgColor
+                        int.Parse(fila[4].ToString()), // id_turno
+                        fila[5].ToString().Trim(), // nombre
+                        fila[6].ToString().Trim(), // apellidos
+                        fila[7].ToString().Trim(), // email
+                        fila[8].ToString().Trim(), // password
+                        fila[9].ToString().Trim(), // sexo
+                        fila[10].ToString().Trim(), // character (primera letra del nombre)
+                        fila[11].ToString().Trim() // bgColor
                     );
 
                     profesoresPorCentro.Add(profesor);
@@ -118,12 +119,13 @@ namespace FPConnect.persistence.Manages
 
         public void InsertarProfesor(Profesor profesor, int[] grados) 
         {
-            string query = "INSERT INTO fpc.profesores (id_rol,id_centro,id_familia,nombre,apellidos,email,password,sexo,first_char,bgColor,activo) VALUES (@id_rol,@id_centro,@id_familia,@nombre,@apellidos,@email,@password,@sexo,@first_char,@bgColor,@activo);";
+            string query = "INSERT INTO fpc.profesores (id_rol,id_centro,id_familia,id_turno,nombre,apellidos,email,password,sexo,first_char,bgColor,activo) VALUES (@id_rol,@id_centro,@id_familia,@id_turno,@nombre,@apellidos,@email,@password,@sexo,@first_char,@bgColor,@activo);";
             var parametros = new Dictionary<string, object>
             {
                 { "@id_rol", profesor.id_rol },
                 { "@id_centro", profesor.id_centro },
                 { "@id_familia", profesor.id_familia },
+                { "@id_turno", profesor.id_turno },
                 { "@nombre", profesor.nombre },
                 { "@apellidos", profesor.apellidos },
                 { "@email", profesor.email },
@@ -157,13 +159,14 @@ namespace FPConnect.persistence.Manages
 
         public void ModificarProfesor(Profesor profesor, int[] grados)
         {
-            string query = "UPDATE fpc.profesores SET id_rol = @id_rol, id_centro = @id_centro, id_familia = @id_familia, nombre = @nombre, apellidos = @apellidos, email = @email, sexo = @sexo WHERE id_profesor = @id_profesor;";
+            string query = "UPDATE fpc.profesores SET id_rol = @id_rol, id_centro = @id_centro, id_familia = @id_familia,id_turno = @id_turno, nombre = @nombre, apellidos = @apellidos, email = @email, sexo = @sexo WHERE id_profesor = @id_profesor;";
             var parametros = new Dictionary<string, object>
             {
                 { "@id_profesor", profesor.id_profesor },
                 { "@id_rol", profesor.id_rol },
                 { "@id_centro", profesor.id_centro },
                 { "@id_familia", profesor.id_familia },
+                { "@id_turno", profesor.id_turno },
                 { "@nombre", profesor.nombre },
                 { "@apellidos", profesor.apellidos },
                 { "@email", profesor.email },

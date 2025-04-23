@@ -31,11 +31,12 @@ namespace FPConnect.domain
 
         public Profesor() { um = new ProfesorManage(); }
 
-        public Profesor(int id_rol, int id_centro, int id_familia, string nombre, string apellidos, string email, string password, string sexo, string charcter, string bgColor)
+        public Profesor(int id_rol, int id_centro, int id_familia, int id_turno, string nombre, string apellidos, string email, string password, string sexo, string charcter, string bgColor)
         {
             this.id_rol = id_rol;
             this.id_centro = id_centro;
             this.id_familia = id_familia;
+            this.id_turno = id_turno;
             this.nombre = nombre;
             this.apellidos = apellidos;
             this.email = email;
@@ -46,11 +47,12 @@ namespace FPConnect.domain
             um = new ProfesorManage();
         }
 
-        public Profesor( int id_rol, int id_centro, int id_familia, string nombre, string apellidos, string email, string password, string sexo, string charcter, string bgColor, int activo)
+        public Profesor( int id_rol, int id_centro, int id_familia, int id_turno, string nombre, string apellidos, string email, string password, string sexo, string charcter, string bgColor, int activo)
         {
             this.id_rol = id_rol;
             this.id_centro = id_centro;
             this.id_familia = id_familia;
+            this.id_turno = id_turno;
             this.nombre = nombre;
             this.apellidos = apellidos;
             this.email = email;
@@ -62,12 +64,13 @@ namespace FPConnect.domain
             um = new ProfesorManage();
             
         }
-        public Profesor(int id_profesor, int id_rol, int id_centro, int id_familia, string nombre, string apellidos, string email, string password, string sexo, string character, string bgColor)
+        public Profesor(int id_profesor, int id_rol, int id_centro, int id_familia,  int id_turno ,string nombre, string apellidos, string email, string password, string sexo, string character, string bgColor)
         {
             this.id_profesor = id_profesor;
             this.id_rol = id_rol;
             this.id_centro = id_centro;
             this.id_familia = id_familia;
+            this.id_turno = id_turno;
             this.nombre = nombre;
             this.apellidos = apellidos;
             this.email = email;
@@ -77,12 +80,13 @@ namespace FPConnect.domain
             this.bgColor = (Brush)new BrushConverter().ConvertFromString(bgColor);
             um = new ProfesorManage();
         }
-        public Profesor (int id_profesor,int id_rol,int id_centro,int id_familia, string nombre,string apellidos, string email, string password, string sexo, string character, string bgColor, int activo)
+        public Profesor (int id_profesor,int id_rol,int id_centro,int id_familia, int id_turno, string nombre,string apellidos, string email, string password, string sexo, string character, string bgColor, int activo)
         {
             this.id_profesor = id_profesor;
             this.id_rol = id_rol;
             this.id_centro = id_centro;
             this.id_familia = id_familia;
+            this.id_turno = id_turno;
             this.nombre = nombre;
             this.apellidos = apellidos;
             this.email = email;
