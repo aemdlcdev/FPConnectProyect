@@ -18,3 +18,7 @@ alumnos no hace falta ffiltrar por grado, por perfil tampoco,
 al dar de alta un profesores asignarle un curso
 
 ORGANIZAR TAREAS DE EMPRESA POR FAMILIA PROFESIONAL Y GRADO
+
+perfil tiene que tener un grado
+
+VER FALLOS AL CAMBIAR LOS COMBOXES EN GESTION USUARIOS

@@ -29,15 +29,25 @@ namespace FPConnect.view.Pages
     public partial class GestionUsuarios : Page
     {
         private Profesor selectedUsuario;
-        ObservableCollection<Profesor> profesores;
+        
         int[] grados = new int[3];
         private Profesor profesor;
+        ObservableCollection<Profesor> profesores;
 
         private FamiliaProfesional fp;
         ObservableCollection<FamiliaProfesional> familiaProfesionales;
 
         private Rol rol;
         private ObservableCollection<Rol> listaRoles;
+
+        private Grado grado;
+        private ObservableCollection<Grado> listaGrados;
+
+        private Turno turno;
+        private ObservableCollection<Turno> listaTurnos;
+
+        private Perfil perfilUsuario;
+        private ObservableCollection<Perfil> listaPerfiles;
 
         public GestionUsuarios()
         {
@@ -47,16 +57,24 @@ namespace FPConnect.view.Pages
             var converter = new BrushConverter();
             
             profesor = new Profesor();
-            fp = new FamiliaProfesional();
-            familiaProfesionales = new ObservableCollection<FamiliaProfesional>();
-            rol = new Rol();
-            listaRoles = new ObservableCollection<Rol>();
-
             profesores = profesor.LeerProfesoresPorCentro(SesionUsuario.IdCentro);
 
-
+            fp = new FamiliaProfesional();
             familiaProfesionales = fp.LeerFamiliasCentro(SesionUsuario.IdCentro);
+
+            rol = new Rol();
             listaRoles = rol.LeerRolesPorCentro(SesionUsuario.IdCentro);
+
+            grado = new Grado();
+            listaGrados = grado.LeerGrados();
+
+            turno = new Turno();
+            listaTurnos = turno.LeerTurnos();
+
+            perfilUsuario = new Perfil();
+            listaPerfiles = new ObservableCollection<Perfil>();
+
+
             foreach (FamiliaProfesional fp in familiaProfesionales)
             {               
                 cbDept.Items.Add(fp);
@@ -67,10 +85,103 @@ namespace FPConnect.view.Pages
                 cbRol.Items.Add(rol);
             }
 
+            foreach (Grado g in listaGrados)
+            {
+                cbGrado.Items.Add(g);
+            }
+
+            foreach (Turno t in listaTurnos)
+            {
+                cbTurno.Items.Add(t);
+            }
+
+            foreach (Perfil p in listaPerfiles)
+            {
+                cbPerfil.Items.Add(p);
+            }
+
+            // Manejador de eventos para la selección de familias profesionales
+            cbDept.SelectionChanged += cbDept_SelectionChanged;
+
+            // Manejador de eventos para la selección de grados 
+            cbGrado.SelectionChanged += cbGrado_SelectionChanged;
+
+            // Deshabilito inicialmente el ComboBox de cursos hasta que se seleccione un grado
+            cbCurso.IsEnabled = false;
+
+            // Deshabilito inicialmente el ComboBox de perfiles hasta que se seleccione una familia
+            cbPerfil.IsEnabled = false;
+
+            cbDept.IsEnabled = false;
+
             profesoresDataGrid.ItemsSource = profesores;
             selectedUsuario = new Profesor();
             
         }
+
+        private void cbDept_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Limpiar el ComboBox de perfiles
+            cbPerfil.Items.Clear();
+            listaPerfiles.Clear();
+            FamiliaProfesional familiaSeleccionada = cbDept.SelectedItem as FamiliaProfesional;
+            Grado gradoSeleccionado = cbGrado.SelectedItem as Grado;
+
+            if (familiaSeleccionada != null)
+            {             
+
+                listaPerfiles = perfilUsuario.LeerPerfilCentro(familiaSeleccionada.id_familia, gradoSeleccionado.id_grado);
+
+                foreach (Perfil p in listaPerfiles)
+                {
+                    cbPerfil.Items.Add(p);
+                }
+
+                // Habilitar el ComboBox de perfiles
+                cbPerfil.IsEnabled = true;
+            }
+            else
+            {
+                // Si no hay familia seleccionada, deshabilitar el ComboBox de perfiles
+                cbPerfil.IsEnabled = false;
+            }
+        }
+
+
+        private void cbGrado_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Limpiar el ComboBox de cursos
+            cbCurso.Items.Clear();
+
+
+            // Obtener el grado seleccionado
+            Grado gradoSeleccionado = cbGrado.SelectedItem as Grado;
+
+            if (gradoSeleccionado != null)
+            {
+                // Crear instancia de Curso para acceder a los métodos
+                Curso curso = new Curso();
+
+                // Obtener los cursos asociados al grado seleccionado
+                ObservableCollection<Curso> cursosPorGrado = curso.LeerCursosPorGrado(gradoSeleccionado.id_grado);
+
+                // Poblar el ComboBox de cursos con los cursos del grado seleccionado
+                foreach (Curso c in cursosPorGrado)
+                {
+                    cbCurso.Items.Add(c);
+                }
+
+                // Habilitar el ComboBox de cursos
+                cbCurso.IsEnabled = true;
+                cbDept.IsEnabled = true;
+            }
+            else
+            {
+                // Si no hay grado seleccionado, deshabilitar el ComboBox de cursos
+                cbCurso.IsEnabled = false;
+            }
+        }
+
 
         private void usuariosDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -159,8 +270,15 @@ namespace FPConnect.view.Pages
             string sexo = cbSexo.Text.Trim();
             string character = nombre.Substring(0, 1).ToUpper();
 
+
+
             Rol rolSeleccionado = cbRol.SelectedItem as Rol;
             FamiliaProfesional fpSeleccionada = cbDept.SelectedItem as FamiliaProfesional;
+
+            Grado gradoSeleccionado = cbGrado.SelectedItem as Grado;
+            Curso cursoSeleccionado = cbCurso.SelectedItem as Curso;
+            Turno turnoSeleccionado = cbTurno.SelectedItem as Turno;
+            Perfil perfilSeleccionado = cbPerfil.SelectedItem as Perfil;
 
             if (sexo.Equals("Masculino"))
             {
@@ -173,27 +291,11 @@ namespace FPConnect.view.Pages
 
             if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(apellidos) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(sexo))
             {
-                MessageBox.Show("Rellene todos los campos", "Información" ,MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Rellene todos los campos", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
 
-            if (cbxBasica.IsChecked == true)
-            {
-                grados[0] = 1;
-            }
-            if (cbxMedia.IsChecked == true)
-            {
-                grados[1] = 2;
-            }
-            if (cbxSuperior.IsChecked == true)
-            {
-                grados[2] = 3;
-            }
 
-            if (cbxBasica.IsChecked != true && cbxMedia.IsChecked != true && cbxSuperior.IsChecked != true)
-            {
-                MessageBox.Show("Seleccione al menos un grado", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
             else
             {
                 if (rolSeleccionado == null || fpSeleccionada == null)
@@ -208,6 +310,7 @@ namespace FPConnect.view.Pages
                     rolSeleccionado.id_rol,
                     SesionUsuario.IdCentro,
                     fpSeleccionada.id_familia,
+                    turnoSeleccionado.id_turno, 
                     nombre,
                     apellidos,
                     email,
@@ -217,7 +320,7 @@ namespace FPConnect.view.Pages
                     Colores.GetRandomColor()
                 );
                 profesores.Add(nuevoProfesor);
-                profesor.InsertarProfesor(nuevoProfesor, grados);
+                profesor.InsertarProfesor(nuevoProfesor, grado.id_grado,cursoSeleccionado.id_curso,perfilSeleccionado.id_perfil);
 
                 MessageBox.Show("Usuario insertado correctamente", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
             }

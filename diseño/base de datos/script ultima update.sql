@@ -50,8 +50,10 @@ CREATE TABLE Profesores (
 CREATE TABLE Perfiles (
     id_perfil INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     id_familia INT NOT NULL,
+    id_grado INT NOT NULL, -- Nuevo campo para el grado
     nombre VARCHAR(100) NOT NULL,
-    CONSTRAINT fk_perfiles_familias FOREIGN KEY (id_familia) REFERENCES FamiliasProfesionales(id_familia)
+    CONSTRAINT fk_perfiles_familias FOREIGN KEY (id_familia) REFERENCES FamiliasProfesionales(id_familia),
+    CONSTRAINT fk_perfiles_grados FOREIGN KEY (id_grado) REFERENCES Grados(id_grado)
 );
 
 -- Tabla de Grados
@@ -67,8 +69,8 @@ CREATE TABLE Cursos (
     id_grado INT NOT NULL,
     nombre VARCHAR(100) NOT NULL,
     descripcion TEXT,
-    fecha_inicio DATE NOT NULL,
-    fecha_fin DATE NOT NULL,
+    anio_inicio INT(4) NOT NULL,
+    anio_fin INT(4) NOT NULL,
     CONSTRAINT fk_cursos_grados FOREIGN KEY (id_grado) REFERENCES Grados(id_grado)
 );
 

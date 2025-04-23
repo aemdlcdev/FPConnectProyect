@@ -443,9 +443,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="domain\Centro.cs" />
+    <Compile Include="domain\Curso.cs" />
     <Compile Include="domain\EventosProfesores.cs" />
     <Compile Include="domain\FamiliaProfesional.cs" />
+    <Compile Include="domain\Grado.cs" />
+    <Compile Include="domain\Perfil.cs" />
     <Compile Include="domain\Rol.cs" />
+    <Compile Include="domain\Turno.cs" />
     <Compile Include="HelperClasses\Colores.cs" />
     <Compile Include="HelperClasses\Seguridad.cs" />
     <Compile Include="domain\Profesor.cs" />
@@ -453,10 +457,14 @@
     <Compile Include="HelperClasses\SesionUsuario.cs" />
     <Compile Include="persistence\DBBroker.cs" />
     <Compile Include="persistence\Manages\CentroManage.cs" />
+    <Compile Include="persistence\Manages\CursosManage.cs" />
     <Compile Include="persistence\Manages\EventosProfesoresManage.cs" />
     <Compile Include="persistence\Manages\FamiliaProfesionalManage.cs" />
+    <Compile Include="persistence\Manages\GradoManage.cs" />
+    <Compile Include="persistence\Manages\PerfilManage.cs" />
     <Compile Include="persistence\Manages\ProfesorManage.cs" />
     <Compile Include="persistence\Manages\RolManage.cs" />
+    <Compile Include="persistence\Manages\TurnoManage.cs" />
     <Compile Include="view\Pages\AlumnosSubPages\AlumnosActuales.xaml.cs">
       <DependentUpon>AlumnosActuales.xaml</DependentUpon>
     </Compile>

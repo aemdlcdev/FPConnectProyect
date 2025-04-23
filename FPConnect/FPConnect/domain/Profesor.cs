@@ -108,9 +108,9 @@ namespace FPConnect.domain
            return um.autentificarUsuario (email, password);
         }
 
-        public void InsertarProfesor(Profesor profesor, int[] grados)
+        public void InsertarProfesor(Profesor profesor, int id_grado, int id_curso, int id_perfil)
         {
-            um.InsertarProfesor(profesor, grados);
+            um.InsertarProfesor(profesor, id_grado,id_curso,id_perfil);
         }
 
         public void ModificarProfesor(Profesor profesor, int[] grados)

@@ -58,8 +58,8 @@ namespace FPConnect
                 if (IsMaximize)
                 {
                     this.WindowState = WindowState.Normal;
-                    this.Width = 1080;
-                    this.Height = 750;
+                    this.Width = 1280;
+                    this.Height = 950;
 
                     IsMaximize = false;
                 }
