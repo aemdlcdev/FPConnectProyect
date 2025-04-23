@@ -28,7 +28,7 @@ namespace FPConnect.persistence.Manages
             ObservableCollection<Profesor> profesoresPorCentro = new ObservableCollection<Profesor>();
 
             // Consulta SQL para obtener los profesores por id_centro
-            string query = "SELECT id_profesor, id_rol, id_centro, id_familia, nombre, apellidos, email, password, sexo, first_char, bgColor FROM fpc.profesores WHERE id_centro = @id_centro AND activo = @activo;";
+            string query = "SELECT id_profesor, id_rol, id_centro, id_familia,id_turno nombre, apellidos, email, password, sexo, first_char, bgColor FROM fpc.profesores WHERE id_centro = @id_centro AND activo = @activo;";
 
             // Parámetros para la consulta
             var parametros = new Dictionary<string, object>

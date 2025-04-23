@@ -29,7 +29,6 @@ CREATE TABLE Profesores (
     id_rol INT NOT NULL,
     id_centro INT NOT NULL,
     id_familia INT NOT NULL,
-    id_perfil INT NOT NULL, -- Nueva columna para el perfil único del profesor
     nombre VARCHAR(100) NOT NULL,
     apellidos VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
@@ -44,7 +43,6 @@ CREATE TABLE Profesores (
     CONSTRAINT fk_profesores_roles FOREIGN KEY (id_rol) REFERENCES Roles(id_rol),
     CONSTRAINT fk_profesores_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro),
     CONSTRAINT fk_profesores_familias FOREIGN KEY (id_familia) REFERENCES FamiliasProfesionales(id_familia),
-    CONSTRAINT fk_profesores_perfiles FOREIGN KEY (id_perfil) REFERENCES Perfiles(id_perfil),
     CONSTRAINT fk_profesores_turnos FOREIGN KEY (id_turno) REFERENCES Turnos(id_turno)
 );
 
@@ -59,7 +57,6 @@ CREATE TABLE Perfiles (
 -- Tabla de Grados
 CREATE TABLE Grados (
     id_grado INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    id_centro INT NOT NULL,
     nombre VARCHAR(50) NOT NULL, -- Básica, Media, Superior
     CONSTRAINT fk_grados_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro)
 );
@@ -86,15 +83,6 @@ CREATE TABLE Cargos (
     fecha_fin DATE, 
     CONSTRAINT fk_cargos_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro),
     CONSTRAINT fk_cargos_profesores FOREIGN KEY (id_profesor) REFERENCES Profesores(id_profesor)
-);
-
--- Tabla de Relación Profesores-Grados
-CREATE TABLE ProfesoresGrados (
-    id_profesor INT NOT NULL,
-    id_grado INT NOT NULL,
-    PRIMARY KEY (id_profesor, id_grado),
-    CONSTRAINT fk_profesoresgrados_profesores FOREIGN KEY (id_profesor) REFERENCES Profesores(id_profesor),
-    CONSTRAINT fk_profesoresgrados_grados FOREIGN KEY (id_grado) REFERENCES Grados(id_grado)
 );
 
 -- Tabla para Tipo de Fase
@@ -270,9 +258,6 @@ CREATE INDEX idx_profesores_id_rol ON Profesores(id_rol);
 CREATE INDEX idx_profesores_id_centro ON Profesores(id_centro);
 CREATE INDEX idx_profesores_id_familia ON Profesores(id_familia);
 CREATE INDEX idx_profesores_email ON Profesores(email);
-
--- Tabla ProfesoresGrados
-CREATE INDEX idx_profesoresgrados_id_grado ON ProfesoresGrados(id_grado);
 
 -- Tabla TiposFase
 CREATE INDEX idx_tiposfase_id_centro ON TiposFase(id_centro);

@@ -15,6 +15,7 @@ namespace FPConnect.domain
         public int id_rol { get; set; }
         public int id_centro { get; set; }
         public int id_familia { get; set; }
+        public int id_turno { get; set; }
         public string nombre { get; set; }
         public string apellidos { get; set; }
         public string email { get; set; }
