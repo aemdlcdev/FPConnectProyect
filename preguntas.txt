@@ -1,12 +1,20 @@
+de alumnos interesa saber el teléfono,dni, email?
 
-null al borrar usuario
+profesores que interesa modificar? (meter id_curso,id_perfil, tarde o mañana a profesores)
 
-de alumnos interesa saber el teléfono y email?
+meter tabla cursosprofesores
 
-profesores que interesa modificar?
-
-una empresa puede estar en varias familias profesionales?
-
-no deja enviar partes
+una empresa puede estar en varias familias profesionales? si
 
 organizar empresas por grados?
+
+cada profesores tiene sus alumnos, o todos los profesores pueden ver a todos los alumnos?
+
+profesoresgrados meter id_curso
+
+alumnos no hace falta ffiltrar por grado, por perfil tampoco, 
+
+
+al dar de alta un profesores asignarle un curso
+
+ORGANIZAR TAREAS DE EMPRESA POR FAMILIA PROFESIONAL Y GRADO

@@ -13,8 +13,13 @@ namespace FPConnect.HelperClasses
         public static int IdRol { get; set; }
         public static int IdCentro { get; set; }
         public static int IdFamilia { get; set; }
+        public static int IdGrado { get; set; }
+        public static int IdPerfil { get; set; }
+        public static int IdCurso { get; set; }
+        public static int IdTurno { get; set; }
         public static string sexo { get; set; }
         public static bool EstaAutenticado => !string.IsNullOrEmpty(NombreUsuario);
+
     }
 
 }

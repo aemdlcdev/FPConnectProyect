@@ -23,26 +23,29 @@ CREATE TABLE FamiliasProfesionales (
     nombre VARCHAR(100) NOT NULL,
     CONSTRAINT fk_familias_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro)
 );
-
--- Tabla de Profesores (MODIFICADA)
-CREATE TABLE Profesores (
+-- Tabla profesores (MODIFICADA)
+CREATE TABLE Profesores ( 
     id_profesor INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     id_rol INT NOT NULL,
     id_centro INT NOT NULL,
     id_familia INT NOT NULL,
+    id_perfil INT NOT NULL, -- Nueva columna para el perfil único del profesor
     nombre VARCHAR(100) NOT NULL,
     apellidos VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
-    password VARCHAR(255) NOT NULL, -- Contraseña del profesor
-    reset_password_token VARCHAR(255), -- Token para restablecer contraseña
-    reset_password_token_expiry DATETIME, -- Fecha de expiración del token
+    password VARCHAR(255) NOT NULL,
+    reset_password_token VARCHAR(255),
+    reset_password_token_expiry DATETIME,
     sexo VARCHAR(1) NOT NULL,
     first_char VARCHAR(1) NOT NULL,
     bgColor VARCHAR(8) NOT NULL,
-    activo INTEGER(1) NOT NULL, -- 1 usuario activo, 0 usuario no activo
+    activo INTEGER(1) NOT NULL,
+    id_turno INT NOT NULL,
     CONSTRAINT fk_profesores_roles FOREIGN KEY (id_rol) REFERENCES Roles(id_rol),
     CONSTRAINT fk_profesores_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro),
-    CONSTRAINT fk_profesores_familias FOREIGN KEY (id_familia) REFERENCES FamiliasProfesionales(id_familia)
+    CONSTRAINT fk_profesores_familias FOREIGN KEY (id_familia) REFERENCES FamiliasProfesionales(id_familia),
+    CONSTRAINT fk_profesores_perfiles FOREIGN KEY (id_perfil) REFERENCES Perfiles(id_perfil),
+    CONSTRAINT fk_profesores_turnos FOREIGN KEY (id_turno) REFERENCES Turnos(id_turno)
 );
 
 -- Tabla de Perfiles
@@ -152,11 +155,10 @@ CREATE TABLE Alumnos (
     CONSTRAINT fk_alumnos_fases FOREIGN KEY (id_fase) REFERENCES FasesAsignacion(id_fase)
 );
 
--- Tabla de Empresas
+-- Tabla de Empresas (modificada para relación muchos a muchos con familias)
 CREATE TABLE Empresas (
     id_empresa INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     id_centro INT NOT NULL,
-    id_familia INT NOT NULL, -- Nueva columna para familia profesional
     nombre VARCHAR(100) NOT NULL,
     email VARCHAR(200) NOT NULL,
     telefono VARCHAR(20) NOT NULL,
@@ -164,8 +166,7 @@ CREATE TABLE Empresas (
     anio_fin_acuerdo INTEGER(4),
     id_estado INT NOT NULL,
     CONSTRAINT fk_empresas_estados FOREIGN KEY (id_estado) REFERENCES EstadosEmpresa(id_estado),
-    CONSTRAINT fk_empresas_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro),
-    CONSTRAINT fk_empresas_familias FOREIGN KEY (id_familia) REFERENCES FamiliasProfesionales(id_familia)
+    CONSTRAINT fk_empresas_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro)
 );
 
 -- Tabla de Asignación de Empresas a Alumnos
@@ -204,6 +205,46 @@ CREATE TABLE EventosProfesores (
     CONSTRAINT fk_eventosprofesores_profesores FOREIGN KEY (id_profesor) REFERENCES Profesores(id_profesor),
     CONSTRAINT fk_eventosprofesores_estados FOREIGN KEY (id_estado) REFERENCES EstadosEventos(id_estado)
 );
+
+-- Tabla de Turnos (MODIFICADA: turnos comunes para todos los centros)
+CREATE TABLE Turnos (
+    id_turno INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    nombre VARCHAR(50) NOT NULL -- Ejemplo: Mañana, Tarde
+);
+
+-- Tabla de Relación Profesores-Cursos con Grado y Perfil
+CREATE TABLE ProfesoresCursos (
+    id_profesor INT NOT NULL,
+    id_curso INT NOT NULL,
+    id_grado INT NOT NULL,
+    id_perfil INT NOT NULL,
+    PRIMARY KEY (id_profesor, id_curso),
+    CONSTRAINT fk_profesorescursos_profesores FOREIGN KEY (id_profesor) REFERENCES Profesores(id_profesor),
+    CONSTRAINT fk_profesorescursos_cursos FOREIGN KEY (id_curso) REFERENCES Cursos(id_curso),
+    CONSTRAINT fk_profesorescursos_grados FOREIGN KEY (id_grado) REFERENCES Grados(id_grado),
+    CONSTRAINT fk_profesorescursos_perfiles FOREIGN KEY (id_perfil) REFERENCES Perfiles(id_perfil)
+);
+
+CREATE TABLE EmpresasFamilias (
+    id_empresa INT NOT NULL,
+    id_familia INT NOT NULL,
+    PRIMARY KEY (id_empresa, id_familia),
+    CONSTRAINT fk_empresasfamilias_empresas FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa),
+    CONSTRAINT fk_empresasfamilias_familias FOREIGN KEY (id_familia) REFERENCES FamiliasProfesionales(id_familia)
+);
+
+
+
+-- Crear índice para la tabla Turnos
+CREATE INDEX idx_turnos_id_centro ON Turnos(id_centro);
+
+-- Modificar la tabla Profesores para añadir la referencia a Turnos
+ALTER TABLE Profesores
+ADD COLUMN id_turno INT NOT NULL,
+ADD CONSTRAINT fk_profesores_turnos FOREIGN KEY (id_turno) REFERENCES Turnos(id_turno);
+
+-- Añadir índice para la nueva columna en Profesores
+CREATE INDEX idx_profesores_id_turno ON Profesores(id_turno);
 
 
 -- INDICES
@@ -282,3 +323,16 @@ CREATE INDEX idx_cursos_nombre ON Cursos(nombre);
 CREATE INDEX idx_cargos_id_centro ON Cargos(id_centro);
 CREATE INDEX idx_cargos_id_profesor ON Cargos(id_profesor);
 CREATE INDEX idx_cargos_nombre ON Cargos(nombre);
+
+-- Crear índice para la tabla Turnos
+CREATE INDEX idx_turnos_id_centro ON Turnos(id_centro);
+
+-- Índices para la tabla ProfesoresCursos
+CREATE INDEX idx_profesorescursos_id_profesor ON ProfesoresCursos(id_profesor);
+CREATE INDEX idx_profesorescursos_id_curso ON ProfesoresCursos(id_curso);
+CREATE INDEX idx_profesorescursos_id_grado ON ProfesoresCursos(id_grado);
+CREATE INDEX idx_profesorescursos_id_perfil ON ProfesoresCursos(id_perfil);
+
+-- Índices para la tabla EmpresasFamilias
+CREATE INDEX idx_empresasfamilias_id_empresa ON EmpresasFamilias(id_empresa);
+CREATE INDEX idx_empresasfamilias_id_familia ON EmpresasFamilias(id_familia);

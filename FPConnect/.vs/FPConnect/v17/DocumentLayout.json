@@ -7,7 +7,7 @@
       "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\view\\pages\\forms\\empresas\\formaddempresa.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|c:\\users\\alejandro\\documents\\github\\fpconnectproyect\\fpconnect\\fpconnect\\view\\pages\\forms\\empresas\\formaddempresa.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\fpconnect\\view\\pages\\forms\\empresas\\formaddempresa.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\view\\pages\\forms\\empresas\\formaddempresa.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
@@ -38,9 +38,9 @@
               "Title": "FormAddEmpresa.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\Forms\\Empresas\\FormAddEmpresa.xaml.cs",
               "RelativeDocumentMoniker": "FPConnect\\view\\Pages\\Forms\\Empresas\\FormAddEmpresa.xaml.cs",
-              "ToolTip": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\Forms\\Empresas\\FormAddEmpresa.xaml.cs",
-              "RelativeToolTip": "FPConnect\\view\\Pages\\Forms\\Empresas\\FormAddEmpresa.xaml.cs",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAnwD4AAAARAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\Forms\\Empresas\\FormAddEmpresa.xaml.cs*",
+              "RelativeToolTip": "FPConnect\\view\\Pages\\Forms\\Empresas\\FormAddEmpresa.xaml.cs*",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAnwEAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-22T11:44:59.115Z",
               "EditorCaption": ""
@@ -54,8 +54,7 @@
               "ToolTip": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\Forms\\Empresas\\FormAddEmpresa.xaml",
               "RelativeToolTip": "FPConnect\\view\\Pages\\Forms\\Empresas\\FormAddEmpresa.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-22T11:44:57.839Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T11:44:57.839Z"
             }
           ]
         }
