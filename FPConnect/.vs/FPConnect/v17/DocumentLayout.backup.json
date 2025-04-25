@@ -3,35 +3,47 @@
   "WorkspaceRootPath": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|c:\\users\\alejandro\\documents\\github\\fpconnectproyect\\fpconnect\\fpconnect\\view\\pages\\eventosgridcontrol.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\view\\pages\\eventosgridcontrol.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|c:\\users\\alejandro\\documents\\github\\fpconnectproyect\\fpconnect\\fpconnect\\persistence\\manages\\eventosprofesoresmanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\persistence\\manages\\eventosprofesoresmanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\fpconnect\\persistence\\manages\\perfilmanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\persistence\\manages\\perfilmanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|c:\\users\\alejandro\\documents\\github\\fpconnectproyect\\fpconnect\\fpconnect\\persistence\\manages\\cursosmanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\persistence\\manages\\cursosmanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\fpconnect\\domain\\curso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\domain\\curso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|c:\\users\\alejandro\\documents\\github\\fpconnectproyect\\fpconnect\\fpconnect\\view\\pages\\gestionusuarios.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\view\\pages\\gestionusuarios.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|c:\\users\\alejandro\\documents\\github\\fpconnectproyect\\fpconnect\\fpconnect\\view\\pages\\gestionusuarios.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\view\\pages\\gestionusuarios.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|c:\\users\\alejandro\\documents\\github\\fpconnectproyect\\fpconnect\\fpconnect\\persistence\\manages\\perfilmanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\persistence\\manages\\perfilmanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|c:\\users\\alejandro\\documents\\github\\fpconnectproyect\\fpconnect\\fpconnect\\domain\\perfil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\fpconnect\\domain\\perfil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\domain\\perfil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|c:\\users\\alejandro\\documents\\github\\fpconnectproyect\\fpconnect\\fpconnect\\domain\\curso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\domain\\curso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\fpconnect\\view\\pages\\gestionusuarios.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\view\\pages\\gestionusuarios.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|c:\\users\\alejandro\\documents\\github\\fpconnectproyect\\fpconnect\\fpconnect\\domain\\profesor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\fpconnect\\domain\\profesor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\domain\\profesor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|c:\\users\\alejandro\\documents\\github\\fpconnectproyect\\fpconnect\\fpconnect\\persistence\\manages\\profesormanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\fpconnect\\persistence\\manages\\profesormanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\persistence\\manages\\profesormanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|c:\\users\\alejandro\\documents\\github\\fpconnectproyect\\fpconnect\\fpconnect\\helperclasses\\sesionusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\fpconnect\\helperclasses\\sesionusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F3CAD080-6BDA-47B3-BE71-D20D06D5A1A4}|FPConnect\\FPConnect.csproj|solutionrelative:fpconnect\\helperclasses\\sesionusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -42,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,20 +70,59 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EventosGridControl.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\EventosGridControl.xaml.cs",
+              "RelativeDocumentMoniker": "FPConnect\\view\\Pages\\EventosGridControl.xaml.cs",
+              "ToolTip": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\EventosGridControl.xaml.cs",
+              "RelativeToolTip": "FPConnect\\view\\Pages\\EventosGridControl.xaml.cs",
+              "ViewState": "AgIAAGwBAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-25T12:52:13.064Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EventosProfesoresManage.cs",
+              "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\persistence\\Manages\\EventosProfesoresManage.cs",
+              "RelativeDocumentMoniker": "FPConnect\\persistence\\Manages\\EventosProfesoresManage.cs",
+              "ToolTip": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\persistence\\Manages\\EventosProfesoresManage.cs",
+              "RelativeToolTip": "FPConnect\\persistence\\Manages\\EventosProfesoresManage.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAwwDYAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-25T12:51:08.784Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CursosManage.cs",
+              "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\persistence\\Manages\\CursosManage.cs",
+              "RelativeDocumentMoniker": "FPConnect\\persistence\\Manages\\CursosManage.cs",
+              "ToolTip": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\persistence\\Manages\\CursosManage.cs",
+              "RelativeToolTip": "FPConnect\\persistence\\Manages\\CursosManage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBQAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-25T11:29:51.142Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 4,
               "Title": "Curso.cs",
               "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\domain\\Curso.cs",
               "RelativeDocumentMoniker": "FPConnect\\domain\\Curso.cs",
               "ToolTip": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\domain\\Curso.cs",
               "RelativeToolTip": "FPConnect\\domain\\Curso.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAACMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAASwB8AAABKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-23T15:27:28.155Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "Perfil.cs",
               "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\domain\\Perfil.cs",
               "RelativeDocumentMoniker": "FPConnect\\domain\\Perfil.cs",
@@ -97,7 +148,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "GestionUsuarios.xaml",
               "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\GestionUsuarios.xaml",
               "RelativeDocumentMoniker": "FPConnect\\view\\Pages\\GestionUsuarios.xaml",
@@ -109,20 +160,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "GestionUsuarios.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\GestionUsuarios.xaml.cs",
               "RelativeDocumentMoniker": "FPConnect\\view\\Pages\\GestionUsuarios.xaml.cs",
               "ToolTip": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\view\\Pages\\GestionUsuarios.xaml.cs",
               "RelativeToolTip": "FPConnect\\view\\Pages\\GestionUsuarios.xaml.cs",
-              "ViewState": "AgIAAKsAAAAAAAAAAAAUwNsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAQwGYAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-23T09:47:41.029Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "Profesor.cs",
               "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\domain\\Profesor.cs",
               "RelativeDocumentMoniker": "FPConnect\\domain\\Profesor.cs",
@@ -130,12 +181,11 @@
               "RelativeToolTip": "FPConnect\\domain\\Profesor.cs",
               "ViewState": "AgIAAFoAAAAAAAAAAAAwwHAAAABHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T08:59:16.926Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-23T08:59:16.926Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "ProfesorManage.cs",
               "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\persistence\\Manages\\ProfesorManage.cs",
               "RelativeDocumentMoniker": "FPConnect\\persistence\\Manages\\ProfesorManage.cs",
@@ -143,12 +193,11 @@
               "RelativeToolTip": "FPConnect\\persistence\\Manages\\ProfesorManage.cs",
               "ViewState": "AgIAAF8AAAAAAAAAAAAvwHcAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T08:37:44.393Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-23T08:37:44.393Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "SesionUsuario.cs",
               "DocumentMoniker": "C:\\Users\\Alejandro\\Documents\\GitHub\\FPConnectProyect\\FPConnect\\FPConnect\\HelperClasses\\SesionUsuario.cs",
               "RelativeDocumentMoniker": "FPConnect\\HelperClasses\\SesionUsuario.cs",
@@ -156,8 +205,7 @@
               "RelativeToolTip": "FPConnect\\HelperClasses\\SesionUsuario.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T08:08:57.913Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-23T08:08:57.913Z"
             }
           ]
         }

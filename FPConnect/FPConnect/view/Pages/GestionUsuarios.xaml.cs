@@ -152,7 +152,7 @@ namespace FPConnect.view.Pages
         {
             // Limpiar el ComboBox de cursos
             cbCurso.Items.Clear();
-
+               
 
             // Obtener el grado seleccionado
             Grado gradoSeleccionado = cbGrado.SelectedItem as Grado;
@@ -174,6 +174,7 @@ namespace FPConnect.view.Pages
                 // Habilitar el ComboBox de cursos
                 cbCurso.IsEnabled = true;
                 cbDept.IsEnabled = true;
+                cbDept.Items.Clear();
             }
             else
             {
