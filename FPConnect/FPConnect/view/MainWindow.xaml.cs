@@ -18,7 +18,7 @@ namespace FPConnect
         public bool IsEmpresasButtonPressed { get; set; }
         public bool IsCoordinacionButtonPressed { get; set; }
         public bool IsGestionUsuariosButtonPressed { get; set; }
-
+        public bool IsGestionFamiliasButtonPressed { get; set; }
         private Profesor profesor { get; set; }
 
         public MainWindow(Profesor profesor)
@@ -35,6 +35,7 @@ namespace FPConnect
             IsEmpresasButtonPressed = false;
             IsCoordinacionButtonPressed = false;
             IsGestionUsuariosButtonPressed = false;
+            IsGestionFamiliasButtonPressed = false;
             UpdateButtonStyles();
 
             Storyboard slideAnimacion = (Storyboard)FindResource("SlideInStoryboard");
@@ -99,6 +100,7 @@ namespace FPConnect
             IsEmpresasButtonPressed = false;
             IsCoordinacionButtonPressed = false;
             IsGestionUsuariosButtonPressed = false;
+            IsGestionFamiliasButtonPressed = false;
             UpdateButtonStyles();
         }
 
@@ -117,6 +119,7 @@ namespace FPConnect
             IsCoordinacionButtonPressed = false;
             IsEmpresasButtonPressed = false;
             IsEventosButtonPressed = true;
+            IsGestionFamiliasButtonPressed = false;
             UpdateButtonStyles();
         }
 
@@ -135,6 +138,7 @@ namespace FPConnect
             IsCoordinacionButtonPressed = false;
             IsEmpresasButtonPressed = false;
             IsGestionUsuariosButtonPressed = false;
+            IsGestionFamiliasButtonPressed = false;
             UpdateButtonStyles();
         }
 
@@ -149,6 +153,7 @@ namespace FPConnect
             IsEmpresasButtonPressed = true;
             IsCoordinacionButtonPressed = false;
             IsGestionUsuariosButtonPressed = false;
+            IsGestionFamiliasButtonPressed = false;
             UpdateButtonStyles();
         }
 
@@ -163,6 +168,7 @@ namespace FPConnect
             IsEmpresasButtonPressed = false;
             IsCoordinacionButtonPressed = true;
             IsGestionUsuariosButtonPressed = false;
+            IsGestionFamiliasButtonPressed = false;
             UpdateButtonStyles();
         }
 
@@ -177,6 +183,7 @@ namespace FPConnect
             IsEmpresasButtonPressed = false;
             IsCoordinacionButtonPressed = false;
             IsGestionUsuariosButtonPressed = true;
+            IsGestionFamiliasButtonPressed = false;
             UpdateButtonStyles();
         }
 
@@ -218,6 +225,7 @@ namespace FPConnect
             btnEmpresas.Style = (Style)FindResource(IsEmpresasButtonPressed ? "menuButtonPressed" : "menuButton");
             btnCoordinacion.Style = (Style)FindResource(IsCoordinacionButtonPressed ? "menuButtonPressed" : "menuButton");
             btnGestionUsuarios.Style = (Style)FindResource(IsGestionUsuariosButtonPressed ? "menuButtonPressed" : "menuButton");
+            btnGestionFamilias.Style = (Style)FindResource(IsGestionFamiliasButtonPressed ? "menuButtonPressed" : "menuButton");
         }
 
         // ...
@@ -252,5 +260,22 @@ namespace FPConnect
             }
         }
 
+        private void btnGestionFamilias_Click(object sender, RoutedEventArgs e)
+        {
+            // Navegar a la página de Gestión de Familias
+            mainFrame.Source = new Uri("pages/Familias.xaml", UriKind.Relative);
+
+            // Actualizar estados de los botones
+            IsInicioButtonPressed = false;
+            IsAlumnosButtonPressed = false;
+            IsEventosButtonPressed = false;
+            IsEmpresasButtonPressed = false;
+            IsCoordinacionButtonPressed = false;
+            IsGestionUsuariosButtonPressed = false;
+            IsGestionFamiliasButtonPressed = true;
+
+            // Actualizar los estilos de los botones
+            UpdateButtonStyles();
+        }
     }
 }

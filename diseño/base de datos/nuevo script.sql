@@ -30,12 +30,13 @@ CREATE TABLE Turnos (
     nombre VARCHAR(50) NOT NULL -- Ejemplo: Mañana, Tarde
 );
 
--- Tabla profesores
+-- Tabla profesores (con la relación directa a un curso)
 CREATE TABLE Profesores ( 
     id_profesor INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     id_rol INT NOT NULL,
     id_centro INT NOT NULL,
     id_familia INT NOT NULL,
+    id_curso INT NOT NULL,  -- Nueva columna para curso único
     nombre VARCHAR(100) NOT NULL,
     apellidos VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
@@ -50,9 +51,9 @@ CREATE TABLE Profesores (
     CONSTRAINT fk_profesores_roles FOREIGN KEY (id_rol) REFERENCES Roles(id_rol),
     CONSTRAINT fk_profesores_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro),
     CONSTRAINT fk_profesores_familias FOREIGN KEY (id_familia) REFERENCES FamiliasProfesionales(id_familia),
-    CONSTRAINT fk_profesores_turnos FOREIGN KEY (id_turno) REFERENCES Turnos(id_turno)
+    CONSTRAINT fk_profesores_turnos FOREIGN KEY (id_turno) REFERENCES Turnos(id_turno),
+    CONSTRAINT fk_profesores_cursos FOREIGN KEY (id_curso) REFERENCES Cursos(id_curso)
 );
-
 -- Tabla de Grados (corregida: incluye id_centro)
 CREATE TABLE Grados (
     id_grado INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -204,15 +205,6 @@ CREATE TABLE EventosProfesores (
     CONSTRAINT fk_eventosprofesores_estados FOREIGN KEY (id_estado) REFERENCES EstadosEventos(id_estado)
 );
 
--- Tabla de Relación Profesores-Cursos
-CREATE TABLE ProfesoresCursos (
-    id_profesor INT NOT NULL,
-    id_curso INT NOT NULL,
-    PRIMARY KEY (id_profesor, id_curso),
-    CONSTRAINT fk_profesorescursos_profesores FOREIGN KEY (id_profesor) REFERENCES Profesores(id_profesor),
-    CONSTRAINT fk_profesorescursos_cursos FOREIGN KEY (id_curso) REFERENCES Cursos(id_curso)
-);
-
 -- Tabla de relación Empresas-Familias
 CREATE TABLE EmpresasFamilias (
     id_empresa INT NOT NULL,
@@ -298,10 +290,6 @@ CREATE INDEX idx_cargos_nombre ON Cargos(nombre);
 
 -- Índices para la tabla Turnos
 CREATE INDEX idx_turnos_nombre ON Turnos(nombre);
-
--- Índices para la tabla ProfesoresCursos
-CREATE INDEX idx_profesorescursos_id_profesor ON ProfesoresCursos(id_profesor);
-CREATE INDEX idx_profesorescursos_id_curso ON ProfesoresCursos(id_curso);
 
 -- Índices para la tabla EmpresasFamilias
 CREATE INDEX idx_empresasfamilias_id_empresa ON EmpresasFamilias(id_empresa);

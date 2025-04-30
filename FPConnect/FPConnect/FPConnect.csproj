@@ -486,6 +486,9 @@
     <Compile Include="view\Pages\EventosGridControl.xaml.cs">
       <DependentUpon>EventosGridControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\Pages\Familias.xaml.cs">
+      <DependentUpon>Familias.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\Pages\Forms\Alumnos\FormAddAlumno.xaml.cs">
       <DependentUpon>FormAddAlumno.xaml</DependentUpon>
     </Compile>
@@ -566,6 +569,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\Pages\EventosGridControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Pages\Familias.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
