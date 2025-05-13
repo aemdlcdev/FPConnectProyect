@@ -78,7 +78,7 @@
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
                         <Button x:Name="btnGuardarPefil" Content="Guardar" Cursor="Hand" FontSize="22" Width="auto" Height="40" Style="{StaticResource buttonMainGreenGestionUsuarios}" Grid.Column="0" Click="btnGuardarPefil_Click"/>
-                        <Button x:Name="btnCancelarP" Content="Cancelar" Cursor="Hand" FontSize="22" Width="auto" Height="40" Style="{StaticResource buttonMainGestionUsuarios}" Grid.Column="2"/>
+                        <Button x:Name="btnCancelarP" Content="Cancelar" Cursor="Hand" FontSize="22" Width="auto" Height="40" Style="{StaticResource buttonMainGestionUsuarios}" Grid.Column="2" Click="btnCancelarP_Click"/>
                     </Grid>
                 </Grid>
             </Border>
@@ -106,7 +106,7 @@
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
                         <Button x:Name="btnGuardarFamilia" Content="Guardar" Cursor="Hand" FontSize="22" Width="auto" Height="40" Style="{StaticResource buttonMainGreenGestionUsuarios}" Grid.Column="0" Click="btnGuardarFamilia_Click"/>
-                        <Button x:Name="btnCancelarF" Content="Cancelar" Cursor="Hand" FontSize="22" Width="auto" Height="40" Style="{StaticResource buttonMainGestionUsuarios}" Grid.Column="2"/>
+                        <Button x:Name="btnCancelarF" Content="Cancelar" Cursor="Hand" FontSize="22" Width="auto" Height="40" Style="{StaticResource buttonMainGestionUsuarios}" Grid.Column="2" Click="btnCancelarF_Click"/>
                     </Grid>
                 </Grid>
             </Border>
@@ -116,9 +116,9 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <DataGrid x:Name="familiasDataGrid" SelectionChanged="familiasDataGrid_SelectionChanged" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  Style="{DynamicResource DataGridStyle1}" >
+                    <DataGrid x:Name="familiasDataGrid" MaxHeight="250" SelectionChanged="familiasDataGrid_SelectionChanged" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  Style="{DynamicResource DataGridStyle1}" >
                         <DataGrid.Columns>
-                            <DataGridTemplateColumn Header="Nombre" IsReadOnly="True" Width="520">
+                            <DataGridTemplateColumn Header="Nombre" IsReadOnly="True" Width="546">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
@@ -157,7 +157,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <DataGrid x:Name="perfilesDataGrid" SelectionChanged="perfilesDataGrid_SelectionChanged" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  Style="{DynamicResource DataGridStyle1}" >
+                    <DataGrid x:Name="perfilesDataGrid" MaxHeight="250" SelectionChanged="perfilesDataGrid_SelectionChanged" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  Style="{DynamicResource DataGridStyle1}" >
                         <DataGrid.Columns>
                             <DataGridTemplateColumn Header="Nombre" IsReadOnly="True" Width="325">
                                 <DataGridTemplateColumn.CellTemplate>

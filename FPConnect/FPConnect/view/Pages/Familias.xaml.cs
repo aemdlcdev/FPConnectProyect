@@ -91,6 +91,8 @@ namespace FPConnect.view.Pages
                 nombreFamilia
             );
             familia.InsertarFamilia(familiaNueva);
+            int ultima_id = familia.LeerUltimaIdFamilia();
+            familiaNueva.id_familia = ultima_id;
             listaFamilias.Add(familiaNueva);
             MessageBox.Show("Familia insertada correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
             txtNombreFamilia.Text = "";
@@ -116,9 +118,26 @@ namespace FPConnect.view.Pages
 
         private void btnGuardarPefil_Click(object sender, RoutedEventArgs e)
         {
+
             if (txtNombrePefil.Text.Trim() == "")
             {
-                MessageBox.Show("El nombre del perfil no puede estar vacío", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("El nombre no puede estar vacío", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Comprobación del ComboBox de Familia
+            if (cbxFamilia.SelectedItem == null)
+            {
+                MessageBox.Show("Debe seleccionar una familia profesional", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                cbxFamilia.Focus();
+                return;
+            }
+
+            // Comprobación del ComboBox de Grado
+            if (cbxGrado.SelectedItem == null)
+            {
+                MessageBox.Show("Debe seleccionar un grado", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                cbxGrado.Focus();
                 return;
             }
 
@@ -128,8 +147,11 @@ namespace FPConnect.view.Pages
             int idCentro = SesionUsuario.IdCentro;
 
             Perfil nuevoPerfil = new Perfil(SesionUsuario.IdCentro, idFamilia, idGrado, nombrePerfil);
-            perfil.InsertarPerfil(nuevoPerfil);
-            listaPerfiles.Add(nuevoPerfil);
+            perfil.InsertarPerfil(nuevoPerfil);    
+            listaPerfiles.Clear();
+            listaPerfiles = perfil.LeerPerfilesPorCentro(SesionUsuario.IdCentro);
+            perfilesDataGrid.ItemsSource = null;
+            perfilesDataGrid.ItemsSource = listaPerfiles;
 
             MessageBox.Show("Perfil insertado correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -258,6 +280,18 @@ namespace FPConnect.view.Pages
                 MessageBox.Show("Error al modificar el perfil: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
+        }
+
+        private void btnCancelarP_Click(object sender, RoutedEventArgs e)
+        {
+            cbxGrado.SelectedItem = null;
+            cbxFamilia.SelectedItem = null;
+            txtNombrePefil.Text = "";
+        }
+
+        private void btnCancelarF_Click(object sender, RoutedEventArgs e)
+        {
+            txtNombreFamilia.Text = "";
         }
     }
 }

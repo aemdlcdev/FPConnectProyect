@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FPConnect.persistence;
 using FPConnect.persistence.Manages;
 
 namespace FPConnect.domain
@@ -66,6 +67,12 @@ namespace FPConnect.domain
         public void EliminarFamilia(int id_familia)
         {
             fpm.EliminadoLogicoFamilia(id_familia);
+        }
+
+        public int LeerUltimaIdFamilia()
+        {
+            DBBroker db = DBBroker.ObtenerAgente();
+            return db.LeerUltimoIdInsertado();
         }
 
         public override string ToString()
