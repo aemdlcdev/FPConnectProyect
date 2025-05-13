@@ -21,6 +21,7 @@ CREATE TABLE FamiliasProfesionales (
     id_familia INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     id_centro INT NOT NULL,
     nombre VARCHAR(100) NOT NULL,
+    activo INT(1) NOT NULL,
     CONSTRAINT fk_familias_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro)
 );
 
@@ -28,6 +29,36 @@ CREATE TABLE FamiliasProfesionales (
 CREATE TABLE Turnos (
     id_turno INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     nombre VARCHAR(50) NOT NULL -- Ejemplo: Mañana, Tarde
+);
+
+-- Tabla de Grados (corregida: incluye id_centro)
+CREATE TABLE Grados (
+    id_grado INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    id_centro INT NOT NULL,
+    nombre VARCHAR(50) NOT NULL, -- Básica, Media, Superior
+    CONSTRAINT fk_grados_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro)
+);
+
+-- Tabla de Perfiles
+CREATE TABLE Perfiles (
+    id_perfil INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    id_familia INT NOT NULL,
+    id_grado INT NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    activo INT(1) NOT NULL,
+    CONSTRAINT fk_perfiles_familias FOREIGN KEY (id_familia) REFERENCES FamiliasProfesionales(id_familia),
+    CONSTRAINT fk_perfiles_grados FOREIGN KEY (id_grado) REFERENCES Grados(id_grado)
+);
+
+-- Tabla de Cursos (modificada: ahora referencia a perfiles en lugar de grados)
+CREATE TABLE Cursos (
+    id_curso INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    id_perfil INT NOT NULL,
+    nivel VARCHAR(20),
+    anio_inicio INT(4) NOT NULL,
+    anio_fin INT(4) NOT NULL,
+    activo INT(1) NOT NULL,
+    CONSTRAINT fk_cursos_perfiles FOREIGN KEY (id_perfil) REFERENCES Perfiles(id_perfil)
 );
 
 -- Tabla profesores (con la relación directa a un curso)
@@ -53,34 +84,6 @@ CREATE TABLE Profesores (
     CONSTRAINT fk_profesores_familias FOREIGN KEY (id_familia) REFERENCES FamiliasProfesionales(id_familia),
     CONSTRAINT fk_profesores_turnos FOREIGN KEY (id_turno) REFERENCES Turnos(id_turno),
     CONSTRAINT fk_profesores_cursos FOREIGN KEY (id_curso) REFERENCES Cursos(id_curso)
-);
--- Tabla de Grados (corregida: incluye id_centro)
-CREATE TABLE Grados (
-    id_grado INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    id_centro INT NOT NULL,
-    nombre VARCHAR(50) NOT NULL, -- Básica, Media, Superior
-    CONSTRAINT fk_grados_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro)
-);
-
--- Tabla de Perfiles
-CREATE TABLE Perfiles (
-    id_perfil INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    id_familia INT NOT NULL,
-    id_grado INT NOT NULL,
-    nombre VARCHAR(100) NOT NULL,
-    CONSTRAINT fk_perfiles_familias FOREIGN KEY (id_familia) REFERENCES FamiliasProfesionales(id_familia),
-    CONSTRAINT fk_perfiles_grados FOREIGN KEY (id_grado) REFERENCES Grados(id_grado)
-);
-
--- Tabla de Cursos (modificada: ahora referencia a perfiles en lugar de grados)
-CREATE TABLE Cursos (
-    id_curso INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    id_perfil INT NOT NULL,
-    nombre VARCHAR(100) NOT NULL,
-    descripcion TEXT,
-    anio_inicio INT(4) NOT NULL,
-    anio_fin INT(4) NOT NULL,
-    CONSTRAINT fk_cursos_perfiles FOREIGN KEY (id_perfil) REFERENCES Perfiles(id_perfil)
 );
 
 -- Tabla de Cargos

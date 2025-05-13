@@ -26,15 +26,21 @@ namespace FPConnect.persistence.Manages
         {
             int activo = 1;
             ObservableCollection<Profesor> profesoresPorCentro = new ObservableCollection<Profesor>();
+            db = DBBroker.ObtenerAgente();
 
-            // Consulta SQL para obtener los profesores por id_centro
-            string query = "SELECT id_profesor, id_rol, id_centro, id_familia,id_turno, nombre, apellidos, email, password, sexo, first_char, bgColor FROM fpc.profesores WHERE id_centro = @id_centro AND activo = @activo;";
+            // Consulta SQL para obtener los profesores por id_centro con el nombre de su familia profesional (departamento)
+            string query = @"SELECT p.id_profesor, p.id_rol, p.id_centro, p.id_familia, p.id_curso, p.id_turno,
+                    p.nombre, p.apellidos, p.email, p.password, p.sexo, p.first_char, 
+                    p.bgColor, p.activo, f.nombre AS nombre_departamento
+                    FROM fpc.profesores p
+                    INNER JOIN fpc.familiasprofesionales f ON p.id_familia = f.id_familia
+                    WHERE p.id_centro = @id_centro AND p.activo = @activo;";
 
             // Parámetros para la consulta
             var parametros = new Dictionary<string, object>
             {
                 { "@id_centro", id_centro },
-                { "@activo", activo } // Leer solo los profesores activos
+                { "@activo", 1 }  // solo los profesores activos
             };
 
             // Ejecutar la consulta
@@ -46,18 +52,21 @@ namespace FPConnect.persistence.Manages
                 try
                 {
                     Profesor profesor = new Profesor(
-                        int.Parse(fila[0].ToString()), // id_profesor
-                        int.Parse(fila[1].ToString()), // id_rol
-                        int.Parse(fila[2].ToString()), // id_centro
-                        int.Parse(fila[3].ToString()), // id_familia
-                        int.Parse(fila[4].ToString()), // id_turno
-                        fila[5].ToString().Trim(), // nombre
-                        fila[6].ToString().Trim(), // apellidos
-                        fila[7].ToString().Trim(), // email
-                        fila[8].ToString().Trim(), // password
-                        fila[9].ToString().Trim(), // sexo
-                        fila[10].ToString().Trim(), // character (primera letra del nombre)
-                        fila[11].ToString().Trim() // bgColor
+                        int.Parse(fila[0].ToString()),      // id_profesor
+                        int.Parse(fila[1].ToString()),      // id_rol
+                        int.Parse(fila[2].ToString()),      // id_centro
+                        int.Parse(fila[3].ToString()),      // id_familia
+                        int.Parse(fila[4].ToString()),      // id_curso
+                        int.Parse(fila[5].ToString()),      // id_turno
+                        fila[6].ToString().Trim(),          // nombre
+                        fila[7].ToString().Trim(),          // apellidos
+                        fila[8].ToString().Trim(),          // email
+                        fila[9].ToString().Trim(),          // password
+                        fila[10].ToString().Trim(),         // sexo
+                        fila[11].ToString().Trim(),         // first_char
+                        fila[12].ToString().Trim(),         // bgColor
+                        int.Parse(fila[13].ToString()),     // activo                     
+                        fila[14].ToString().Trim()          // nombre_departamento
                     );
 
                     profesoresPorCentro.Add(profesor);

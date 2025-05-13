@@ -121,7 +121,7 @@
                             <Button Name="btnGestionFamilias" Style="{StaticResource menuButton}" Click="btnGestionFamilias_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="FamilyTree" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Familias"/>
+                                    <TextBlock Text="Familias y Perfiles"/>
                                 </StackPanel>
                             </Button>
 

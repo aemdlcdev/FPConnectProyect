@@ -19,18 +19,27 @@ namespace FPConnect.persistence.Manages
         }
 
 
-        public ObservableCollection<Grado> LeerGrados()
+        public ObservableCollection<Grado> LeerGradosPorCentro(int id_centro)
         {
             Grado grado = null;
             db = DBBroker.ObtenerAgente();
 
-            var resultado = db.LeerSinParametros("SELECT * FROM fpc.grados;");
+            var resultado = db.LeerConParametros(
+                @"SELECT id_grado, id_centro, nombre 
+                FROM fpc.grados
+                WHERE id_centro = @id_centro;",
+                new Dictionary<string, object> {{ "@id_centro", id_centro } }
+            );
+
             foreach (ObservableCollection<Object> c in resultado)
             {
                 grado = new Grado(
-                    int.Parse(c[0].ToString()), //id
-                    c[1].ToString()); //nombre
+                    int.Parse(c[0].ToString()), //id_grado
+                    int.Parse(c[1].ToString()), //id_centro
+                    c[2].ToString()); //nombre
                 this.listaGrados.Add(grado);
+                //Traza
+                Console.WriteLine("Grado: " + grado.ToString());
             }
             return listaGrados;
         }

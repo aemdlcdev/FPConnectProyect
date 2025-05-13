@@ -498,8 +498,14 @@
     <Compile Include="view\Pages\Forms\Empresas\FormAddEmpresa.xaml.cs">
       <DependentUpon>FormAddEmpresa.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\Pages\Forms\Familias\FormModFamilia.xaml.cs">
+      <DependentUpon>FormModFamilia.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\Pages\Forms\FormDelAlumno.xaml.cs">
       <DependentUpon>FormDelAlumno.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Pages\Forms\Perfiles\FormModPerfil.xaml.cs">
+      <DependentUpon>FormModPerfil.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\Pages\Forms\Usuarios\FormModUsuario.xaml.cs">
       <DependentUpon>FormModUsuario.xaml</DependentUpon>
@@ -588,9 +594,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="view\Pages\Forms\Familias\FormModFamilia.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="view\Pages\Forms\FormDelAlumno.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Pages\Forms\Perfiles\FormModPerfil.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="view\Pages\Forms\Usuarios\FormModUsuario.xaml">
       <SubType>Designer</SubType>
@@ -716,6 +730,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\company.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\profesionales.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\profesionales%281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.5.1.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.5.1.0\build\MaterialDesignThemes.targets')" />

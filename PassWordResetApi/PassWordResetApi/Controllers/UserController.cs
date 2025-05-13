@@ -68,7 +68,7 @@ namespace PassWordResetApi.Controllers
                 }
             }
 
-            return NoContent(); // Respuesta exitosa sin contenido
+            return NoContent(); 
         }
 
         // POST api/user/reset-password
@@ -76,23 +76,23 @@ namespace PassWordResetApi.Controllers
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request)
         {
             var user = await _context.Profesores.FirstOrDefaultAsync(u => u.email == request.Email);
-            
+
             if (user == null)
             {
                 return NotFound("Usuario no encontrado");
             }
 
-            // Genero un token de restablecimiento de contraseña
+            // genero un token de restablecimiento de contraseña
             var resetToken = Guid.NewGuid().ToString();
             user.reset_password_token = resetToken;
             user.reset_password_token_expiry = DateTime.UtcNow.AddHours(1); // Le pongo validez de una hora
 
             await _context.SaveChangesAsync();
 
-            // Envía el correo electrónico con el enlace de restablecimiento de contraseña
+            // envio el correo electrónico en segundo plano
             var resetLink = $"https://fpconnect-resetpassword.netlify.app/index.html?token={resetToken}";
             var message = $"Haga clic en el siguiente enlace para restablecer su contraseña: {resetLink}";
-            await _emailService.SendEmailAsync(request.Email, "Restablecimiento de contraseña", message);
+            _ = Task.Run(() => _emailService.SendEmailAsync(request.Email, "Restablecimiento de contraseña", message));
 
             return Ok("Correo electrónico de restablecimiento de contraseña enviado");
         }
@@ -107,7 +107,7 @@ namespace PassWordResetApi.Controllers
                 return BadRequest("Token inválido o expirado");
             }
 
-            // Restablece la contraseña del usuario
+            // restablecemos la contraseña del usuario
             user.password = Seguridad.EncriptarContraseña(request.NewPassword);
 
             user.reset_password_token = null;

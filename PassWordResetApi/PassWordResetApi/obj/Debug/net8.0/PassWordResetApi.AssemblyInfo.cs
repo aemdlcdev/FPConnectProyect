@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PassWordResetApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b423033f8343e44c9e6da11dd6a9629799d79f09")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9640738a85aa9247300d0e1ae592dedb911f6b91")]
 [assembly: System.Reflection.AssemblyProductAttribute("PassWordResetApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PassWordResetApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

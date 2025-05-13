@@ -49,6 +49,7 @@ namespace FPConnect.view.Pages
         private Perfil perfilUsuario;
         private ObservableCollection<Perfil> listaPerfiles;
 
+        private FamiliaProfesional familiaSeleccionada;
         public GestionUsuarios()
         {
             
@@ -66,7 +67,7 @@ namespace FPConnect.view.Pages
             listaRoles = rol.LeerRolesPorCentro(SesionUsuario.IdCentro);
 
             grado = new Grado();
-            listaGrados = grado.LeerGrados();
+            listaGrados = grado.LeerGradosPorCentro(SesionUsuario.IdCentro);
 
             turno = new Turno();
             listaTurnos = turno.LeerTurnos();
@@ -117,6 +118,8 @@ namespace FPConnect.view.Pages
             profesoresDataGrid.ItemsSource = profesores;
             selectedUsuario = new Profesor();
             
+
+
         }
 
         private void cbDept_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -124,13 +127,13 @@ namespace FPConnect.view.Pages
             // Limpiar el ComboBox de perfiles
             cbPerfil.Items.Clear();
             listaPerfiles.Clear();
-            FamiliaProfesional familiaSeleccionada = cbDept.SelectedItem as FamiliaProfesional;
+            familiaSeleccionada = cbDept.SelectedItem as FamiliaProfesional;
             Grado gradoSeleccionado = cbGrado.SelectedItem as Grado;
 
             if (familiaSeleccionada != null)
             {             
 
-                listaPerfiles = perfilUsuario.LeerPerfilCentro(familiaSeleccionada.id_familia, gradoSeleccionado.id_grado);
+                listaPerfiles = perfilUsuario.LeerPerfilesFiltrados(SesionUsuario.IdCentro, gradoSeleccionado.id_grado, familiaSeleccionada.id_familia);
 
                 foreach (Perfil p in listaPerfiles)
                 {
@@ -160,26 +163,26 @@ namespace FPConnect.view.Pages
             if (gradoSeleccionado != null)
             {
                 // Crear instancia de Curso para acceder a los métodos
-                Curso curso = new Curso();
+                FamiliaProfesional familia = new FamiliaProfesional();
 
                 // Obtener los cursos asociados al grado seleccionado
-                ObservableCollection<Curso> cursosPorGrado = curso.LeerCursosPorGrado(gradoSeleccionado.id_grado);
+                ObservableCollection<FamiliaProfesional> familiasPorGrado = familia.LeerFamiliasPorCentroYGrado(SesionUsuario.IdCentro, gradoSeleccionado.id_grado);
 
                 // Poblar el ComboBox de cursos con los cursos del grado seleccionado
-                foreach (Curso c in cursosPorGrado)
+                foreach (FamiliaProfesional f in familiasPorGrado)
                 {
-                    cbCurso.Items.Add(c);
+                    cbDept.Items.Add(f);
                 }
 
-                // Habilitar el ComboBox de cursos
-                cbCurso.IsEnabled = true;
+                // Habilitar el ComboBox de familias
                 cbDept.IsEnabled = true;
                 cbDept.Items.Clear();
             }
             else
             {
-                // Si no hay grado seleccionado, deshabilitar el ComboBox de cursos
-                cbCurso.IsEnabled = false;
+                // Si no hay grado seleccionado, deshabilitar el ComboBox de familias
+                cbDept.IsEnabled = false;
+
             }
         }
 
@@ -269,7 +272,7 @@ namespace FPConnect.view.Pages
             string email = txtEmail.Text.Trim();
             string password = txtPassword.Password.Trim();
             string sexo = cbSexo.Text.Trim();
-            string character = nombre.Substring(0, 1).ToUpper();
+            
 
 
 
@@ -306,7 +309,7 @@ namespace FPConnect.view.Pages
                 }
 
                 Console.WriteLine(rolSeleccionado.id_rol + " " + fpSeleccionada.id_familia);
-
+                string character = nombre.Substring(0, 1).ToUpper();
                 Profesor nuevoProfesor = new Profesor(
                     rolSeleccionado.id_rol,
                     SesionUsuario.IdCentro,

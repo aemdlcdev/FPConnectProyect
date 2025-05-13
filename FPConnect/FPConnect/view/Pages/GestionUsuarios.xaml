@@ -129,7 +129,7 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTextColumn Header="Departamento" Binding="{Binding id_familia}" IsReadOnly="True" Width="130"/>
+                            <DataGridTextColumn Header="Departamento" Binding="{Binding nombre_departamento}" IsReadOnly="True" Width="130"/>
                             <DataGridTextColumn Header="Email" Binding="{Binding email}" IsReadOnly="True" Width="180"/>
                             <DataGridTextColumn Header="id" Binding="{Binding id_profesor}" IsReadOnly="True" Visibility="Hidden"/>
                             <DataGridTextColumn Header="id_rol" Binding="{Binding id_rol}" IsReadOnly="True" Visibility="Hidden"/>
