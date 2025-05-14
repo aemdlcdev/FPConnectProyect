@@ -107,14 +107,6 @@ CREATE TABLE TiposFase (
     CONSTRAINT fk_tiposfase_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro)
 );
 
--- Tabla para Estado de Empresas
-CREATE TABLE EstadosEmpresa (
-    id_estado INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    id_centro INT NOT NULL,
-    nombre VARCHAR(50) NOT NULL, -- Ejemplo: Vigente, Caducada
-    CONSTRAINT fk_estadosempresa_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro)
-);
-
 -- Tabla para Estado de Eventos
 CREATE TABLE EstadosEventos (
     id_estado INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -166,8 +158,7 @@ CREATE TABLE Empresas (
     telefono VARCHAR(20) NOT NULL,
     anio_inicio_acuerdo INTEGER(4) NOT NULL,
     anio_fin_acuerdo INTEGER(4),
-    id_estado INT NOT NULL,
-    CONSTRAINT fk_empresas_estados FOREIGN KEY (id_estado) REFERENCES EstadosEmpresa(id_estado),
+    activo INT(1) NOT NULL DEFAULT 1, -- Nuevo campo que reemplaza id_estado
     CONSTRAINT fk_empresas_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro)
 );
 
@@ -191,6 +182,7 @@ CREATE TABLE TareasCoordinacion (
     titulo VARCHAR(100) NOT NULL,
     descripcion TEXT NOT NULL,
     fecha_creacion DATE NOT NULL,
+    estado INT(1) NOT NULL,
     CONSTRAINT fk_tareascoordinacion_familias FOREIGN KEY (id_familia) REFERENCES FamiliasProfesionales(id_familia),
     CONSTRAINT fk_tareascoordinacion_empresas FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa)
 );
@@ -216,6 +208,19 @@ CREATE TABLE EmpresasFamilias (
     CONSTRAINT fk_empresasfamilias_empresas FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa),
     CONSTRAINT fk_empresasfamilias_familias FOREIGN KEY (id_familia) REFERENCES FamiliasProfesionales(id_familia)
 );
+
+-- Tabla de relación entre Empresas y Perfiles
+CREATE TABLE EmpresasPerfiles (
+    id_empresa INT NOT NULL,
+    id_perfil INT NOT NULL,
+    PRIMARY KEY (id_empresa, id_perfil),
+    CONSTRAINT fk_empresasperfiles_empresas FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa),
+    CONSTRAINT fk_empresasperfiles_perfiles FOREIGN KEY (id_perfil) REFERENCES Perfiles(id_perfil)
+);
+
+-- Índices para EmpresasPerfiles
+CREATE INDEX idx_empresasperfiles_id_empresa ON EmpresasPerfiles(id_empresa);
+CREATE INDEX idx_empresasperfiles_id_perfil ON EmpresasPerfiles(id_perfil);
 
 -- ÍNDICES
 
@@ -293,7 +298,3 @@ CREATE INDEX idx_cargos_nombre ON Cargos(nombre);
 
 -- Índices para la tabla Turnos
 CREATE INDEX idx_turnos_nombre ON Turnos(nombre);
-
--- Índices para la tabla EmpresasFamilias
-CREATE INDEX idx_empresasfamilias_id_empresa ON EmpresasFamilias(id_empresa);
-CREATE INDEX idx_empresasfamilias_id_familia ON EmpresasFamilias(id_familia);

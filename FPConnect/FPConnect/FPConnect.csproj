@@ -444,6 +444,7 @@
     </ApplicationDefinition>
     <Compile Include="domain\Centro.cs" />
     <Compile Include="domain\Curso.cs" />
+    <Compile Include="domain\Empresa.cs" />
     <Compile Include="domain\EventosProfesores.cs" />
     <Compile Include="domain\FamiliaProfesional.cs" />
     <Compile Include="domain\Grado.cs" />
@@ -458,6 +459,7 @@
     <Compile Include="persistence\DBBroker.cs" />
     <Compile Include="persistence\Manages\CentroManage.cs" />
     <Compile Include="persistence\Manages\CursosManage.cs" />
+    <Compile Include="persistence\Manages\EmpresaManage.cs" />
     <Compile Include="persistence\Manages\EventosProfesoresManage.cs" />
     <Compile Include="persistence\Manages\FamiliaProfesionalManage.cs" />
     <Compile Include="persistence\Manages\GradoManage.cs" />
