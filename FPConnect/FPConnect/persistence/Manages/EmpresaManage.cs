@@ -397,16 +397,18 @@ namespace FPConnect.persistence.Manages
                 // Verificar si la relación ya existe
                 string queryExistente = "SELECT EXISTS(SELECT 1 FROM fpc.empresasperfiles WHERE id_empresa = @id_empresa AND id_perfil = @id_perfil) as existe;";
                 var parametrosExistente = new Dictionary<string, object>
-        {
-            { "@id_empresa", id_empresa },
-            { "@id_perfil", id_perfil }
-        };
+                {
+                    { "@id_empresa", id_empresa },
+                    { "@id_perfil", id_perfil }
+                };
 
                 var resultadoExistente = db.LeerConParametros(queryExistente, parametrosExistente);
 
                 if (resultadoExistente.Count > 0 && resultadoExistente[0] is ObservableCollection<object> fila && fila.Count > 0)
                 {
-                    bool existe = Convert.ToBoolean(fila[0]);
+                    
+                    int existeInt = Convert.ToInt32(fila[0]);
+                    bool existe = (existeInt == 1);
 
                     if (existe)
                         return true; // La relación ya existe
@@ -417,7 +419,7 @@ namespace FPConnect.persistence.Manages
                 var parametros = new Dictionary<string, object>
                 {
                     { "@id_empresa", id_empresa },
-                    { "@id_perfil", id_perfil } 
+                    { "@id_perfil", id_perfil }
                 };
 
                 int resultado = db.Modificar(query, parametros);
@@ -429,6 +431,7 @@ namespace FPConnect.persistence.Manages
                 return false;
             }
         }
+
 
         // Desasociar una empresa de un perfil
         public bool DesasociarEmpresaPerfil(int id_empresa, int id_perfil)
@@ -661,6 +664,57 @@ namespace FPConnect.persistence.Manages
             catch (Exception ex)
             {
                 Console.WriteLine($"Error al leer empresas por familia y grado: {ex.Message}");
+            }
+
+            return empresas;
+        }
+
+        // Leer empresas por centro, familia profesional y grado
+        public ObservableCollection<Empresa> LeerEmpresasPorCentroFamiliaYGrado(int id_centro, int id_familia, int id_grado)
+        {
+            ObservableCollection<Empresa> empresas = new ObservableCollection<Empresa>();
+
+            try
+            {
+                string query = @"SELECT DISTINCT e.id_empresa, e.id_centro, e.nombre, e.email, e.telefono, 
+                        e.anio_inicio_acuerdo, e.anio_fin_acuerdo, e.activo
+                        FROM fpc.empresas e
+                        INNER JOIN fpc.empresasperfiles ep ON e.id_empresa = ep.id_empresa
+                        INNER JOIN fpc.perfiles p ON ep.id_perfil = p.id_perfil
+                        WHERE p.id_familia = @id_familia 
+                          AND p.id_grado = @id_grado
+                          AND e.id_centro = @id_centro
+                          AND e.activo = 1
+                        ORDER BY e.nombre;";
+
+                var parametros = new Dictionary<string, object>
+                {
+                    { "@id_centro", id_centro },
+                    { "@id_familia", id_familia },
+                    { "@id_grado", id_grado }
+                };
+
+                var resultado = db.LeerConParametros(query, parametros);
+
+                foreach (ObservableCollection<object> fila in resultado)
+                {
+                    Empresa empresa = new Empresa(
+                        int.Parse(fila[0].ToString()),      // id_empresa
+                        int.Parse(fila[1].ToString()),      // id_centro
+                        fila[2].ToString(),                 // nombre
+                        fila[3].ToString(),                 // email
+                        fila[4].ToString(),                 // telefono
+                        int.Parse(fila[5].ToString()),      // anio_inicio_acuerdo
+                        fila[6] != DBNull.Value ? int.Parse(fila[6].ToString()) : 0, // anio_fin_acuerdo
+                        int.Parse(fila[7].ToString())       // activo (estado)
+                    );
+
+                    empresas.Add(empresa);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al leer empresas por centro, familia y grado: {ex.Message}");
             }
 
             return empresas;

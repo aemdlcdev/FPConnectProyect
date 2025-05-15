@@ -12,7 +12,7 @@
             CornerRadius="10" Width="400">
             <StackPanel>
 
-                <TextBlock Text="Añadir empresa" Style="{StaticResource titleText}"/>
+                <TextBlock Text="Añadir empresa" Name="txtTitulo" Style="{StaticResource titleText}"/>
 
                 <TextBlock Text="Nombre de la empresa:" Margin="0 10 0 0"/>
                 <TextBox x:Name="txtNombre" Margin="0,5" Style="{StaticResource textBoxNormal}" Width="350"/>
@@ -24,10 +24,10 @@
                 <TextBox x:Name="txtTlfno" Margin="0,5" Style="{StaticResource textBoxNormal}" Width="350"/>
                 
                 <TextBlock Text="Año de inicio del acuerdo:"/>
-                <TextBox x:Name="txtAnioInicio" Margin="0,5" Style="{StaticResource textBoxNormal}" Width="350"/>
+                <TextBox x:Name="txtAnioInicio" PreviewTextInput="txtAnio_PreviewTextInput" Margin="0,5" Style="{StaticResource textBoxNormal}" Width="350"/>
 
                 <TextBlock Text="Año de finalización del acuerdo: (Opcional)"/>
-                <TextBox x:Name="txtAnioFin" Margin="0,5" Style="{StaticResource textBoxNormal}" Width="350"/>
+                <TextBox x:Name="txtAnioFin" PreviewTextInput="txtAnio_PreviewTextInput" Margin="0,5" Style="{StaticResource textBoxNormal}" Width="350"/>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10">
                     <Button Content="Guardar" Width="80" Name="btnguardar" Style="{StaticResource buttonMainGreenGestionUsuarios}" Height="30" Click="Guardar_Click"/>

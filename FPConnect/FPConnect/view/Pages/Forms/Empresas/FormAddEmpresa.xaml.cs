@@ -10,8 +10,11 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using FPConnect.domain;
+using FPConnect.HelperClasses;
 
 namespace FPConnect.view.Pages.Forms.Empresas
 {
@@ -20,9 +23,31 @@ namespace FPConnect.view.Pages.Forms.Empresas
     /// </summary>
     public partial class FormAddEmpresa : Window
     {
+        private Empresa nuevaEmpresa;
+        private int tipoOperacion; // 1 add, 2 mod
         public FormAddEmpresa()
         {
             InitializeComponent();
+        }
+
+        public FormAddEmpresa(Empresa empresa, int tipo) // 1 add, 2 mod
+        {
+            InitializeComponent();
+            nuevaEmpresa = empresa;
+            tipoOperacion = tipo;
+            if (tipoOperacion == 2)
+            { 
+                txtTitulo.Text = "Modificar Empresa";
+                txtNombre.Text = nuevaEmpresa.nombre;
+                txtEmail.Text = nuevaEmpresa.email;
+                txtTlfno.Text = nuevaEmpresa.telefono;
+                txtAnioInicio.Text = nuevaEmpresa.anio_inicio_acuerdo.ToString();
+                txtAnioFin.Text = nuevaEmpresa.anio_fin_acuerdo.ToString(); // Si no tiene hacemos lo siguiente
+                if (nuevaEmpresa.anio_fin_acuerdo == 0)
+                {
+                    txtAnioFin.Text = string.Empty; // Limpiamos el campo
+                }
+            }
         }
 
         private void Guardar_Click(object sender, RoutedEventArgs e)
@@ -69,9 +94,23 @@ namespace FPConnect.view.Pages.Forms.Empresas
                 }
             }
 
-            // Si todas las validaciones pasan, cerrar el diálogo y establecer DialogResult = true
-            this.DialogResult = true;
+            if (nuevaEmpresa.id_centro <= 0)
+            {
+                nuevaEmpresa.id_centro = SesionUsuario.IdCentro;
+            }
 
+            // Establecer los valores directamente
+            nuevaEmpresa.nombre = txtNombre.Text;
+            nuevaEmpresa.email = txtEmail.Text;
+            nuevaEmpresa.telefono = txtTlfno.Text;
+            nuevaEmpresa.anio_inicio_acuerdo = int.Parse(txtAnioInicio.Text);
+            nuevaEmpresa.anio_fin_acuerdo = string.IsNullOrWhiteSpace(txtAnioFin.Text) ? 0 : int.Parse(txtAnioFin.Text);
+            nuevaEmpresa.estado = 1; // Activa por defecto           
+
+            // Registrar datos para depuración
+            Console.WriteLine($"Datos de empresa a guardar: Nombre={nuevaEmpresa.nombre}, Email={nuevaEmpresa.email}");
+
+            this.DialogResult = true;
 
         }
 
@@ -86,32 +125,5 @@ namespace FPConnect.view.Pages.Forms.Empresas
             // Solo permitir caracteres numéricos
             e.Handled = !char.IsDigit(e.Text[0]);
         }
-
-        // Evitamos el pegado de contenido no numérico en el campo de año
-        private void txtAnio_PreviewExecuted(object sender, ExecutedRoutedEventArgs e)
-        {
-            if (e.Command == ApplicationCommands.Paste)
-            {
-                string clipboardText = Clipboard.GetText();
-                if (!Regex.IsMatch(clipboardText, @"^\d+$") || clipboardText.Length > 4)
-                {
-                    e.Handled = true;
-                }
-            }
-        }
-
-        // Limitoo la longitud del campo de año a 4 dígitos
-        private void txtAnio_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (txtAnioInicio.Text.Length > 4 || txtAnioFin.Text.Length > 4)
-            {
-                txtAnioInicio.Text = txtAnioInicio.Text.Substring(0, 4);
-                txtAnioInicio.CaretIndex = 4; // Coloco el cursor al final
-
-                txtAnioFin.Text = txtAnioFin.Text.Substring(0, 4);
-                txtAnioFin.CaretIndex = 4; // Coloco el cursor al final
-            }
-        }
-
     }
 }

@@ -66,21 +66,21 @@ namespace FPConnect.domain
         #region Métodos de Persistencia Básicos
 
         // Insertar empresa
-        public bool Insertar()
+        public bool Insertar(Empresa empresa)
         {
-            return em.InsertarEmpresa(this);
+            return em.InsertarEmpresa(empresa);
         }
 
         // Insertar con asociación automática a perfiles por familia y grado
-        public bool Insertar(int id_familia, int id_grado)
+        public bool Insertar(Empresa empresa,int id_familia, int id_grado)
         {
             return em.InsertarEmpresa(this, id_familia, id_grado);
         }
 
         // Actualizar empresa
-        public bool Actualizar()
+        public bool Actualizar(Empresa empresa)
         {
-            return em.ActualizarEmpresa(this);
+            return em.ActualizarEmpresa(empresa);
         }
 
         // Eliminar empresa físicamente (y sus relaciones)
@@ -90,10 +90,10 @@ namespace FPConnect.domain
         }
 
         // Desactivar empresa (eliminación lógica)
-        public bool Desactivar()
+        public bool Desactivar(Empresa empresa)
         {
-            estado = 0;
-            return em.DesactivarEmpresa(this.id_empresa);
+            estado = 2;
+            return em.DesactivarEmpresa(empresa.id_empresa);
         }
 
         #endregion
@@ -107,9 +107,9 @@ namespace FPConnect.domain
         }
 
         // Desasociar esta empresa de un perfil específico
-        public bool DesasociarPerfil(int id_perfil)
+        public bool DesasociarPerfil(Empresa empresa,int id_perfil)
         {
-            return em.DesasociarEmpresaPerfil(this.id_empresa, id_perfil);
+            return em.DesasociarEmpresaPerfil(empresa.id_empresa, id_perfil);
         }
 
         // Obtener los IDs de perfiles asociados a esta empresa
@@ -176,6 +176,13 @@ namespace FPConnect.domain
         {
             EmpresaManage em = new EmpresaManage();
             return em.LeerEmpresaPorId(id_empresa);
+        }
+
+        // Método estático para obtener empresas por centro, familia y grado
+        public static ObservableCollection<Empresa> ObtenerPorCentroFamiliaYGrado(int id_centro, int id_familia, int id_grado)
+        {
+            EmpresaManage em = new EmpresaManage();
+            return em.LeerEmpresasPorCentroFamiliaYGrado(id_centro, id_familia, id_grado);
         }
 
         #endregion

@@ -57,8 +57,7 @@ namespace FPConnect.view.Pages.Forms.Usuarios
         {
             
             if (ProfesorSeleccionado != null)
-            {
-                
+            {              
                 ProfesorSeleccionado.nombre = txtNombre.Text;
                 ProfesorSeleccionado.apellidos = txtApellidos.Text;
                 ProfesorSeleccionado.email = txtEmail.Text;

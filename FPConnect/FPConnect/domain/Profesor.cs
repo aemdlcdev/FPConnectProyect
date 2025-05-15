@@ -27,7 +27,8 @@ namespace FPConnect.domain
         public Brush bgColor { get; set; }
         public int activo { get; set; } // 1 = activo, 0 = inactivo
         public string nombre_departamento { get; set; } // Campo calculado (no está en la BD) lo obtengo haciendo un join en fmailias
-
+        public int id_grado { get; set; }
+        public string nombre_grado { get; set; }
         private ProfesorManage um;
 
         // Constructor por defecto
@@ -149,6 +150,55 @@ namespace FPConnect.domain
             this.nombre_departamento = nombre_departamento;
             um = new ProfesorManage();
         }
+
+        // Constructor completo para READ con nombre de departamento y grado
+        public Profesor(int id_profesor, int id_rol, int id_centro, int id_familia,
+                       int id_curso, int id_turno, string nombre, string apellidos,
+                       string email, string password, string sexo, string character,
+                       string bgColor, int activo, string nombre_departamento,
+                       int id_grado, string nombre_grado)
+        {
+            this.id_profesor = id_profesor;
+            this.id_rol = id_rol;
+            this.id_centro = id_centro;
+            this.id_familia = id_familia;
+            this.id_curso = id_curso;
+            this.id_turno = id_turno;
+            this.nombre = nombre;
+            this.apellidos = apellidos;
+            this.email = email;
+            this.password = password;
+            this.sexo = sexo;
+            this.character = character;
+            this.bgColor = (Brush)new BrushConverter().ConvertFromString(bgColor);
+            this.activo = activo;
+            this.nombre_departamento = nombre_departamento;
+            this.id_grado = id_grado;
+            this.nombre_grado = nombre_grado;
+            um = new ProfesorManage();
+        }
+
+        // Constructor simple para autentificación (usado principalmente tras el login)
+        public Profesor(int id_profesor, int id_rol, int id_centro, int id_familia,
+                       int id_curso, string nombre, string apellidos, string email,
+                       string password, string sexo, int id_grado, string nombre_grado)
+        {
+            this.id_profesor = id_profesor;
+            this.id_rol = id_rol;
+            this.id_centro = id_centro;
+            this.id_familia = id_familia;
+            this.id_curso = id_curso;
+            this.nombre = nombre;
+            this.apellidos = apellidos;
+            this.email = email;
+            this.password = password;
+            this.sexo = sexo;
+            this.id_grado = id_grado;
+            this.nombre_grado = nombre_grado;
+            this.activo = 1; // Por defecto activo
+            um = new ProfesorManage();
+        }
+
 
         // Métodos CRUD
         public bool Insertar(Profesor profesor)

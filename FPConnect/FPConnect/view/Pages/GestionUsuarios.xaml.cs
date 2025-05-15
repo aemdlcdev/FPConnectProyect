@@ -245,10 +245,7 @@ namespace FPConnect.view.Pages
             {
                 if (formModUsuario.ShowDialog() == true)
                 {
-                    
-                    int[] grados = new int[3]; // Deberías obtener los grados seleccionados del formulario
-
-                    // Llamar al método ModificarProfesor con el profesor actualizado
+                    // Llamar al método ModificarProfesor con el profesor actualizado en bbdd
                     profesor.Actualizar(profesorAModificar);
 
                     // Actualizar la lista de profesores

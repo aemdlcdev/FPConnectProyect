@@ -248,38 +248,50 @@ namespace FPConnect.persistence.Manages
 
 
         public Profesor autentificarUsuario(string correo, string password)
-        {           
+        {
             db = DBBroker.ObtenerAgente();
             string passwordEncrypted = Seguridad.EncriptarContraseña(password);
-            int activo = 1; // Solo vna a poder logearse usuarios activos
-            string query = "SELECT id_profesor,id_rol,id_centro,id_familia, nombre,apellidos, email, password,sexo FROM fpc.profesores WHERE email = @email AND activo = @activo AND password = @password LIMIT 1;";
+            int activo = 1; // Solo van a poder logearse usuarios activos
+
+            // Consulta modificada para obtener también el grado
+            string query = @"SELECT p.id_profesor, p.id_rol, p.id_centro, p.id_familia, p.id_curso, 
+                    p.nombre, p.apellidos, p.email, p.password, p.sexo,
+                    g.id_grado, g.nombre AS nombre_grado
+                    FROM fpc.profesores p
+                    INNER JOIN fpc.cursos c ON p.id_curso = c.id_curso
+                    INNER JOIN fpc.perfiles pf ON c.id_perfil = pf.id_perfil
+                    INNER JOIN fpc.grados g ON pf.id_grado = g.id_grado
+                    WHERE p.email = @email AND p.activo = @activo AND p.password = @password 
+                    LIMIT 1;";
+
             var parametros = new Dictionary<string, object>
             {
-                { "@email", correo }, 
+                { "@email", correo },
                 { "@password", passwordEncrypted },
-                { "@activo", activo } 
+                { "@activo", activo }
             };
 
             var resultado = db.LeerConParametros(query, parametros);
 
             if (resultado.Count > 0)
             {
-                
-                var fila = resultado[0] as ObservableCollection<object>; 
+                var fila = resultado[0] as ObservableCollection<object>;
 
-                
                 Profesor profesor = new Profesor
                 {
                     id_profesor = Convert.ToInt32(fila[0]),
                     id_rol = Convert.ToInt32(fila[1]),
                     id_centro = Convert.ToInt32(fila[2]),
                     id_familia = Convert.ToInt32(fila[3]),
-                    nombre = fila[4].ToString(),
-                    apellidos = fila[5].ToString(),
-                    email = fila[6].ToString(), 
-                    password = fila[7].ToString(),
-                    sexo = fila[8].ToString(),
-                    
+                    id_curso = Convert.ToInt32(fila[4]),
+                    nombre = fila[5].ToString(),
+                    apellidos = fila[6].ToString(),
+                    email = fila[7].ToString(),
+                    password = fila[8].ToString(),
+                    sexo = fila[9].ToString(),
+                    // Nuevos campos del grado
+                    id_grado = Convert.ToInt32(fila[10]),
+                    nombre_grado = fila[11].ToString()
                 };
 
                 Console.WriteLine("Inicio de sesión exitoso.");
@@ -292,6 +304,40 @@ namespace FPConnect.persistence.Manages
             }
         }
 
-        
+        // Método auxiliar para obtener el grado de un profesor
+        public Grado ObtenerGradoDeProfesor(int id_profesor)
+        {
+            db = DBBroker.ObtenerAgente();
+            Grado grado = null;
+
+            string query = @"SELECT g.id_grado, g.id_centro, g.nombre AS nombre_grado
+                    FROM fpc.grados g
+                    INNER JOIN fpc.perfiles pf ON g.id_grado = pf.id_grado
+                    INNER JOIN fpc.cursos c ON pf.id_perfil = c.id_perfil
+                    INNER JOIN fpc.profesores p ON c.id_curso = p.id_curso
+                    WHERE p.id_profesor = @id_profesor;";
+
+            var parametros = new Dictionary<string, object>
+            {
+                { "@id_profesor", id_profesor }
+            };
+
+            var resultado = db.LeerConParametros(query, parametros);
+
+            if (resultado.Count > 0)
+            {
+                var fila = resultado[0] as ObservableCollection<object>;
+
+                grado = new Grado(
+                    int.Parse(fila[0].ToString()),  // id_grado
+                    int.Parse(fila[1].ToString()),  // id_centro
+                    fila[2].ToString()              // nombre
+                );
+            }
+
+            return grado;
+        }
+
+
     }
 }
