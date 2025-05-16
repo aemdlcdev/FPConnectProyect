@@ -1,0 +1,9 @@
+﻿<UserControl x:Class="FPConnect.view.UserControls.TareaCoordiacion.Estado"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <StackPanel Orientation="Horizontal">
+        <Border Width="12" Name="bColor" Height="12" Background="#32CD32" CornerRadius="3"  />
+        <TextBlock Name="txtEstado" Text="Estado" VerticalAlignment="Center" Margin="7 0 20 0" Foreground="#6C879A"/>
+    </StackPanel>
+</UserControl>

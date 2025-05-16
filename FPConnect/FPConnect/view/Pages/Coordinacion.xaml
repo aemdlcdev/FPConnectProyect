@@ -41,45 +41,34 @@
             </Grid>
         </Border>
 
-        <DataGrid x:Name="membersDataGrid" Margin="20 0 20 20" Grid.Row="1" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  Style="{DynamicResource DataGridStyle1}" SelectionChanged="membersDataGrid_SelectionChanged">
+        <DataGrid x:Name="tareasDataGrid" Margin="20 0 20 20" Grid.Row="1" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  Style="{DynamicResource DataGridStyle1}" SelectionChanged="membersDataGrid_SelectionChanged">
             <DataGrid.Columns>
                 
-                <DataGridTemplateColumn Header="Titulo" IsReadOnly="True" Width="*">
+                <DataGridTemplateColumn Header="Titulo" IsReadOnly="True" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}">
-                                    <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
-                                </Border>
-
-                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal">                             
+                                <TextBlock Text="{Binding titulo}" VerticalAlignment="Center"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Fecha" Binding="{Binding Position}" IsReadOnly="True" Width="75"/>
-                <DataGridTemplateColumn Header="Empresa" IsReadOnly="True" Width="auto">
+                <DataGridTextColumn Header="Empresa" Binding="{Binding empresa}" IsReadOnly="True" Width="100"/>
+                <DataGridTextColumn Header="Descripcion" Binding="{Binding descripcion}" IsReadOnly="True" Width="100"/>
+                <DataGridTextColumn Header="id_empresa" Binding="{Binding id_empresa}" IsReadOnly="True" Width="100" Visibility="Hidden"/>
+                               
+                <DataGridTextColumn Header="Estado actual" Binding="{Binding estado}" IsReadOnly="True" Width="*"/>
+                <DataGridTemplateColumn Header="Acciones" IsReadOnly="True" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <ComboBox Name="cbxEmpresas"/>
-                                <ComboBoxItem Content="Indra"/>
-                                <ComboBoxItem Content="NTTData"/>
-                                <ComboBoxItem Content="Solision"/>
-                                <ComboBoxItem Content="Inetum"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Estado actual" Binding="{Binding Phone}" IsReadOnly="True" Width="*"/>
-                <DataGridTemplateColumn Header="Modificar estado" IsReadOnly="True" Width="auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Button x:Name="btnEditarAlumno" Background="#3090ff" BorderBrush="AliceBlue" Style="{StaticResource gridEditButton}">
+                                <Button x:Name="btnInfoEmpresa" Background="#3090ff" BorderBrush="AliceBlue" Style="{StaticResource gridEditButton}">
+                                    <Icon:PackIconMaterial Kind="Information" Style="{StaticResource gridButtonIcon}"/>
+                                </Button>
+                                <Button x:Name="btnEditarEmpresa" Background="#3090ff" Margin="5 0 0 0" BorderBrush="AliceBlue" Style="{StaticResource gridEditButton}">
                                     <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                 </Button>
-                                <Button Margin="5 0 0 0"  Style="{StaticResource gridRemoveButton}">
+                                <Button x:Name="btnDelEmpresa" Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}">
                                     <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
                                 </Button>
                             </StackPanel>

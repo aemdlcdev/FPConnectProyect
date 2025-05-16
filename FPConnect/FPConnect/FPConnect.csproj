@@ -450,6 +450,7 @@
     <Compile Include="domain\Grado.cs" />
     <Compile Include="domain\Perfil.cs" />
     <Compile Include="domain\Rol.cs" />
+    <Compile Include="domain\TareaCoordinacion.cs" />
     <Compile Include="domain\Turno.cs" />
     <Compile Include="HelperClasses\Colores.cs" />
     <Compile Include="HelperClasses\Seguridad.cs" />
@@ -466,6 +467,7 @@
     <Compile Include="persistence\Manages\PerfilManage.cs" />
     <Compile Include="persistence\Manages\ProfesorManage.cs" />
     <Compile Include="persistence\Manages\RolManage.cs" />
+    <Compile Include="persistence\Manages\TareaCoordinacionManage.cs" />
     <Compile Include="persistence\Manages\TurnoManage.cs" />
     <Compile Include="view\Pages\AlumnosSubPages\AlumnosActuales.xaml.cs">
       <DependentUpon>AlumnosActuales.xaml</DependentUpon>
@@ -532,6 +534,9 @@
     </Compile>
     <Compile Include="view\UserControls\Eventos\MenuButton.xaml.cs">
       <DependentUpon>MenuButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\UserControls\TareaCoordinación\Estado.xaml.cs">
+      <DependentUpon>Estado.xaml</DependentUpon>
     </Compile>
     <Page Include="view\Login.xaml">
       <SubType>Designer</SubType>
@@ -640,6 +645,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="view\UserControls\TareaCoordinación\Estado.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -739,6 +748,7 @@
   <ItemGroup>
     <Resource Include="Images\profesionales%281%29.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.5.1.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.5.1.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
