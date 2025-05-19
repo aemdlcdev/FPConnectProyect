@@ -511,6 +511,9 @@
     <Compile Include="view\Pages\Forms\Perfiles\FormModPerfil.xaml.cs">
       <DependentUpon>FormModPerfil.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\Pages\Forms\Usuarios\DetallesProfesor.xaml.cs">
+      <DependentUpon>DetallesProfesor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\Pages\Forms\Usuarios\FormModUsuario.xaml.cs">
       <DependentUpon>FormModUsuario.xaml</DependentUpon>
     </Compile>
@@ -612,6 +615,10 @@
     <Page Include="view\Pages\Forms\Perfiles\FormModPerfil.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="view\Pages\Forms\Usuarios\DetallesProfesor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\Pages\Forms\Usuarios\FormModUsuario.xaml">
       <SubType>Designer</SubType>

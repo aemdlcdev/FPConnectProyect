@@ -139,7 +139,7 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Button x:Name="btnInfoUsuario" Background="#3090ff" BorderBrush="AliceBlue" Style="{StaticResource gridEditButton}" Click="btnModificarUsuario_Click">
+                                            <Button x:Name="btnInfoUsuario" Click="btnInfoUsuario_Click" Background="#3090ff" BorderBrush="AliceBlue" Style="{StaticResource gridEditButton}">
                                                 <Icon:PackIconMaterial Kind="Information" Style="{StaticResource gridButtonIcon}"/>
                                                 <!-- Modificar usuario -->
                                             </Button>

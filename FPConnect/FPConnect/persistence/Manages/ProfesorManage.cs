@@ -338,6 +338,180 @@ namespace FPConnect.persistence.Manages
             return grado;
         }
 
+        // Método para obtener el nombre del centro
+        public string ObtenerNombreCentro(int id_centro)
+        {
+            db = DBBroker.ObtenerAgente();
+            string nombreCentro = "No encontrado";
+
+            string query = "SELECT nombre FROM fpc.centros WHERE id_centro = @id_centro;";
+
+            var parametros = new Dictionary<string, object>
+    {
+        { "@id_centro", id_centro }
+    };
+
+            var resultado = db.LeerConParametros(query, parametros);
+
+            if (resultado.Count > 0)
+            {
+                var fila = resultado[0] as ObservableCollection<object>;
+                nombreCentro = fila[0].ToString();
+            }
+
+            return nombreCentro;
+        }
+
+        // Método para obtener el nombre del rol
+        public string ObtenerNombreRol(int id_rol)
+        {
+            db = DBBroker.ObtenerAgente();
+            string nombreRol = "No encontrado";
+
+            string query = "SELECT nombre FROM fpc.roles WHERE id_rol = @id_rol;";
+
+            var parametros = new Dictionary<string, object>
+            {
+                { "@id_rol", id_rol }
+            };
+
+            var resultado = db.LeerConParametros(query, parametros);
+
+            if (resultado.Count > 0)
+            {
+                var fila = resultado[0] as ObservableCollection<object>;
+                nombreRol = fila[0].ToString();
+            }
+
+            return nombreRol;
+        }
+
+        // Método para obtener el nombre del turno
+        public string ObtenerNombreTurno(int id_turno)
+        {
+            db = DBBroker.ObtenerAgente();
+            string nombreTurno = "No encontrado";
+
+            string query = "SELECT nombre FROM fpc.turnos WHERE id_turno = @id_turno;";
+
+            var parametros = new Dictionary<string, object>
+            {
+                { "@id_turno", id_turno }
+            };
+
+            var resultado = db.LeerConParametros(query, parametros);
+
+            if (resultado.Count > 0)
+            {
+                var fila = resultado[0] as ObservableCollection<object>;
+                nombreTurno = fila[0].ToString();
+            }
+
+            return nombreTurno;
+        }
+
+        // Método para obtener el nombre del grado
+        public string ObtenerNombreGrado(int id_grado)
+        {
+            db = DBBroker.ObtenerAgente();
+            string nombreGrado = "No encontrado";
+
+            string query = "SELECT nombre FROM fpc.grados WHERE id_grado = @id_grado;";
+
+            var parametros = new Dictionary<string, object>
+            {
+                { "@id_grado", id_grado }
+            };
+
+            var resultado = db.LeerConParametros(query, parametros);
+
+            if (resultado.Count > 0)
+            {
+                var fila = resultado[0] as ObservableCollection<object>;
+                nombreGrado = fila[0].ToString();
+            }
+
+            return nombreGrado;
+        }
+
+        // Método para obtener el nombre del curso
+        public string ObtenerNombreCurso(int id_curso)
+        {
+            db = DBBroker.ObtenerAgente();
+            string nombreCurso = "No encontrado";
+
+            string query = "SELECT nivel FROM fpc.cursos WHERE id_curso = @id_curso;";
+
+            var parametros = new Dictionary<string, object>
+            {
+                { "@id_curso", id_curso }
+            };
+
+            var resultado = db.LeerConParametros(query, parametros);
+
+            if (resultado.Count > 0)
+            {
+                var fila = resultado[0] as ObservableCollection<object>;
+                nombreCurso = fila[0].ToString();
+            }
+
+            return nombreCurso;
+        }
+
+        // Método para obtener el nombre del perfil asignado a un profesor
+        // Método para obtener el nombre del perfil relacionado con un profesor
+        public string ObtenerNombrePerfil(int id_profesor)
+        {
+            db = DBBroker.ObtenerAgente();
+            string nombrePerfil = "No asignado";
+
+            try
+            {
+                // Obtener el perfil a través de la familia profesional del profesor
+                string query = @"SELECT pf.nombre AS nombre_perfil
+                        FROM fpc.perfiles pf
+                        INNER JOIN fpc.profesores pr ON pf.id_familia = pr.id_familia
+                        WHERE pr.id_profesor = @id_profesor
+                        LIMIT 1;";
+
+                var parametros = new Dictionary<string, object>
+                {
+                    { "@id_profesor", id_profesor }
+                };
+
+                var resultado = db.LeerConParametros(query, parametros);
+
+                if (resultado.Count > 0)
+                {
+                    var fila = resultado[0] as ObservableCollection<object>;
+                    nombrePerfil = fila[0].ToString();
+                }
+                else
+                {
+                    // Si no encontramos un perfil directo, intentamos usar id_curso
+                    query = @"SELECT pf.nombre AS nombre_perfil
+                     FROM fpc.perfiles pf
+                     INNER JOIN fpc.cursos c ON pf.id_grado = c.id_grado
+                     INNER JOIN fpc.profesores pr ON c.id_curso = pr.id_curso
+                     WHERE pr.id_profesor = @id_profesor
+                     LIMIT 1;";
+
+                    resultado = db.LeerConParametros(query, parametros);
+
+                    if (resultado.Count > 0)
+                    {
+                        var fila = resultado[0] as ObservableCollection<object>;
+                        nombrePerfil = fila[0].ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener perfil del profesor: {ex.Message}");
+            }
+
+            return nombrePerfil;
+        }
 
     }
 }

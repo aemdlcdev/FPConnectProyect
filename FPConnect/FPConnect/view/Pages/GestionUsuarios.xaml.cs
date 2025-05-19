@@ -332,6 +332,15 @@ namespace FPConnect.view.Pages
 
         }
 
+        private void btnInfoUsuario_Click(object sender, EventArgs e)   
+        {
+            DetallesProfesor formInfoUsuario = new DetallesProfesor(selectedUsuario);
+            if (formInfoUsuario.ShowDialog() == true)
+            {
+                
+            }
+        }
+
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             txtNombreUsuario.Clear();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -88,5 +89,82 @@ namespace FPConnect.domain
         }
 
         #endregion
+
+        #region Métodos CRUD
+
+        // Insertar una nueva tarea
+        public bool Insertar()
+        {
+            return tm.InsertarTarea(this);
+        }
+
+        // Actualizar una tarea existente
+        public bool Actualizar()
+        {
+            return tm.ActualizarTarea(this);
+        }
+
+        // Eliminar una tarea
+        public bool Eliminar()
+        {
+            return tm.EliminarTarea(this.id_tarea);
+        }
+
+        // Cambiar estado de una tarea
+        public bool CambiarEstado(int nuevoEstado)
+        {
+            this.estado = nuevoEstado;
+            return tm.ActualizarEstadoTarea(this.id_tarea, nuevoEstado);
+        }
+
+        #endregion
+
+        #region Métodos estáticos para consultas
+
+        // Obtener todas las tareas
+        public ObservableCollection<TareaCoordinacion> ObtenerTodas()
+        {
+            TareaCoordinacionManage tm = new TareaCoordinacionManage();
+            return tm.LeerTareas();
+        }
+
+        // Obtener tareas por familia
+        public ObservableCollection<TareaCoordinacion> ObtenerPorFamilia(int id_familia)
+        {
+            return tm.LeerTareasPorFamilia(id_familia);
+        }
+
+        // Obtener tareas por empresa
+        public ObservableCollection<TareaCoordinacion> ObtenerPorEmpresa(int id_empresa)
+        {
+            return tm.LeerTareasPorEmpresa(id_empresa);
+        }
+
+        // Obtener tareas por estado
+        public ObservableCollection<TareaCoordinacion> ObtenerPorEstado(int estado)
+        {
+            return tm.LeerTareasPorEstado(estado);
+        }
+
+        // Obtener tarea por ID
+        public TareaCoordinacion ObtenerPorId(int id_tarea)
+        {
+            return tm.LeerTareaPorId(id_tarea);
+        }
+
+        // Obtener tareas por familia y estado
+        public ObservableCollection<TareaCoordinacion> ObtenerPorFamiliaYEstado(int id_familia, int estado)
+        {
+            return tm.LeerTareasPorFamiliaYEstado(id_familia, estado);
+        }
+
+        #endregion
+
+        // Método ToString para representar la tarea en controles
+        public override string ToString()
+        {
+            return $"{titulo} - {nombre_empresa}";
+        }
+
     }
 }

@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
       xmlns:local="clr-namespace:FPConnect.view.Pages"
+      xmlns:estado="clr-namespace:FPConnect.view.UserControls.TareaCoordiacion"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Coordinacion">
@@ -12,6 +13,7 @@
     <Grid>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             
@@ -41,10 +43,20 @@
             </Grid>
         </Border>
 
-        <DataGrid x:Name="tareasDataGrid" Margin="20 0 20 20" Grid.Row="1" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  Style="{DynamicResource DataGridStyle1}" SelectionChanged="membersDataGrid_SelectionChanged">
+        <StackPanel HorizontalAlignment="Right" Grid.Row="1" Margin="0 0 20 0">
+            
+            <Button x:Name="btnAddTarea" Style="{StaticResource addButton}" Cursor="Hand">
+                <StackPanel Orientation="Horizontal">
+                    <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
+                    <TextBlock Text="Agregar nueva tarea" FontSize="10"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        
+        <DataGrid x:Name="tareasDataGrid" Margin="20 20 20 20" Grid.Row="2" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  Style="{DynamicResource DataGridStyle1}" SelectionChanged="membersDataGrid_SelectionChanged">
             <DataGrid.Columns>
                 
-                <DataGridTemplateColumn Header="Titulo" IsReadOnly="True" Width="100">
+                <DataGridTemplateColumn Header="Titulo" IsReadOnly="True" Width="250">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">                             
@@ -53,11 +65,17 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Empresa" Binding="{Binding empresa}" IsReadOnly="True" Width="100"/>
+                <DataGridTextColumn Header="Empresa" Binding="{Binding nombre_empresa}" IsReadOnly="True" Width="100"/>
                 <DataGridTextColumn Header="Descripcion" Binding="{Binding descripcion}" IsReadOnly="True" Width="100"/>
                 <DataGridTextColumn Header="id_empresa" Binding="{Binding id_empresa}" IsReadOnly="True" Width="100" Visibility="Hidden"/>
-                               
-                <DataGridTextColumn Header="Estado actual" Binding="{Binding estado}" IsReadOnly="True" Width="*"/>
+            
+                <DataGridTemplateColumn Header="Estado actual" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <estado:Estado EstadoA="{Binding estado}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="Acciones" IsReadOnly="True" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
