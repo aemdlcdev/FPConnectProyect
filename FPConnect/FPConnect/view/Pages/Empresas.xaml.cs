@@ -36,7 +36,7 @@ namespace FPConnect.view.Pages
             empresa = new Empresa();
             // Lectura filtrada de empresas por centro, familia y grado segun la sesion del usuario
             listaEmpresas = Empresa.ObtenerPorCentroFamiliaYGrado(SesionUsuario.IdCentro,SesionUsuario.IdFamilia,SesionUsuario.IdGrado);
-
+            Console.WriteLine("Empresas: " + listaEmpresas.Count);
             empresasDataGrid.ItemsSource = null;
             empresasDataGrid.ItemsSource = listaEmpresas;
 
@@ -132,6 +132,11 @@ namespace FPConnect.view.Pages
             {
                 MessageBox.Show("Error al eliminar la empresa: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        public override string ToString()
+        {
+            return empresa.nombre + " ["+empresa.id_empresa+"]";
         }
     }
 }

@@ -582,8 +582,6 @@ C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Deb
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\AlumnosSubPages\Informacion.baml
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\Forms\Alumnos\FormModAlumno.g.cs
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\Forms\Alumnos\FormModAlumno.baml
-C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\Forms\FormDelAlumno.g.cs
-C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\Forms\FormDelAlumno.baml
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Debug\BouncyCastle.Cryptography.dll
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Debug\itextsharp.dll
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\bin\Debug\BouncyCastle.Cryptography.xml
@@ -698,3 +696,7 @@ C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Deb
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\UserControls\TareaCoordinación\Estado.g.cs
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\Forms\Usuarios\DetallesProfesor.g.cs
 C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\Forms\Usuarios\DetallesProfesor.baml
+C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\Forms\Tareas\FormAddTarea.g.cs
+C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\Forms\Tareas\FormAddTarea.baml
+C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\Forms\FormDelete.g.cs
+C:\Users\Alejandro\Documents\GitHub\FPConnectProyect\FPConnect\FPConnect\obj\Debug\view\Pages\Forms\FormDelete.baml

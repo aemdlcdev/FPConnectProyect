@@ -45,7 +45,7 @@
 
         <StackPanel HorizontalAlignment="Right" Grid.Row="1" Margin="0 0 20 0">
             
-            <Button x:Name="btnAddTarea" Style="{StaticResource addButton}" Cursor="Hand">
+            <Button x:Name="btnAddTarea" Style="{StaticResource addButton}" Cursor="Hand" Click="btnAddTarea_Click"> 
                 <StackPanel Orientation="Horizontal">
                     <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
                     <TextBlock Text="Agregar nueva tarea" FontSize="10"/>
@@ -80,13 +80,13 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button x:Name="btnInfoEmpresa" Background="#3090ff" BorderBrush="AliceBlue" Style="{StaticResource gridEditButton}">
+                                <Button x:Name="btnInfoTarea" Click="btnInfoTarea_Click" Background="#3090ff" BorderBrush="AliceBlue" Style="{StaticResource gridEditButton}">
                                     <Icon:PackIconMaterial Kind="Information" Style="{StaticResource gridButtonIcon}"/>
                                 </Button>
-                                <Button x:Name="btnEditarEmpresa" Background="#3090ff" Margin="5 0 0 0" BorderBrush="AliceBlue" Style="{StaticResource gridEditButton}">
+                                <Button x:Name="btnEditarTarea" Click="btnEditarTarea_Click" Background="#3090ff" Margin="5 0 0 0" BorderBrush="AliceBlue" Style="{StaticResource gridEditButton}">
                                     <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                 </Button>
-                                <Button x:Name="btnDelEmpresa" Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}">
+                                <Button x:Name="btnDelTarea" Click="btnAddTarea_Click" Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}">
                                     <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
                                 </Button>
                             </StackPanel>

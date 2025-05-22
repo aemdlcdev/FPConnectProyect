@@ -505,11 +505,14 @@
     <Compile Include="view\Pages\Forms\Familias\FormModFamilia.xaml.cs">
       <DependentUpon>FormModFamilia.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\Pages\Forms\FormDelAlumno.xaml.cs">
-      <DependentUpon>FormDelAlumno.xaml</DependentUpon>
+    <Compile Include="view\Pages\Forms\FormDelete.xaml.cs">
+      <DependentUpon>FormDelete.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\Pages\Forms\Perfiles\FormModPerfil.xaml.cs">
       <DependentUpon>FormModPerfil.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Pages\Forms\Tareas\FormAddTarea.xaml.cs">
+      <DependentUpon>FormAddTarea.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\Pages\Forms\Usuarios\DetallesProfesor.xaml.cs">
       <DependentUpon>DetallesProfesor.xaml</DependentUpon>
@@ -608,11 +611,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="view\Pages\Forms\FormDelAlumno.xaml">
+    <Page Include="view\Pages\Forms\FormDelete.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\Pages\Forms\Perfiles\FormModPerfil.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="view\Pages\Forms\Tareas\FormAddTarea.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

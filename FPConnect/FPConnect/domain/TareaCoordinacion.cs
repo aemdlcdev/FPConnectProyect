@@ -93,9 +93,9 @@ namespace FPConnect.domain
         #region Métodos CRUD
 
         // Insertar una nueva tarea
-        public bool Insertar()
+        public bool Insertar(TareaCoordinacion tarea)
         {
-            return tm.InsertarTarea(this);
+            return tm.InsertarTarea(tarea);
         }
 
         // Actualizar una tarea existente
@@ -105,9 +105,9 @@ namespace FPConnect.domain
         }
 
         // Eliminar una tarea
-        public bool Eliminar()
+        public bool Eliminar(TareaCoordinacion tarea)
         {
-            return tm.EliminarTarea(this.id_tarea);
+            return tm.EliminarTarea(tarea.id_tarea);
         }
 
         // Cambiar estado de una tarea
