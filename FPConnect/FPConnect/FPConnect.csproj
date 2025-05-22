@@ -475,8 +475,8 @@
     <Compile Include="view\Pages\AlumnosSubPages\Archivados.xaml.cs">
       <DependentUpon>Archivados.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\Pages\AlumnosSubPages\Informacion.xaml.cs">
-      <DependentUpon>Informacion.xaml</DependentUpon>
+    <Compile Include="view\Pages\AlumnosSubPages\AlumnosValidados.xaml.cs">
+      <DependentUpon>AlumnosValidados.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\Pages\AlumnosGridControl.xaml.cs">
       <DependentUpon>AlumnosGridControl.xaml</DependentUpon>
@@ -571,7 +571,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="view\Pages\AlumnosSubPages\Informacion.xaml">
+    <Page Include="view\Pages\AlumnosSubPages\AlumnosValidados.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

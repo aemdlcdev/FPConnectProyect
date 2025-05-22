@@ -7,8 +7,11 @@
       xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Informacion">
+      d:DesignHeight="450" d:DesignWidth="850"
+      Title="AlumnosActuales">
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -21,13 +24,9 @@
         <!--Busqueda texto-->
         <TextBlock Text="Alumnos" Grid.Row="1" FontSize="18" FontWeight="SemiBold" Foreground="#121518" Margin=" 25 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <TextBlock Name="txtNumAlumnos" Grid.Row="1" FontSize="18" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
-
-        <ComboBox x:Name="cbGrado" materialDesign:HintAssist.Hint="Grado" Grid.Row="1" FontSize="16" Width="100" HorizontalAlignment="Left" Margin="135,0,0,0" />
-        <ComboBox x:Name="cbPerfil" materialDesign:HintAssist.Hint="Perfil" Grid.Row="1" FontSize="16" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="289,14,0,0" />
-        <ComboBox x:Name="cbCurso" materialDesign:HintAssist.Hint="Curso" Grid.Row="1" FontSize="16" Width="100" HorizontalAlignment="Left" Margin="438,0,0,0" />
-        <ComboBox x:Name="cbConvocatoria" materialDesign:HintAssist.Hint="Convocatoria" Grid.Row="1" FontSize="16" Width="110" HorizontalAlignment="Left" Margin="583,0,0,0" />
-        <Button x:Name="btnCargar" Content="Cargar" Grid.Row="1" Style="{StaticResource addButton}" Margin="716,10,0,10" Width="88" HorizontalAlignment="Left"/>
-        <DataGrid x:Name="alumnosDataGrid" Grid.Row="2" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  Style="{DynamicResource DataGridStyle1}" SelectionChanged="membersDataGrid_SelectionChanged">
+        <ComboBox x:Name="cbConvocatoria" materialDesign:HintAssist.Hint="Convocatoria" Grid.Row="1" FontSize="16" Width="110" HorizontalAlignment="Left" Margin="555,0,0,0" />
+        <Button x:Name="btnCargar" Content="Cargar" Grid.Row="1" Style="{StaticResource addButton}" Margin="716,10,0,10" Width="128" HorizontalAlignment="Left"/>
+        <DataGrid x:Name="membersDataGrid" Grid.Row="2" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  Style="{DynamicResource DataGridStyle1}" SelectionChanged="membersDataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}" Binding="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}">
                     <DataGridCheckBoxColumn.HeaderTemplate>
@@ -44,7 +43,6 @@
                                 <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}">
                                     <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
                                 </Border>
-
                                 <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
                             </StackPanel>
                         </DataTemplate>
