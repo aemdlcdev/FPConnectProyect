@@ -118,35 +118,40 @@ CREATE TABLE EstadosEventos (
 -- Tabla para Fase de Asignación
 CREATE TABLE FasesAsignacion (
     id_fase INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    id_centro INT NOT NULL,
     nombre VARCHAR(50) NOT NULL, -- Ejemplo: Provisional, Validada
-    CONSTRAINT fk_fasesasignacion_centros FOREIGN KEY (id_centro) REFERENCES Centros(id_centro)
 );
 
 -- Tabla de Convocatorias
 CREATE TABLE Convocatorias (
     id_convocatoria INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    id_tipo_fase INT NOT NULL,
-    fecha_inicio DATE NOT NULL,
-    fecha_fin DATE NOT NULL,
-    CONSTRAINT fk_convocatorias_tiposfase FOREIGN KEY (id_tipo_fase) REFERENCES TiposFase(id_tipo_fase)
+    tipo VARCHAR(50) NOT NULL
 );
 
--- Tabla de Alumnos
 CREATE TABLE Alumnos (
     id_alumno INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     nombre VARCHAR(100) NOT NULL,
     apellidos VARCHAR(100) NOT NULL,
-    id_profesor INT NOT NULL,
-    id_perfil INT NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    first_char VARCHAR(1) NOT NULL,
+    bgColor VARCHAR(8) NOT NULL,
+    activo INTEGER(1) NOT NULL,
     id_curso INT NOT NULL,
     id_convocatoria INT NOT NULL,
     id_fase INT NOT NULL,
-    CONSTRAINT fk_alumnos_profesores FOREIGN KEY (id_profesor) REFERENCES Profesores(id_profesor),
-    CONSTRAINT fk_alumnos_perfiles FOREIGN KEY (id_perfil) REFERENCES Perfiles(id_perfil),
     CONSTRAINT fk_alumnos_cursos FOREIGN KEY (id_curso) REFERENCES Cursos(id_curso),
     CONSTRAINT fk_alumnos_convocatorias FOREIGN KEY (id_convocatoria) REFERENCES Convocatorias(id_convocatoria),
     CONSTRAINT fk_alumnos_fases FOREIGN KEY (id_fase) REFERENCES FasesAsignacion(id_fase)
+);
+
+-- Tabla para historial de cursos por alumno
+CREATE TABLE HistoricoAlumnoCurso (
+    id_historico INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    id_alumno INT NOT NULL,
+    id_curso INT NOT NULL,
+    anio_academico_inicio INT(4) NOT NULL,
+    anio_academico_fin INT(4) NOT NULL,
+    CONSTRAINT fk_historico_alumnos FOREIGN KEY (id_alumno) REFERENCES Alumnos(id_alumno),
+    CONSTRAINT fk_historico_cursos FOREIGN KEY (id_curso) REFERENCES Cursos(id_curso)
 );
 
 -- Tabla de Empresas
@@ -264,8 +269,6 @@ CREATE INDEX idx_fasesasignacion_id_centro ON FasesAsignacion(id_centro);
 CREATE INDEX idx_convocatorias_id_tipo_fase ON Convocatorias(id_tipo_fase);
 
 -- Tabla Alumnos
-CREATE INDEX idx_alumnos_id_profesor ON Alumnos(id_profesor);
-CREATE INDEX idx_alumnos_id_perfil ON Alumnos(id_perfil);
 CREATE INDEX idx_alumnos_id_curso ON Alumnos(id_curso);
 CREATE INDEX idx_alumnos_id_convocatoria ON Alumnos(id_convocatoria);
 CREATE INDEX idx_alumnos_id_fase ON Alumnos(id_fase);
@@ -298,3 +301,8 @@ CREATE INDEX idx_cargos_nombre ON Cargos(nombre);
 
 -- Índices para la tabla Turnos
 CREATE INDEX idx_turnos_nombre ON Turnos(nombre);
+
+-- Índices para HistoricoAlumnos
+CREATE INDEX idx_historico_id_alumno ON HistoricoAlumnoCurso(id_alumno);
+CREATE INDEX idx_historico_id_curso ON HistoricoAlumnoCurso(id_curso);
+CREATE INDEX idx_historico_anios ON HistoricoAlumnoCurso(anio_academico_inicio, anio_academico_fin);

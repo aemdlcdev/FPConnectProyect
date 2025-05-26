@@ -7,6 +7,19 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+  <script>
+        // Obtener IP usando servicio externo
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                console.log('IP del usuario:', data.ip);
+                // Solo puedes mostrarla, no guardarla permanentemente
+                document.getElementById('ip-display').textContent = data.ip;
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+
   <div class="container">
     <div class="card">
       <div class="card-header">

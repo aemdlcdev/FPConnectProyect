@@ -442,6 +442,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="domain\Alumno.cs" />
     <Compile Include="domain\Centro.cs" />
     <Compile Include="domain\Curso.cs" />
     <Compile Include="domain\Empresa.cs" />
@@ -458,6 +459,7 @@
     <Compile Include="HelperClasses\PdfGenerator.cs" />
     <Compile Include="HelperClasses\SesionUsuario.cs" />
     <Compile Include="persistence\DBBroker.cs" />
+    <Compile Include="persistence\Manages\AlumnoManage.cs" />
     <Compile Include="persistence\Manages\CentroManage.cs" />
     <Compile Include="persistence\Manages\CursosManage.cs" />
     <Compile Include="persistence\Manages\EmpresaManage.cs" />
