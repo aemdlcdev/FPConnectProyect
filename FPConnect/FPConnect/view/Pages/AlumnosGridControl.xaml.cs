@@ -59,7 +59,7 @@ namespace FPConnect.view.Pages
 
         private void btnInfo_Click(object sender, RoutedEventArgs e)
         {
-            mainFrameA.Source = new Uri("AlumnosSubPages/Informacion.xaml", UriKind.Relative);
+            mainFrameA.Source = new Uri("AlumnosSubPages/AlumnosValidados.xaml", UriKind.Relative);
             btnAddAlumno.Visibility = Visibility.Collapsed;
 
             IsInfoButtonPressed = true;

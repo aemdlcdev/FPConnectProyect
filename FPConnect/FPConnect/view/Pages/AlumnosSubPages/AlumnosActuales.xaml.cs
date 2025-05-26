@@ -115,6 +115,9 @@ namespace FPConnect.view.Pages.AlumnosSubPages
                     convocatoriaSeleccionada = 2;
                 }
             }
+            Console.WriteLine("Convocatoria seleccionada: " + convocatoriaSeleccionada);
+            Console.WriteLine("Curso seleccionado: " + SesionUsuario.IdCurso);
+            
             listaAlumnos = alumno.ObtenerAlumnosPorCursoConvocatoriaYFase(SesionUsuario.IdCurso, convocatoriaSeleccionada, 1);
             if (listaAlumnos.Count == 0)
             {
