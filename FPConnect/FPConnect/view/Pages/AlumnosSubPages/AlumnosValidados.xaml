@@ -25,32 +25,31 @@
         <TextBlock Text="Alumnos" Grid.Row="1" FontSize="18" FontWeight="SemiBold" Foreground="#121518" Margin=" 25 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <TextBlock Name="txtNumAlumnos" Grid.Row="1" FontSize="18" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
         <ComboBox x:Name="cbConvocatoria" materialDesign:HintAssist.Hint="Convocatoria" Grid.Row="1" FontSize="16" Width="165" HorizontalAlignment="Left" Margin="611,0,0,0" />
-        <Button x:Name="btnCargar" Content="Cargar" Grid.Row="1" Style="{StaticResource addButton}" Margin="812,10,0,10" Width="128" HorizontalAlignment="Left"/>
-        <DataGrid x:Name="alumnosDataGrid" Grid.Row="2" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  Style="{DynamicResource DataGridStyle1}" SelectionChanged="membersDataGrid_SelectionChanged">
+        <Button x:Name="btnCargar" Content="Cargar" Click="btnCargar_Click" Grid.Row="1" Style="{StaticResource addButton}" Margin="812,10,0,10" Width="128" HorizontalAlignment="Left"/>
+        <DataGrid x:Name="alumnosDataGrid" Grid.Row="2" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  Style="{DynamicResource DataGridStyle1}">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}" Binding="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}">
-                    <DataGridCheckBoxColumn.HeaderTemplate>
-                        <DataTemplate>
-                            <CheckBox Name="checkAll" Style="{StaticResource CheckBoxStyle1}" Checked="checkAll_Checked" Unchecked="checkAll_Unchecked"/>
-                        </DataTemplate>
-                    </DataGridCheckBoxColumn.HeaderTemplate>
-                </DataGridCheckBoxColumn>
-                <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Number}"/>
+                
+                <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding id_alumno}"/>
                 <DataGridTemplateColumn Header="Alumno" IsReadOnly="True" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}">
-                                    <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
+                                <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding bgColor}">
+                                    <TextBlock Text="{Binding first_char}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
                                 </Border>
-                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+
+                                <TextBlock Text="{Binding nombre}" VerticalAlignment="Center"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Apellido" Binding="{Binding Position}" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Dirección de email" Binding="{Binding Email}" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Número de teléfono" Binding="{Binding Phone}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Apellido" Binding="{Binding apellidos}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Dirección de email" Binding="{Binding email}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Dirección de email" Binding="{Binding id_alumno}" IsReadOnly="True" Width="*" Visibility="Hidden"/>
+                <DataGridTextColumn Header="Dirección de email" Binding="{Binding id_curso}" IsReadOnly="True" Width="*" Visibility="Hidden"/>
+                <DataGridTextColumn Header="Dirección de email" Binding="{Binding id_convocatoria}" IsReadOnly="True" Width="*" Visibility="Hidden"/>
+                <DataGridTextColumn Header="Dirección de email" Binding="{Binding id_fase}" IsReadOnly="True" Width="*" Visibility="Hidden"/>
+                <DataGridTextColumn Header="Dirección de email" Binding="{Binding activo}" IsReadOnly="True" Width="*" Visibility="Hidden"/>
                 <DataGridTemplateColumn Header="Acciones" IsReadOnly="True" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

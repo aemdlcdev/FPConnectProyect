@@ -13,16 +13,17 @@
                 CornerRadius="10" Width="400">
             <StackPanel>
 
-                <TextBlock Text="Añadir alumno" Style="{StaticResource titleText}"/>
+                <TextBlock Name="txtTitulo" Text="Añadir alumno" Style="{StaticResource titleText}"/>
 
                 <TextBlock Text="Nombre del Alumno:" Margin="0 10 0 0"/>
                 <TextBox x:Name="txtNombre" Margin="0,5" Style="{StaticResource textBoxNormal}" Width="350"/>
 
-                <TextBlock Text="Edad:"/>
-                <TextBox x:Name="txtEdad" Margin="0,5" Style="{StaticResource textBoxNormal}" Width="350"/>
+                <TextBlock Text="Apellidos del Alumno:" Margin="0 10 0 0"/>
+                <TextBox x:Name="txtApellidos" Margin="0,5" Style="{StaticResource textBoxNormal}" Width="350"/>
 
                 <TextBlock Text="Correo Electrónico:"/>
                 <TextBox x:Name="txtCorreo" Margin="0,5" Style="{StaticResource textBoxNormal}" Width="350"/>
+                <ComboBox x:Name="cbConvocatoria" materialDesign:HintAssist.Hint="Convocatoria" FontSize="16" Width="350" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10">
                     <Button Content="Guardar" Width="80" Click="Guardar_Click" Style="{StaticResource buttonMainGreenGestionUsuarios}" Height="30"/>

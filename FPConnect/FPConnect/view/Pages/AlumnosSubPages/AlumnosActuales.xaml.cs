@@ -16,7 +16,6 @@ using System.Windows.Shapes;
 using FPConnect.domain;
 using FPConnect.HelperClasses;
 using FPConnect.view.Pages.Forms;
-using FPConnect.view.Pages.Forms.Alumnos;
 
 namespace FPConnect.view.Pages.AlumnosSubPages
 {
@@ -25,15 +24,17 @@ namespace FPConnect.view.Pages.AlumnosSubPages
     /// </summary>
     public partial class AlumnosActuales : Page
     {
-        private ObservableCollection<Alumno> listaAlumnos { get; set; }
+        public ObservableCollection<Alumno> listaAlumnos { get; set; }
         private Alumno alumno;
         private int convocatoriaSeleccionada;
+        public ObservableCollection<Alumno> alumnosSeleccionados { get; set; }
         public AlumnosActuales()
         {
             InitializeComponent();
             alumno = new Alumno();
             cbConvocatoria.Items.Add("Ordinaria");
             cbConvocatoria.Items.Add("Extraordinaria");
+            alumnosSeleccionados = new ObservableCollection<Alumno>();
 
         }
 
@@ -42,57 +43,80 @@ namespace FPConnect.view.Pages.AlumnosSubPages
             return alumnosDataGrid.Items.Count;
         }
 
-        private void membersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-        }
-
-        
-
         private void btnEditarAlumno_Click(object sender, RoutedEventArgs e)
         {
-            FormModAlumno formModAlumno = new FormModAlumno();
-
-            
-
-            //Console.WriteLine(selectedMember.Name); <- [Traza]
-
-            if (formModAlumno.ShowDialog() == true) // Muestra como modal
+            Alumno nuevoAlumno = (Alumno)alumnosDataGrid.SelectedItem;
+            int tipoOperacion = 2; // 1 add, 2 mod
+            FormAddAlumno formAddEmpresa = new FormAddAlumno(nuevoAlumno, tipoOperacion);
+            formAddEmpresa.ShowDialog();
+            if (formAddEmpresa.DialogResult == true)
             {
-                // Implementar logica
+                nuevoAlumno.Actualizar(nuevoAlumno);
+                listaAlumnos.Clear();
+                listaAlumnos = alumno.ObtenerAlumnosPorCursoConvocatoriaYFase(SesionUsuario.IdCurso, convocatoriaSeleccionada, 1); // Vuelve a cargar los alumnos
+                alumnosDataGrid.ItemsSource = null;
+                alumnosDataGrid.ItemsSource = listaAlumnos;
+                MessageBox.Show("Alumno actualizado correctamente.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
         private void btnEliminarAlumno_Click(object sender, RoutedEventArgs e)
         {
-            FormDelete formDelAlumno = new FormDelete();
+            var selectedAlumno = alumnosDataGrid.SelectedItem as Alumno;
 
-            if (formDelAlumno.ShowDialog() == true) // Muestra como modal
+            if (selectedAlumno == null || selectedAlumno.id_alumno == 0)
             {
-                
-                // Se hace en memoria para probar
-                // Implementar logica en base de datos
+                MessageBox.Show("Seleccione un alumno válido antes de eliminarlo.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            FormDelete formDelUsuario = new FormDelete();
+            try
+            {
+                if (formDelUsuario.ShowDialog() == true)
+                {
+                    listaAlumnos.Remove(selectedAlumno); // eliminar de la vista
+                    alumno.EliminarLogico(selectedAlumno); // eliminar de la base de datos
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar el alumno: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-
-        // Arreglar checked
-
         private void checkAll_Checked(object sender, RoutedEventArgs e)
         {
+            if(listaAlumnos == null || listaAlumnos.Count == 0)
+            {
+                MessageBox.Show("No hay alumnos para seleccionar.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+            alumnosSeleccionados.Clear();
+
             foreach (var alumno in listaAlumnos)
             {
-                //alumno.IsSelected = true;
+                alumno.IsSelected = true;
+                alumnosSeleccionados.Add(alumno);
             }
+
             alumnosDataGrid.Items.Refresh();
         }
 
         private void checkAll_Unchecked(object sender, RoutedEventArgs e)
         {
+            if (listaAlumnos == null || listaAlumnos.Count == 0)
+            {
+                MessageBox.Show("No hay alumnos para seleccionar.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
             foreach (var alumno in listaAlumnos)
             {
-                //alumno.IsSelected = false;
+                alumno.IsSelected = false;
             }
+
+            alumnosSeleccionados.Clear();
             alumnosDataGrid.Items.Refresh();
         }
 
@@ -117,7 +141,7 @@ namespace FPConnect.view.Pages.AlumnosSubPages
             }
             Console.WriteLine("Convocatoria seleccionada: " + convocatoriaSeleccionada);
             Console.WriteLine("Curso seleccionado: " + SesionUsuario.IdCurso);
-            
+
             listaAlumnos = alumno.ObtenerAlumnosPorCursoConvocatoriaYFase(SesionUsuario.IdCurso, convocatoriaSeleccionada, 1);
             if (listaAlumnos.Count == 0)
             {
@@ -130,5 +154,51 @@ namespace FPConnect.view.Pages.AlumnosSubPages
                 alumnosDataGrid.Items.Refresh();
             }
         }
+
+        private void btnValidar_Click(object sender, RoutedEventArgs e)
+        {
+            foreach(var alumno in alumnosSeleccionados)
+            {
+                if (alumno.id_alumno != 0)
+                {
+                    alumno.id_fase = 2; // Fase 2 = Validado
+                    alumno.Actualizar(alumno);
+                    Console.WriteLine($"Alumno validado: {alumno.nombre} {alumno.apellidos}");
+                    
+                }
+            }
+            MessageBox.Show("Se han validado los alumnos seleccionados", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+            listaAlumnos.Clear();
+            listaAlumnos = alumno.ObtenerAlumnosPorCursoConvocatoriaYFase(SesionUsuario.IdCurso, convocatoriaSeleccionada, 1); // Vuelve a cargar los alumnos
+            alumnosDataGrid.ItemsSource = null;
+            alumnosDataGrid.ItemsSource = listaAlumnos;
+        }
+
+        private void Alumno_Checked(object sender, RoutedEventArgs e)
+        {
+            // Obtener el alumno asociado al checkbox
+            CheckBox checkBox = sender as CheckBox;
+            Alumno alumnoSeleccionado = checkBox.DataContext as Alumno;
+
+            if (alumnoSeleccionado != null && !alumnosSeleccionados.Contains(alumnoSeleccionado))
+            {
+                alumnosSeleccionados.Add(alumnoSeleccionado);
+                Console.WriteLine($"Alumno agregado a seleccionados: {alumnoSeleccionado.nombre} {alumnoSeleccionado.apellidos}");
+            }
+        }
+
+        private void Alumno_Unchecked(object sender, RoutedEventArgs e)
+        {
+            // Obtener el alumno asociado al checkbox
+            CheckBox checkBox = sender as CheckBox;
+            Alumno alumnoSeleccionado = checkBox.DataContext as Alumno;
+
+            if (alumnoSeleccionado != null && alumnosSeleccionados.Contains(alumnoSeleccionado))
+            {
+                alumnosSeleccionados.Remove(alumnoSeleccionado);
+                Console.WriteLine($"Alumno eliminado de seleccionados: {alumnoSeleccionado.nombre} {alumnoSeleccionado.apellidos}");
+            }
+        }
+
     }
 }

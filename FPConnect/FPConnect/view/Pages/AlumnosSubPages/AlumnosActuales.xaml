@@ -7,7 +7,7 @@
       xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="950"
+      d:DesignHeight="450" d:DesignWidth="1050"
       Title="AlumnosActuales">
     <Page.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
@@ -24,17 +24,30 @@
         <!--Busqueda texto-->
         <TextBlock Text="Alumnos" Grid.Row="1" FontSize="18" FontWeight="SemiBold" Foreground="#121518" Margin=" 25 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <TextBlock Name="txtNumAlumnos" Grid.Row="1" FontSize="18" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
-        <ComboBox x:Name="cbConvocatoria" materialDesign:HintAssist.Hint="Convocatoria" Grid.Row="1" FontSize="16" Width="165" HorizontalAlignment="Left" Margin="611,0,0,0" />
-        <Button x:Name="btnCargar" Content="Cargar" Click="btnCargar_Click" Grid.Row="1" Style="{StaticResource addButton}" Margin="812,10,0,10" Width="128" HorizontalAlignment="Left"/>
-        <DataGrid x:Name="alumnosDataGrid" Grid.Row="2" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  Style="{DynamicResource DataGridStyle1}" SelectionChanged="membersDataGrid_SelectionChanged">
+        <ComboBox x:Name="cbConvocatoria" materialDesign:HintAssist.Hint="Convocatoria" Grid.Row="1" FontSize="16"
+                  Width="165" HorizontalAlignment="Left" Margin="618,0,0,0" />
+        <Button x:Name="btnCargar" Content="Cargar" ToolTip="Cargar lista de alumnos" Click="btnCargar_Click" Grid.Row="1" Style="{StaticResource addButton}" Margin="818,10,0,10" Width="128" HorizontalAlignment="Left"/>
+        <Button x:Name="btnCmabiarFase" ToolTip="Validar" Click="btnValidar_Click" Grid.Row="1" Style="{StaticResource addButton}" Margin="960,10,0,10" Width="50" HorizontalAlignment="Left">
+            <Icon:PackIconMaterial Kind="AccountArrowRight" Style="{StaticResource gridButtonIcon}"/>
+        </Button>
+        <DataGrid x:Name="alumnosDataGrid" Grid.Row="2" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  Style="{DynamicResource DataGridStyle1}">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}" Binding="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}">
-                    <DataGridCheckBoxColumn.HeaderTemplate>
+                <DataGridTemplateColumn Header="C" CanUserResize="False" Width="auto">
+                    <DataGridTemplateColumn.HeaderTemplate>
                         <DataTemplate>
-                            <CheckBox Name="checkAll" Style="{StaticResource CheckBoxStyle1}" Checked="checkAll_Checked" Unchecked="checkAll_Unchecked"/>
+                            <CheckBox Name="checkAll" Style="{StaticResource CheckBoxStyle1}" 
+                    Checked="checkAll_Checked" Unchecked="checkAll_Unchecked" />
                         </DataTemplate>
-                    </DataGridCheckBoxColumn.HeaderTemplate>
-                </DataGridCheckBoxColumn>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox Style="{StaticResource CheckBoxStyle1}" 
+                      IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      Checked="Alumno_Checked" 
+                      Unchecked="Alumno_Unchecked" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding id_alumno}"/>
                 <DataGridTemplateColumn Header="Alumno" IsReadOnly="True" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
@@ -49,9 +62,13 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Apellido" Binding="{Binding Apellidos}" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Dirección de email" Binding="{Binding Email}" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Número de teléfono" Binding="{Binding Phone}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Apellido" Binding="{Binding apellidos}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Dirección de email" Binding="{Binding email}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Dirección de email" Binding="{Binding id_alumno}" IsReadOnly="True" Width="*" Visibility="Hidden"/>
+                <DataGridTextColumn Header="Dirección de email" Binding="{Binding id_curso}" IsReadOnly="True" Width="*" Visibility="Hidden"/>
+                <DataGridTextColumn Header="Dirección de email" Binding="{Binding id_convocatoria}" IsReadOnly="True" Width="*" Visibility="Hidden"/>
+                <DataGridTextColumn Header="Dirección de email" Binding="{Binding id_fase}" IsReadOnly="True" Width="*" Visibility="Hidden"/>
+                <DataGridTextColumn Header="Dirección de email" Binding="{Binding activo}" IsReadOnly="True" Width="*" Visibility="Hidden"/>
                 <DataGridTemplateColumn Header="Acciones" IsReadOnly="True" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

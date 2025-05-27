@@ -11,7 +11,11 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using FPConnect.domain;
+using FPConnect.HelperClasses;
+using FPConnect.view.Pages.AlumnosSubPages;
 using FPConnect.view.Pages.Forms;
+using FPConnect.view.Pages.Forms.Empresas;
 using Microsoft.SqlServer.Server;
 
 namespace FPConnect.view.Pages
@@ -78,12 +82,13 @@ namespace FPConnect.view.Pages
 
         private void btnAddAlumno_Click(object sender, RoutedEventArgs e)
         {
-            FormAddAlumno formAddAlumno = new FormAddAlumno();
+            Alumno nuevoAlumno = new Alumno();
+            int tipoOperacion = 1; // 1 add, 2 mod
+            FormAddAlumno formAddEmpresa = new FormAddAlumno(nuevoAlumno, tipoOperacion);
+            formAddEmpresa.ShowDialog();
+            if (formAddEmpresa.DialogResult == true)
+            {               
 
-            
-            if (formAddAlumno.ShowDialog() == true) // Muestra como modal
-            {
-                // Implementar logica
             }
 
         }

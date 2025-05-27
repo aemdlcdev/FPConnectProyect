@@ -1,19 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using FPConnect.view.Pages.Forms.Alumnos;
 using FPConnect.view.Pages.Forms;
 using FPConnect.domain;
 using FPConnect.HelperClasses;
@@ -25,7 +13,7 @@ namespace FPConnect.view.Pages.AlumnosSubPages
     /// </summary>
     public partial class AlumnosValidados : Page
     {
-        private ObservableCollection<Alumno> listaAlumnos { get; set; }
+        public ObservableCollection<Alumno> listaAlumnos { get; set; }
         private Alumno alumno;
         private int convocatoriaSeleccionada;
         public AlumnosValidados()
@@ -42,36 +30,45 @@ namespace FPConnect.view.Pages.AlumnosSubPages
             return alumnosDataGrid.Items.Count;
         }
 
-        private void membersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-
-
         private void btnEditarAlumno_Click(object sender, RoutedEventArgs e)
         {
-            FormModAlumno formModAlumno = new FormModAlumno();
-
-
-
-            //Console.WriteLine(selectedMember.Name); <- [Traza]
-
-            if (formModAlumno.ShowDialog() == true) // Muestra como modal
+            Alumno nuevoAlumno = (Alumno)alumnosDataGrid.SelectedItem;
+            int tipoOperacion = 2; // 1 add, 2 mod
+            FormAddAlumno formAddEmpresa = new FormAddAlumno(nuevoAlumno, tipoOperacion);
+            formAddEmpresa.ShowDialog();
+            if (formAddEmpresa.DialogResult == true)
             {
-                // Implementar logica
+                nuevoAlumno.Actualizar(nuevoAlumno);
+                listaAlumnos.Clear();
+                listaAlumnos = alumno.ObtenerAlumnosPorCursoConvocatoriaYFase(SesionUsuario.IdCurso, convocatoriaSeleccionada, 2); // Vuelve a cargar los alumnos
+                alumnosDataGrid.ItemsSource = null;
+                alumnosDataGrid.ItemsSource = listaAlumnos;
+                MessageBox.Show("Alumno actualizado correctamente.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
         private void btnEliminarAlumno_Click(object sender, RoutedEventArgs e)
         {
-            FormDelete formDelAlumno = new FormDelete();
+            var selectedAlumno = alumnosDataGrid.SelectedItem as Alumno;
 
-            if (formDelAlumno.ShowDialog() == true) // Muestra como modal
+            if (selectedAlumno == null || selectedAlumno.id_alumno == 0)
             {
+                MessageBox.Show("Seleccione un alumno válido antes de eliminarlo.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
 
-                // Se hace en memoria para probar
-                // Implementar logica en base de datos
+            FormDelete formDelUsuario = new FormDelete();
+            try
+            {
+                if (formDelUsuario.ShowDialog() == true)
+                {
+                    listaAlumnos.Remove(selectedAlumno); // eliminar de la vista
+                    alumno.EliminarLogico(selectedAlumno); // eliminar de la base de datos
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar el alumno: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -130,6 +127,5 @@ namespace FPConnect.view.Pages.AlumnosSubPages
                 alumnosDataGrid.Items.Refresh();
             }
         }
-
     }
 }

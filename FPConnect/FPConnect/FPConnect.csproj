@@ -498,9 +498,6 @@
     <Compile Include="view\Pages\Forms\Alumnos\FormAddAlumno.xaml.cs">
       <DependentUpon>FormAddAlumno.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\Pages\Forms\Alumnos\FormModAlumno.xaml.cs">
-      <DependentUpon>FormModAlumno.xaml</DependentUpon>
-    </Compile>
     <Compile Include="view\Pages\Forms\Empresas\FormAddEmpresa.xaml.cs">
       <DependentUpon>FormAddEmpresa.xaml</DependentUpon>
     </Compile>
@@ -598,10 +595,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\Pages\Forms\Alumnos\FormAddAlumno.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="view\Pages\Forms\Alumnos\FormModAlumno.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

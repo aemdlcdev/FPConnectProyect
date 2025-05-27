@@ -58,6 +58,14 @@ namespace FPConnect.view
                 SesionUsuario.IdFamilia = usuario.id_familia;
                 SesionUsuario.IdGrado = usuario.id_grado;
                 SesionUsuario.IdCurso = usuario.id_curso;
+
+                Console.WriteLine("Usuario autenticado: " + SesionUsuario.NombreUsuario);
+                Console.WriteLine("ID Profesor: " + SesionUsuario.id_profesor);
+                Console.WriteLine("ID Centro: " + SesionUsuario.IdCentro);
+                Console.WriteLine("ID Familia: " + SesionUsuario.IdFamilia);
+                Console.WriteLine("ID Grado: " + SesionUsuario.IdGrado);
+                Console.WriteLine("ID Curso: " + SesionUsuario.IdCurso);
+
                 MainWindow mainWindow = new MainWindow(usuario);
                 mainWindow.Show();
                 this.Close();
