@@ -64,6 +64,7 @@
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Apellido" Binding="{Binding apellidos}" IsReadOnly="True" Width="*"/>
                 <DataGridTextColumn Header="Dirección de email" Binding="{Binding email}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Empresa" Binding="{Binding InfoAdicional[nombre_empresa]}" IsReadOnly="True" Width="*"/>
                 <DataGridTextColumn Header="Dirección de email" Binding="{Binding id_alumno}" IsReadOnly="True" Width="*" Visibility="Hidden"/>
                 <DataGridTextColumn Header="Dirección de email" Binding="{Binding id_curso}" IsReadOnly="True" Width="*" Visibility="Hidden"/>
                 <DataGridTextColumn Header="Dirección de email" Binding="{Binding id_convocatoria}" IsReadOnly="True" Width="*" Visibility="Hidden"/>

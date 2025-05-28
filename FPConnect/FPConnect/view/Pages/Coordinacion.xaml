@@ -86,7 +86,7 @@
                                 <Button x:Name="btnEditarTarea" Click="btnEditarTarea_Click" Background="#3090ff" Margin="5 0 0 0" BorderBrush="AliceBlue" Style="{StaticResource gridEditButton}">
                                     <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                 </Button>
-                                <Button x:Name="btnDelTarea" Click="btnAddTarea_Click" Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}">
+                                <Button x:Name="btnDelTarea" Click="btnDelTarea_Click" Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}">
                                     <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
                                 </Button>
                             </StackPanel>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Media;
 using FPConnect.persistence.Manages;
@@ -19,11 +20,13 @@ namespace FPConnect.domain
         public int id_fase { get; set; }
         public bool IsSelected { get; set; }
         private AlumnoManage am;
+        public Dictionary<string, object> InfoAdicional { get; set; }
 
         // Constructor por defecto
         public Alumno()
         {
             am = new AlumnoManage();
+            InfoAdicional = new Dictionary<string, object>();
         }
 
         // Constructor completo con id_alumno
@@ -74,6 +77,11 @@ namespace FPConnect.domain
         }
 
         // Método para insertar un nuevo alumno
+
+        public bool InsertarAlumnoConEmpresa(Alumno alumno, int id_empresa)
+        {
+            return am.InsertarAlumnoConEmpresa(alumno, id_empresa);
+        }
         public bool Insertar(Alumno alumno)
         {
             return am.InsertarAlumno(alumno);
@@ -85,6 +93,11 @@ namespace FPConnect.domain
             return am.ActualizarAlumno(alumno);
         }
 
+        public bool ActualizarFaseAsignacionEmpresa(int id_alumno, int id_fase) 
+        { 
+            return am.ActualizarFaseAsignacionEmpresa(id_alumno, id_fase);
+        }
+
         // Método para eliminar lógicamente un alumno
         public bool EliminarLogico(Alumno alumno)
         {
@@ -92,7 +105,6 @@ namespace FPConnect.domain
             return am.ActualizarAlumno(alumno);
         }
 
-        
 
         // Método para obtener el nombre del curso
         public string ObtenerNombreCurso()
@@ -109,6 +121,22 @@ namespace FPConnect.domain
         public ObservableCollection<Alumno> ObtenerAlumnosPorCursoConvocatoriaYFase(int id_curso, int id_convocatoria, int id_fase)
         {
             return am.ObtenerAlumnosPorCursoConvocatoriaYFase(id_curso, id_convocatoria, id_fase);
+        }
+
+        public ObservableCollection<Alumno> ObtenerAlumnosPorCursoYFase(int id_curso, int id_fase)
+        {
+            return am.ObtenerAlumnosPorCursoYFase(id_curso, id_fase);
+        }
+
+        public ObservableCollection<Alumno> ObtenerHistoricoAlumnosPorPerfilYAnio(int id_perfil, int anio_inicio) 
+        {
+            return am.ObtenerHistoricoAlumnosPorPerfilYAnio(id_perfil, anio_inicio);
+        }
+
+        public static int ContarAlumnosPorCentro(int id_centro)
+        {
+            AlumnoManage am = new AlumnoManage();
+            return am.ContarAlumnosPorCentro(id_centro);
         }
 
         // Override de ToString para mostrar información del alumno

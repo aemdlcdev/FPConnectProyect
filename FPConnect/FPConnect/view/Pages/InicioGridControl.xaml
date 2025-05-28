@@ -58,9 +58,9 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <uc:InfoCard Grid.Column="0" Title="Alumnos" SubTitle="Alumnos registrados del centro" Amount="150" Image="/Images/team.png"/>
-                <uc:InfoCard Grid.Column="1" Title="Empresas" SubTitle="Empresas registradas" Amount="8" Image="/Images/enterprise.png"/>
-                <uc:InfoCard Grid.Column="2" Title="Centros" SubTitle="Total de centros educativos registrados" Amount="3" Image="/Images/education.png"/>
+                <uc:InfoCard x:Name="numAlumnos" Grid.Column="0" Title="Alumnos" SubTitle="Alumnos registrados del centro" Amount="150" Image="/Images/team.png"/>
+                <uc:InfoCard x:Name="numEmpresas" Grid.Column="1" Title="Empresas" SubTitle="Empresas registradas" Amount="8" Image="/Images/enterprise.png"/>
+                <uc:InfoCard x:Name="numCentros" Grid.Column="2" Title="Centros" SubTitle="Total de centros educativos registrados" Amount="3" Image="/Images/education.png"/>
             </Grid>
 
             <!--Live chart-->

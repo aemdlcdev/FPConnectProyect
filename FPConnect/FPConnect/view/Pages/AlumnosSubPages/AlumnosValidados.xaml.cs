@@ -15,13 +15,14 @@ namespace FPConnect.view.Pages.AlumnosSubPages
     {
         public ObservableCollection<Alumno> listaAlumnos { get; set; }
         private Alumno alumno;
-        private int convocatoriaSeleccionada;
         public AlumnosValidados()
         {
             InitializeComponent();
             alumno = new Alumno();
-            cbConvocatoria.Items.Add("Ordinaria");
-            cbConvocatoria.Items.Add("Extraordinaria");
+            listaAlumnos = alumno.ObtenerAlumnosPorCursoYFase(SesionUsuario.IdCurso, 2); 
+            alumnosDataGrid.ItemsSource = null;
+            alumnosDataGrid.ItemsSource = listaAlumnos;
+            txtNumAlumnos.Text = GetAlumnosActuales().ToString();
 
         }
 
@@ -33,14 +34,14 @@ namespace FPConnect.view.Pages.AlumnosSubPages
         private void btnEditarAlumno_Click(object sender, RoutedEventArgs e)
         {
             Alumno nuevoAlumno = (Alumno)alumnosDataGrid.SelectedItem;
-            int tipoOperacion = 2; // 1 add, 2 mod
+            int tipoOperacion = 3; // mod alumnos validados
             FormAddAlumno formAddEmpresa = new FormAddAlumno(nuevoAlumno, tipoOperacion);
             formAddEmpresa.ShowDialog();
             if (formAddEmpresa.DialogResult == true)
             {
                 nuevoAlumno.Actualizar(nuevoAlumno);
                 listaAlumnos.Clear();
-                listaAlumnos = alumno.ObtenerAlumnosPorCursoConvocatoriaYFase(SesionUsuario.IdCurso, convocatoriaSeleccionada, 2); // Vuelve a cargar los alumnos
+                listaAlumnos = alumno.ObtenerAlumnosPorCursoYFase(SesionUsuario.IdCurso, 2);
                 alumnosDataGrid.ItemsSource = null;
                 alumnosDataGrid.ItemsSource = listaAlumnos;
                 MessageBox.Show("Alumno actualizado correctamente.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -71,61 +72,6 @@ namespace FPConnect.view.Pages.AlumnosSubPages
                 MessageBox.Show("Error al eliminar el alumno: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-
-        // Arreglar checked
-
-        private void checkAll_Checked(object sender, RoutedEventArgs e)
-        {
-            foreach (var alumno in listaAlumnos)
-            {
-                //alumno.IsSelected = true;
-            }
-            alumnosDataGrid.Items.Refresh();
-        }
-
-        private void checkAll_Unchecked(object sender, RoutedEventArgs e)
-        {
-            foreach (var alumno in listaAlumnos)
-            {
-                //alumno.IsSelected = false;
-            }
-            alumnosDataGrid.Items.Refresh();
-        }
-
-        private void btnCargar_Click(object sender, RoutedEventArgs e)
-        {
-            if (cbConvocatoria.SelectedItem == null)
-            {
-                MessageBox.Show("Por favor, seleccione una convocatoria.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            convocatoriaSeleccionada = 0; // lo incializo aqui para evitar errores
-            if (cbConvocatoria.SelectedItem != null)
-            {
-                if (cbConvocatoria.SelectedItem.ToString() == "Ordinaria")
-                {
-                    convocatoriaSeleccionada = 1;
-                }
-                else if (cbConvocatoria.SelectedItem.ToString() == "Extraordinaria")
-                {
-                    convocatoriaSeleccionada = 2;
-                }
-            }
-            Console.WriteLine("Convocatoria seleccionada: " + convocatoriaSeleccionada);
-            Console.WriteLine("Curso seleccionado: " + SesionUsuario.IdCurso);
-
-            listaAlumnos = alumno.ObtenerAlumnosPorCursoConvocatoriaYFase(SesionUsuario.IdCurso, convocatoriaSeleccionada, 2);
-            if (listaAlumnos.Count == 0)
-            {
-                MessageBox.Show("No hay alumnos para mostrar en esta convocatoria.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else
-            {
-                alumnosDataGrid.ItemsSource = null; // Limpiar la fuente de datos actual
-                alumnosDataGrid.ItemsSource = listaAlumnos;
-                alumnosDataGrid.Items.Refresh();
-            }
-        }
+        
     }
 }

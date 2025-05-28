@@ -86,5 +86,35 @@ namespace FPConnect.persistence.Manages
                 return null;
             }
         }
+
+        /// <summary>
+        /// Obtiene el número total de centros registrados en la base de datos
+        /// </summary>
+        /// <returns>Número de centros</returns>
+        public int ContarCentros()
+        {
+            int numeroCentros = 0;
+
+            try
+            {
+                db = DBBroker.ObtenerAgente();
+                string query = "SELECT COUNT(*) FROM fpc.Centros;";
+
+                var resultado = db.LeerSinParametros(query);
+
+                if (resultado.Count > 0)
+                {
+                    var fila = resultado[0] as ObservableCollection<object>;
+                    numeroCentros = Convert.ToInt32(fila[0]);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al contar centros: {ex.Message}");
+            }
+
+            return numeroCentros;
+        }
+
     }
 }

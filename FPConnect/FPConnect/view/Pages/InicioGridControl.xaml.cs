@@ -41,7 +41,9 @@ namespace DataGrid.view
             txtHorario.Text = nuevoCentro.horario;
             txtTelefono.Text = nuevoCentro.telefono;
             logo.Source = nuevoCentro.logo;
-
+            numEmpresas.Amount = Empresa.ContarEmpresasActivasPorCentro(SesionUsuario.IdCentro);
+            numCentros.Amount = Centro.ContarCentros();
+            numAlumnos.Amount = Alumno.ContarAlumnosPorCentro(SesionUsuario.IdCentro);
         }
         
     }

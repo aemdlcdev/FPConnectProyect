@@ -54,5 +54,12 @@ namespace FPConnect.domain
         {
             return cm.LeerCentroPorId(id);
         }
+
+        public static int ContarCentros()
+        {
+            CentroManage cm = new CentroManage();
+            return cm.ContarCentros();
+        }
+
     }
 }

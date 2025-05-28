@@ -1,18 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using FPConnect.domain;
 using FPConnect.HelperClasses;
 using FPConnect.view.Pages.Forms;
@@ -54,6 +43,7 @@ namespace FPConnect.view.Pages.AlumnosSubPages
                 nuevoAlumno.Actualizar(nuevoAlumno);
                 listaAlumnos.Clear();
                 listaAlumnos = alumno.ObtenerAlumnosPorCursoConvocatoriaYFase(SesionUsuario.IdCurso, convocatoriaSeleccionada, 1); // Vuelve a cargar los alumnos
+                
                 alumnosDataGrid.ItemsSource = null;
                 alumnosDataGrid.ItemsSource = listaAlumnos;
                 MessageBox.Show("Alumno actualizado correctamente.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -149,22 +139,33 @@ namespace FPConnect.view.Pages.AlumnosSubPages
             }
             else
             {
+                listaAlumnos.Clear(); // Limpiar la lista antes de cargar nuevos datos
+                listaAlumnos = alumno.ObtenerAlumnosPorCursoConvocatoriaYFase(SesionUsuario.IdCurso, convocatoriaSeleccionada, 1);
                 alumnosDataGrid.ItemsSource = null; // Limpiar la fuente de datos actual
                 alumnosDataGrid.ItemsSource = listaAlumnos;
                 alumnosDataGrid.Items.Refresh();
+                txtNumAlumnos.Text = GetAlumnosActuales().ToString();
             }
         }
 
         private void btnValidar_Click(object sender, RoutedEventArgs e)
         {
-            foreach(var alumno in alumnosSeleccionados)
+
+            if(alumnosSeleccionados.Count == 0)
+            {
+                MessageBox.Show("Por favor, seleccione al menos un alumno para validar.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            foreach (var alumno in alumnosSeleccionados)
             {
                 if (alumno.id_alumno != 0)
                 {
                     alumno.id_fase = 2; // Fase 2 = Validado
+
                     alumno.Actualizar(alumno);
-                    Console.WriteLine($"Alumno validado: {alumno.nombre} {alumno.apellidos}");
-                    
+                    alumno.ActualizarFaseAsignacionEmpresa(alumno.id_alumno, 2); 
+                    Console.WriteLine($"Alumno validado: {alumno.nombre} {alumno.apellidos}"); // traza                 
                 }
             }
             MessageBox.Show("Se han validado los alumnos seleccionados", "Información", MessageBoxButton.OK, MessageBoxImage.Information);

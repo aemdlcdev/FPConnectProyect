@@ -385,6 +385,41 @@ namespace FPConnect.persistence.Manages
             return empresas;
         }
 
+        /// <summary>
+        /// Obtiene el número de empresas activas para un centro específico
+        /// </summary>
+        /// <param name="id_centro">ID del centro</param>
+        /// <returns>Número de empresas activas</returns>
+        public int ContarEmpresasActivasPorCentro(int id_centro)
+        {
+            int numeroEmpresas = 0;
+
+            try
+            {
+                db = DBBroker.ObtenerAgente();
+                string query = "SELECT COUNT(*) FROM fpc.empresas WHERE id_centro = @id_centro AND activo = 1;";
+
+                var parametros = new Dictionary<string, object>
+        {
+            { "@id_centro", id_centro }
+        };
+
+                var resultado = db.LeerConParametros(query, parametros);
+
+                if (resultado.Count > 0)
+                {
+                    var fila = resultado[0] as ObservableCollection<object>;
+                    numeroEmpresas = Convert.ToInt32(fila[0]);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al contar empresas activas por centro: {ex.Message}");
+            }
+
+            return numeroEmpresas;
+        }
+
         #endregion
 
         #region Operaciones para EmpresasPerfiles

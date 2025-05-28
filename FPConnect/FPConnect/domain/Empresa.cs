@@ -143,6 +143,12 @@ namespace FPConnect.domain
             return em.LeerEmpresasActivasPorCentro(id_centro);
         }
 
+        public static int ContarEmpresasActivasPorCentro(int id_centro)
+        {
+            EmpresaManage em = new EmpresaManage();
+            return em.ContarEmpresasActivasPorCentro(id_centro);
+        }
+
         // Obtener empresas por perfil
         public static ObservableCollection<Empresa> ObtenerPorPerfil(int id_perfil)
         {

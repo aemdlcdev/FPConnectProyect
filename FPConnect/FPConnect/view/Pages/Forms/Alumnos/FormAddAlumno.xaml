@@ -23,7 +23,8 @@
 
                 <TextBlock Text="Correo Electrónico:"/>
                 <TextBox x:Name="txtCorreo" Margin="0,5" Style="{StaticResource textBoxNormal}" Width="350"/>
-                <ComboBox x:Name="cbConvocatoria" materialDesign:HintAssist.Hint="Convocatoria" FontSize="16" Width="350" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <ComboBox x:Name="cbEmpresa" Margin="0 15 0 0" materialDesign:HintAssist.Hint="Empresa" FontSize="16" Width="350" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <ComboBox x:Name="cbConvocatoria" Margin="0 15 0 0" materialDesign:HintAssist.Hint="Convocatoria" FontSize="16" Width="350" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10">
                     <Button Content="Guardar" Width="80" Click="Guardar_Click" Style="{StaticResource buttonMainGreenGestionUsuarios}" Height="30"/>
